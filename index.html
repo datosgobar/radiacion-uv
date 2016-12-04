@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Radiación UV</title>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <!-- Jquery -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <!-- D3 -->
+    <script src="node_modules/d3/build/d3.js"></script>
+    <!-- Fullpage -->
+    <link rel="stylesheet" href="node_modules/fullpage.js/dist/jquery.fullpage.css">
+    <script src="node_modules/fullpage.js/dist/jquery.fullpage.js"></script>
+    <!-- App -->
+    <link rel="stylesheet" href="styles/css/app.css">
+    <script src="javascript/app.js"></script>
+    <!-- Prueba JS -->
+    <script>
+
+    </script>
+  </head>
+  <body>
+    <div id="fullpage">
+      <section class="section">
+        <video data-autoplay data-keepplaying >
+          <source data-src="source/playa.mp4" type="video/mp4" />
+        </video>
+        <div id="medidor"></div><!-- Se inserta Medidor desde D3 -->
+      </section>
+      <section class="section">
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+      </section>
+    </div>
+  </body>
+</html>
