@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+// Estate Colors
+$low: rgba(66, 190, 92, 1);
+$moderate: rgba(233, 184, 66, 1);
+$high: rgba(241, 133, 75, 1);
+$veryHigh: rgba(242, 56, 90, 1);
+$danger: rgba(26, 10, 58, 1);
+
+$stateColor: ($low, $moderate, $high, $veryHigh, $danger);
+
+// General
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+// Logo Argentina GobAr
+#navBar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 100;
+
+  & > nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px 20px;
+    margin: 0px;
+    position: relative;
+    width: 100%;
+    box-shadow: 0px 0px 5px silver;
+    box-sizing: border-box;
+
+    & > img {
+      height: 30px;
+    }
+  }
+
+  & > section {
+    width: 100%;
+
+    & > h1 {
+      text-align: center;
+      font-weight: 400;
+      font-size: 2rem;
+      margin: 0px;
+      padding: 10px 0px;
+    }
+  }
+}
+
+// Full Page
+#fullpage {
+  width: 100vw;
+  height: 100vh;
+
+  & > .sectionFullPage {
+
+    & > .fp-tableCell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+  }
+
+  &  .sectionContent {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+}
+
+// Secciones
+#section1 .sectionContent{
+
+  & > article {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 2rem;
+
+    &:nth-child(1) {
+      color: rgba(255, 255, 255, 1);
+      align-items: flex-start;
+    }
+
+    &:nth-child(2) {
+      color: rgba(255, 255, 255, 0.5);
+      align-items: center;
+
+    }
+
+    &:nth-child(4) {
+      color: rgba(255, 255, 255, 1);
+      align-items: center;
+      text-align: center;
+      max-width: 300px;
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+
+    &:nth-child(5) {
+      margin-top: 20px;
+      color: rgba(255, 255, 255, 1);
+      align-items: center;
+      max-width: 300px;
+      font-size: 1.25rem;
+      font-weight: 100;
+
+      & > i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+}
+#section2 .sectionContent{
+
+  & > section {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 90%;
+
+    & > header {
+      width: 100%;
+
+      & > h2 {
+        text-align: center;
+        font-size: 2rem;
+      }
+    }
+
+    &:nth-child(1) {
+      height: 40%;
+      border-bottom: 1px solid silver;
+
+      & > section {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+
+        & > article {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+
+          &:nth-child(2) {
+            border-left: 1px solid silver;
+            border-right: 1px solid silver;
+          }
+
+          & > .horario {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+          }
+
+          & > .pronostico {
+            font-size: 1.5rem;
+            color: silver;
+          }
+
+          & > i {
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      height: 60%;
+      border-bottom: 1px solid silver;
+
+      & > section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+
+        & > div {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+
+          &:nth-child(2) {
+            border-left: 1px solid silver;
+            border-right: 1px solid silver;
+          }
+
+          & > article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            & > .recomendacion {
+              font-size: 1.25rem;
+              color: silver;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+#section3 .sectionContent {
+
+  & > div {
+    height: 100%;
+    border-bottom: 1px solid silver;
+    width: 90%;
+
+    & > h2 {
+      width: 100%;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    & > p {
+      width: 100%;
+      text-align: center;
+      font-size: 1.25rem;
+      line-height: 2;
+    }
+  }
+}
+#section4 .sectionContent {
+
+  & > header {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    & > h2 {
+      text-align: center;
+      margin: 0px;
+      width: 100%;
+      font-size: 2.5rem;
+    }
+  }
+
+  & > section {
+    height: 80%;
+    width: 90%;
+    border-bottom: 1px solid silver;
+
+    & .fp-tableCell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      & > i {
+        font-size: 20rem;
+      }
+
+      & > h3 {
+        font-size: 2rem;
+      }
+
+      & > p {
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}
+#section5 {}
+
+#medidor {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Weather Control
+#clima {
+  width: 4rem;
+  height: 4rem;
+  background-image: url('../../public/img/clima.png');
+  background-size: cover;
+  opacity: 0.5;
+  margin-right: 1rem;
+}
+.soleado {
+  background-position: 0rem 0rem;
+}
+.noche {
+  background-position: 4rem 0rem;
+}
+.tormenta {
+  background-position: 8rem 0rem;
+}
+.lluvia {
+  background-position: 12rem 0rem;
+}
+.inestable {
+  background-position: 16rem 0rem;
+}
+.nublado {
+  background-position: 20rem 0rem;
+}
+.parcialmente-nublado {
+  background-position: 24rem 0rem;
+}
+
+// Protection UV Icons
+.protection-icon {
+  width: 7rem;
+  height: 7rem;
+  margin-bottom: 1rem;
+}

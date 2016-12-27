@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
+	<circle fill="black" cx="35" cy="35" r="35" />
+	<g>
+		<path fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M28,49.6" />
+		<path fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M56.9,34.1c-0.4-7.4-7.6-13.6-16.9-13.6s-16.9,6.1-16.9,13.6c0,0.8,0.1,1.6,0.3,2.4c0-0.1,10.3,9.3,33.5-1.5C56.9,34.9,56.9,34.4,56.9,34.1" />
+		<path fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43.4,39.5c0.1-13-6.4-18.3-6.4-18.3" />
+		<path fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M23.4,36.4c0,0-13.6,6.1-9.7,10s12.2,4.3,29.7-6.9" />
+	</g>
+</svg>
