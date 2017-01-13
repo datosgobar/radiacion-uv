@@ -5,17 +5,35 @@ $low: rgba(66, 190, 92, 1);
 $moderate: rgba(233, 184, 66, 1);
 $high: rgba(241, 133, 75, 1);
 $veryHigh: rgba(242, 56, 90, 1);
-$danger: rgba(26, 10, 58, 1);
+$danger: rgba(85, 50, 133, 1);
 
 $stateColor: ($low, $moderate, $high, $veryHigh, $danger);
+
+// Text
+$text: rgba(77, 77, 77, 1);
+$whiteText: rgba(255, 255, 255, 1);
+$blackText: rgba(0, 0, 0, 1);
 
 // General
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
+
+  // Tablet 768x1024px
+  @media screen and (min-width: 768px){
+    font-size: 10px;
+  }
+  // Laptop 1280x802px
+  @media screen and (min-width: 1280px){
+    font-size: 10px;
+  }
+  // Desktop 1600x992px
+  @media screen and (min-width: 1600px){
+    font-size: 10px;
+  }
 }
 
-// Logo Argentina GobAr
+// Barra de Navegación
 #navBar {
   position: fixed;
   top: 0px;
@@ -25,113 +43,377 @@ html, body {
   align-items: center;
   flex-direction: column;
   width: 100%;
+  padding: 0px 20px;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 0px;
   margin: 0px;
   background-color: rgba(255, 255, 255, 1);
   z-index: 100;
+  box-shadow: 0px 0px 5px silver;
 
   & > nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding: 10px 20px;
+    padding: 10px 0px;
     margin: 0px;
     position: relative;
     width: 100%;
-    box-shadow: 0px 0px 5px silver;
+    max-width: 900px;
     box-sizing: border-box;
 
-    & > img {
-      height: 30px;
+    #gobAr {
+      width: 150px;
     }
-  }
-
-  & > section {
-    width: 100%;
-
-    & > h1 {
-      text-align: center;
-      font-weight: 400;
-      font-size: 2rem;
-      margin: 0px;
-      padding: 10px 0px;
-    }
-  }
-}
-
-// Full Page
-#fullpage {
-  width: 100vw;
-  height: 100vh;
-
-  & > .sectionFullPage {
-
-    & > .fp-tableCell {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-  }
-
-  &  .sectionContent {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-}
-}
-
-// Secciones
-#section1 .sectionContent{
-
-  & > article {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    font-size: 2rem;
-
-    &:nth-child(1) {
-      color: rgba(255, 255, 255, 1);
-      align-items: flex-start;
-    }
-
-    &:nth-child(2) {
-      color: rgba(255, 255, 255, 0.5);
-      align-items: center;
-
-    }
-
-    &:nth-child(4) {
-      color: rgba(255, 255, 255, 1);
-      align-items: center;
-      text-align: center;
-      max-width: 300px;
+    #acercaDe {
       font-size: 1.5rem;
-      font-weight: 300;
-    }
+      font-weight: 400;
+      text-decoration: none;
+      color: #0094D4;
+      padding: 10px;
+      right: -10px;
+      position: relative;
+      border-radius: 10px;
 
-    &:nth-child(5) {
-      margin-top: 20px;
-      color: rgba(255, 255, 255, 1);
-      align-items: center;
-      max-width: 300px;
-      font-size: 1.25rem;
-      font-weight: 100;
-
-      & > i {
-        margin-right: 5px;
+      &:hover {
+        background: rgba(0,0,0,0.1);
       }
     }
   }
 }
+
+// Encabezados
+h1 {
+  text-align: center;
+  font-size: 4rem;
+  margin: 0px;
+  padding: 0px;
+  color: $text;
+  font-weight: 600;
+
+  @media screen and (min-width: 768px){
+    font-size: 4rem;
+  }
 }
-#section2 .sectionContent{
+h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0px;
+  padding: 0px;
+  color: $text;
+  font-weight: 600;
+}
+h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0px;
+  padding: 0px;
+  color: $text;
+  font-weight: 600;
+}
+
+// Ajustes de Full Page
+#fullpage {
+
+  .fp-tableCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 0px 20px;
+  }
+  .sectionContent {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+}
+
+// Secciones
+#section1 {
+  background-image: url('../../public/img/backgroundWeb.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  max-height: 800px;
+  padding-top: 58px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+
+  .encabezado {
+    & > h1 {
+      color: #009DDB;
+    }
+    & > p {
+      color: $blackText;
+    }
+  }
+
+  & > .sectionContent {
+
+    & > #radiationContent {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      width: 100%;
+      position: relative;
+      height: 100%;
+      max-height: 500px;
+
+      & > #sectionIzq {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+
+        @media screen and (min-width: 768px){
+          width: 100%;
+          max-width: 350px;
+          border-radius: 10px;
+        }
+
+        & > div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          border-bottom: 1px solid white;
+          padding: 10px 0px;
+          flex-direction: row;
+          box-sizing: border-box;
+          top: 0px;
+
+          & > #ubication {
+            color: $whiteText;
+            font-weight: 400;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 50%;
+          }
+          & > #time {
+            color: $whiteText;
+            font-weight: 100;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 50%;
+            border-right: 1px solid white;
+            box-sizing: border-box;
+            border-left: 1px solid white;
+          }
+          & > #weather {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 50%;
+            text-align: center;
+
+            $medida: 2rem;
+            $coeficiente: 1.17241379;
+
+            & > #temp-weather {
+              color: $whiteText;
+              font-weight: 100;
+              font-size: 1.5rem;
+            }
+            & > #icon-weather {
+              width: $medida * $coeficiente;
+              height: $medida;
+              background-image: url('../../public/img/clima.png');
+              background-size: cover;
+              margin-right: 5px;
+            }
+            & > .soleado {
+              background-position: (($medida * $coeficiente) * 0) 0rem;
+            }
+            & > .noche {
+              background-position: (($medida * $coeficiente) * 1) 0rem;
+            }
+            & > .tormenta {
+              background-position: (($medida * $coeficiente) * 2) 0rem;
+            }
+            & > .lluvia {
+              background-position: (($medida * $coeficiente) * 3) 0rem;
+            }
+            & > .inestable {
+              background-position: (($medida * $coeficiente) * 4) 0rem;
+            }
+            & > .nublado {
+              background-position: (($medida * $coeficiente) * 5) 0rem;
+            }
+            & > .parcialmente-nublado {
+              background-position: (($medida * $coeficiente) * 6) 0rem;
+            }
+          }
+        }
+        & > #radiationUv {
+          padding: 20px 20px 0px 20px;
+          box-sizing: border-box;
+        }
+        & > article {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          font-size: 2rem;
+          width: 100%;
+
+          & > i {
+            color: $whiteText;
+            font-size: 1rem;
+            margin-right: 1rem;
+          }
+        }
+        & > article:nth-child(3) {
+          box-sizing: border-box;
+          padding: 20px;
+
+          & > #recomendation {
+            color: white;
+            font-size: 1.6rem;
+            line-height: 18px;
+            text-align: center;
+          }
+        }
+        & > article:nth-child(4) {
+          bottom: 0px;
+          padding: 10px 20px;
+          box-sizing: border-box;
+          border-top: 1px solid white;
+
+          & > i {
+            font-size: 2rem;
+          }
+
+          & > #actualizacion {
+            color: $whiteText;
+            font-size: 1.25rem;
+            font-weight: 300;
+            text-align: center;
+          }
+        }
+      }
+      & > #sectionDer {
+        height: 100%;
+        width: 40%;
+        max-width: 350px;
+        padding-left: 2rem;
+
+        & > section {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-direction: column;
+          position: relative;
+          width: 100%;
+
+          & > header {
+            width: 100%;
+
+            & > h2 {
+              padding: 10px 0px;
+              font-weight: 400;
+              font-size: 2rem;
+            }
+          }
+          &:nth-child(1) {
+            height: 35%;
+            background-color: silver;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 1);
+            margin-bottom: 1rem;
+            justify-content: space-between;
+            padding: 0px 20px;
+            box-sizing: border-box;
+
+            & > section {
+              width: 100%;
+              display: flex;
+              // justify-content: space-around;
+              align-items: center;
+              flex-direction: column;
+
+              & > article {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                width: 100%;
+
+                & > i {
+                  font-size: 3rem;
+                }
+              }
+            }
+          }
+          &:nth-child(2) {
+            height: 65%;
+            margin-top: 1rem;
+            background-color: silver;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 1);
+            justify-content: space-between;
+            padding: 10px 5px 20px 5px;
+            box-sizing: border-box;
+
+            & > section {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              flex-direction: row;
+              width: 100%;
+              height: 100%;
+              max-height: 250px;
+
+              & > div {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+
+                &:nth-child(2) {
+
+                  & > article > span {
+                    border-left: 1px solid silver;
+                    border-right: 1px solid silver;
+                  }
+                }
+
+                & > article {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#section2 .sectionContent {
 
   & > section {
 
@@ -174,16 +456,6 @@ html, body {
             border-right: 1px solid silver;
           }
 
-          & > .horario {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-          }
-
-          & > .pronostico {
-            font-size: 1.5rem;
-            color: silver;
-          }
-
           & > i {
             font-size: 3rem;
           }
@@ -221,11 +493,6 @@ html, body {
             justify-content: center;
             align-items: center;
             flex-direction: column;
-
-            & > .recomendacion {
-              font-size: 1.25rem;
-              color: silver;
-            }
           }
         }
       }
@@ -233,113 +500,285 @@ html, body {
 
   }
 }
-#section3 .sectionContent {
+#section3 {
+  padding-top: 58px;
+  height: 600px;
 
-  & > div {
-    height: 100%;
-    border-bottom: 1px solid silver;
-    width: 90%;
+  .encabezado {
 
-    & > h2 {
-      width: 100%;
-      text-align: center;
-      font-size: 2.5rem;
-    }
-
+    & > h2,
     & > p {
-      width: 100%;
-      text-align: center;
-      font-size: 1.25rem;
+      color: $blackText;
+    }
+    & > p {
       line-height: 2;
     }
   }
-}
-#section4 .sectionContent {
+  & > .sectionContent {
+    border-bottom: 1px solid silver;
+    justify-content: space-around;
 
-  & > header {
-    height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
-    & > h2 {
-      text-align: center;
-      margin: 0px;
+    #testimonios {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-direction: row;
       width: 100%;
-      font-size: 2.5rem;
+      max-width: 900px;
+      padding: 0px 20px;
+      box-sizing: border-box;
+
+      & > article {
+        width: 100%;
+        max-width: 250px;
+
+        & > cite {
+          color: #97DAF8;
+          font-size: 2.5rem;
+
+        }
+        & > p {
+          color: $blackText;
+          font-size: 1.5rem;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+#section4 {
+  width: 100vw;
+  height: 600px;
+  padding: 0px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+
+  .encabezado {
+
+    h2 {
+      color: $blackText;
     }
   }
 
-  & > section {
-    height: 80%;
-    width: 90%;
-    border-bottom: 1px solid silver;
+  & > .sectionContent {
+    justify-content: space-around;
 
-    & .fp-tableCell {
+    & > section {
+      width: 100%;
+      padding: 0px 20px;
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      flex-direction: row;
 
-      & > i {
-        font-size: 20rem;
-      }
-
-      & > h3 {
-        font-size: 2rem;
-      }
-
-      & > p {
-        text-align: center;
+      #slides {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-direction: row;
         width: 100%;
+        max-width: 900px;
+
+        .fp-tableCell {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        .slide {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          max-width: 400px;
+          width: 20%;
+
+          .categoria {
+            width: 50%;
+
+            @media screen and (min-width: 768px){
+              width: 85%;
+            }
+          }
+          h3 {
+            width: 85%;
+            margin-top: 1rem;
+          }
+          p {
+            width: 85%;
+            font-size: 1.25rem;
+            text-align: center;
+            margin: 1rem 0rem;
+          }
+        }
       }
     }
   }
 }
-#section5 {}
+#section5 {
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  box-sizing: border-box;
+  background-color: #1A1C40;
+
+  @media screen and (min-width: 768px){
+    height: 600px;
+  }
+
+  & > .sectionContent {
+
+    & > #lineChart { // Line Chart
+      width: 90%;
+      height: 50%;
+
+      @media screen and (min-width: 768px){
+        height: 70%;
+      }
+
+      #lineChartGraph {
+        fill: none;
+        stroke: url(#image);
+        stroke-linejoin: round;
+        stroke-width: 2;
+
+        @media screen and (min-width: 768px){
+          stroke-width: 5;
+        }
+      }
+      #yAxis {
+
+        path, line {
+          stroke: none;
+        }
+        text {
+          fill: rgba(255, 255, 255, 0.25);
+        }
+      }
+      #xAxisLine1 {
+
+        path, line {
+          stroke: rgba(255, 255, 255, 0.1);
+        }
+        text {
+          fill: rgba(255, 255, 255, 0.25);
+        }
+      }
+      #xAxisLine2 {
+
+        path, line {
+          stroke: none;
+        }
+        text {
+          fill: rgba(255, 255, 255, 0.75);
+        }
+      }
+    }
+  }
+}
+
+
 
 #medidor {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-// Weather Control
-#clima {
-  width: 4rem;
-  height: 4rem;
-  background-image: url('../../public/img/clima.png');
-  background-size: cover;
-  opacity: 0.5;
-  margin-right: 1rem;
-}
-.soleado {
-  background-position: 0rem 0rem;
-}
-.noche {
-  background-position: 4rem 0rem;
-}
-.tormenta {
-  background-position: 8rem 0rem;
-}
-.lluvia {
-  background-position: 12rem 0rem;
-}
-.inestable {
-  background-position: 16rem 0rem;
-}
-.nublado {
-  background-position: 20rem 0rem;
-}
-.parcialmente-nublado {
-  background-position: 24rem 0rem;
-}
+
+// Section_1 ID
+
+
+
+
+
+
 
 // Protection UV Icons
+.recomendacion {
+  font-size: 1rem;
+  color: silver;
+  padding: 0px 1rem;
+  text-align: center;
+
+  @media screen and (min-width: 768px){
+    font-size: 1.4rem;
+    line-height: 18px;
+  }
+}
 .protection-icon {
   width: 7rem;
   height: 7rem;
-  margin-bottom: 1rem;
+}
+.svgStroke {
+  fill: none;
+  stroke: gray;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.svgFill {
+  fill: gray;
+  stroke: none;
+}
+
+
+// Forecast
+#forecast {
+  height: 100%;
+  justify-content: space-between;
+  padding: 10px 0px 20px 0px;
+
+  .pronostico_barra {
+    width: 100%;
+    padding: 0px 10px;
+  }
+
+  .pronostico_horario {
+    font-size: 1.5rem;
+    color: $blackText;
+  }
+
+  .pronostico_estado {
+    font-size: 1.5rem;
+    color: $blackText;
+    width: 150px;
+    text-align: center;
+  }
+}
+
+// Encabezado Sección
+.encabezado {
+  padding: 0px 20px;
+  margin-bottom: 40px;
+
+  & > h1,
+  & > h2 {
+    width: 100%;
+    max-width: 900px;
+    margin: 0px;
+    color: $whiteText;
+    text-align: center;
+  }
+  & > p {
+    width: 100%;
+    max-width: 900px;
+    margin: 0px;
+    padding: 20px 0px 0px 0px;
+    color: $whiteText;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+
+  }
 }
