@@ -14,15 +14,50 @@
   <!-- Fullpage -->
   <link rel="stylesheet" href="public/styles/jquery.fullpage.min.css">
   <script src="public/javascript/jquery.fullpage.min.js"></script>
+  <script src="public/javascript/jquery.fullpage.extensions.min.js"></script>
   <!-- CSS -->
-  <link rel="stylesheet" href="fonts/font-ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles/css/app.css">
+  <link rel="stylesheet" href="public/fonts/font-ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="public/fonts/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="public/styles/css/app.css">
   <!-- JS -->
-  <script src="javascript/es5/app.js"></script>
+  <script src="public/javascript/es5/app.js"></script>
+
+  <!-- JQuery Tooltip -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <!-- <script src="//code.jquery.com/jquery-1.12.4.js"></script> -->
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script type="text/javascript">
+  // $(document).ready(() => {
+  //   const getData = () => {
+  //     let url = 'http://localhost/Modernizacion/radiacion-uv/public/source/smn.json';
+  //
+  //     $.get(url, (data) => {
+  //       let date = new Date();
+  //       let dateData = new Date(data.medidas[0].date);
+  //
+  //       date = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  //       dateData = `${dateData.getFullYear()}-${dateData.getMonth()}-${dateData.getDate()}`;
+  //
+  //       if (date === dateData) {
+  //         let dataJson = JSON.stringify(data);
+  //         $('input').val(dataJson).parent().submit();
+  //       } else {
+  //         console.error('No funciona la API');
+  //         setTimeout(getData, (1000 * 60));
+  //       }
+  //     });
+  //   }
+  //   getData();
+  // });
+  </script>
 </head>
 
 <body>
+
+  <form action="pronostico.php" method="post">
+    <input type="hidden" name="pronostico" value="">
+  </form>
 
   <header id="navBar">
     <nav>
@@ -32,17 +67,19 @@
   </header>
 
   <div id="fullpage">
-
-    <div id="section1">
+    <div id="section1" class="sectionFullPage">
+      <img class="background" src="public/img/trama-celeste.png">
       <section class="sectionContent">
+        <img class="iconos-derecha" src="public/img/iconos-derecha.png">
+        <img class="iconos-izquierda" src="public/img/iconos-izq.png">
         <div class="encabezado">
-          <h1>¿Cómo está el sol en Mar del Plata?</h1>
+          <h1>¿Cómo está el sol en Capital Federal?</h1>
           <p>Índice de radiación ultravioleta (UV)</p>
         </div>
         <div id="radiationContent">
           <div id="sectionIzq">
             <div>
-              <article id="ubication">Mar del Plata</article>
+              <article id="ubication">Capital Federal</article>
               <article id="time">00:00 hs</article>
               <article id="weather">
                 <div id="icon-weather" class="soleado"></div>
@@ -68,7 +105,7 @@
       <section class="sectionContent">
         <section>
           <header>
-            <h2>Pronóstico UV de 3 horas</h2>
+            <h2>Pronóstico UV</h2>
           </header>
           <section id="forecast"></section><!-- JavaScript -->
         </section>
@@ -140,7 +177,7 @@
               </article>
             </div>
           </section>
-          <a href="#">Ver más</a>
+          <a href="#section4">Ver más</a>
         </section>
       </section>
     </div>
@@ -148,7 +185,7 @@
       <section class="sectionContent">
         <div class="encabezado">
           <h2>¿Qué es el índice UV?</h2>
-          <p>El índice UV es un indicador de la intensidad de radiación UV proveniente del Sol, esta intensidad varía a lo largo del día. Cuanto más alto el índice, mayor es la probabilidad de producir daño. La exposición acumulada a la radiación UV desempeña un papel primordial en el desarrollo de cánceres de piel, acelera el envejecimiento de la piel, produce daños oculares y del sistema inmunológico. En cambio en dosis adecuadas es fuente de vitamina D y puede ser beneficioso para algunas enfermedades como la psoriasis y el eczema.</p>
+          <p>El índice UV <b>mide la intensidad de la radiación ultravioleta del sol</b>. Se expresa como un valor superior a cero y, <b>cuanto más alto, más peligroso es para la salud</b>. Aunque el sol, en su justa medida, nos hace bien, <b>cuando la radición es muy alta, lastima nuestra piel</b> hasta el punto de desarrolla <b>cáncer de piel</b>, acelera el envejecimiento de ésta, <b>daña nuestros ojos y nuestro sistema inmunológico</b>.</p>
         </div>
         <div id="testimonios">
           <article>
@@ -166,8 +203,7 @@
         </div>
       </section>
     </div>
-
-    <div id="section4">
+    <div id="section4" class="sectionFullPage fp-auto-height">
       <section class="sectionContent">
         <div class="encabezado">
           <h2>Categorías y recomendaciones</h2>
@@ -177,27 +213,27 @@
             <div class="slide">
               <img class="categoria" src="public/img/bajo.png">
               <h3>UV Bajo</h3>
-              <p>Puede estar al aire libre con una mínima protección solar.</p>
+              <p>Podés estar al aire libre con bloqueador solar adecuado a tu tipo de piel. ¡Qué disfrutes del aire libre!</p>
             </div>
             <div class="slide">
               <img class="categoria" src="public/img/moderado.png">
               <h3>UV Moderado</h3>
-              <p>Usar bloqueador solar, lentes de sol y sombrero. Permanecer en áreas sombrías.</p>
+              <p>Usá bloqueador solar acorde a tu tipo de piel, lentes de sol y sombrero. Elegí lugares con sombra.</p>
             </div>
             <div class="slide">
               <img class="categoria" src="public/img/alto.png">
               <h3>UV Alto</h3>
-              <p>Usar bloqueador solar, lentes de sol y sombrero. En las horas del mediodía, en lo posible, no exponerse al sol. Dar especial cuidado a los niños y bebés.</p>
+              <p>¡No te expongas al sol al mediodía! Además: usá bloqueador solar, lentes de sol y sombrero. Elegí lugares con sombra.</p>
             </div>
             <div class="slide">
               <img class="categoria" src="public/img/muy-alto.png">
               <h3>UV Muy Alto</h3>
-              <p>Usar bloqueador solar, lentes de sol y sombrero. En las horas del mediodía, en lo posible, no exponerse al sol. Beber mucha agua. Dar especial cuidado a los niños y bebés.</p>
+              <p>Tomá mucha agua y evitá exponerte al sol al mediodía. Además: usá bloqueador solar, lentes de sol, sombrero y remera. Elegí lugares con sombra.</p>
             </div>
             <div class="slide">
               <img class="categoria" src="public/img/extremo.png">
               <h3>UV Extremo</h3>
-              <p>Usar bloqueador solar, lentes de sol y sombrero. Evitar el sol. Beber mucha agua. Dar especial cuidado a los niños y bebés.</p>
+              <p>Por favor, evitá totalmente el sol en las horas centrales, hasta que la radiación baje. Es la mejor forma de proteger tu salud.</p>
             </div>
         </div>
         </section>

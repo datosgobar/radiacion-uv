@@ -75,7 +75,7 @@
     width: 0;
     height: 0;
     border-style: solid;
-    margin-top: -38px;
+    /*margin-top: -38px;*/
     -webkit-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
@@ -83,22 +83,21 @@
 
 .fp-controlArrow.fp-prev {
     left: 15px;
-    background-image: url(../../../public/img/arrow.png);
+    background-image: url(../img/arrow.png);
     width: 40px;
     height: 40px;
     color: transparent;
     background-size: cover;
-    transform: rotate(180deg) translateY(50%);
+    transform: rotate(180deg);
 }
 
 .fp-controlArrow.fp-next {
   right: 15px;
-  background-image: url(../../../public/img/arrow.png);
+  background-image: url(../img/arrow.png);
   width: 40px;
   height: 40px;
   color: transparent;
   background-size: cover;
-  transform: translateY(-50%);
 }
 
 .fp-scrollable {
@@ -242,11 +241,11 @@
 }
 
 .fp-auto-height .fp-slide, .fp-auto-height .fp-tableCell, .fp-auto-height.fp-section {
-    height: auto!important
+    height: 100% !important
 }
 
 .fp-responsive .fp-auto-height-responsive .fp-slide, .fp-responsive .fp-auto-height-responsive .fp-tableCell, .fp-responsive .fp-auto-height-responsive.fp-section {
-    height: auto!important
+    height: 100% !important
 }
 
 

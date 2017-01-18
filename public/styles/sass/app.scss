@@ -1,0 +1,871 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+// Estate Colors
+$low: rgba(66, 190, 92, 1);
+$moderate: rgba(233, 184, 66, 1);
+$high: rgba(241, 133, 75, 1);
+$veryHigh: rgba(242, 56, 90, 1);
+$danger: rgba(85, 50, 133, 1);
+
+$stateColor: ($low, $moderate, $high, $veryHigh, $danger);
+
+// Text
+$text: rgba(77, 77, 77, 1);
+$whiteText: rgba(255, 255, 255, 1);
+$blackText: rgba(0, 0, 0, 1);
+
+// General
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+
+  // Tablet 768x1024px
+  @media screen and (min-width: 768px){
+    font-size: 10px;
+  }
+  // Laptop 1280x802px
+  @media screen and (min-width: 1280px){
+    font-size: 10px;
+  }
+  // Desktop 1600x992px
+  @media screen and (min-width: 1600px){
+    font-size: 10px;
+  }
+}
+
+// Barra de Navegación
+$navHeight: 52px;
+#navBar {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 5px silver;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: $navHeight;
+  justify-content: center;
+  left: 0px;
+  margin: 0px;
+  padding: 0px 20px;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  z-index: 999;
+
+  & > nav {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px;
+    max-width: 900px;
+    padding: 10px 0px;
+    position: relative;
+    width: 100%;
+
+    @media screen and (min-width: 600px) {
+      justify-content: space-between;
+    }
+
+    #gobAr {
+      width: 150px;
+    }
+    #acercaDe {
+      border-radius: 10px;
+      color: #0094D4;
+      display: none;
+      font-size: 1.2rem;
+      font-weight: 400;
+      padding: 10px;
+      position: relative;
+      right: -10px;
+      text-decoration: none;
+
+      @media screen and (min-width: 600px) {
+        display: block;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// Ajustes de Full Page
+#fullpage {}
+
+// Contenedor de seccion
+.sectionContent {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  width: 100%;
+}
+
+// Encabezado Sección
+.encabezado {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px 10px;
+  width: 100%;
+  z-index: 50;
+
+  @media screen and (min-width: 600px) {
+    padding: 0px 20px;
+    margin: 0px 0px 40px 0px;
+  }
+
+  & > h1 {
+    color: $text;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: auto;
+    max-width: 900px;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+
+    @media screen and (min-width: 600px) {
+      color: #009DDB;
+      font-size: 2.75rem;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 4rem;
+    }
+  }
+  & > h2 {
+    color: $text;
+    text-align: center;
+  }
+  & > p {
+    color: $text;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin: auto;
+    max-width: 900px;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+
+    @media screen and (min-width: 600px) {
+      font-size: 1.5rem;
+      padding: 20px 0px 0px 0px;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+}
+
+// Bloque Seccion 2
+%seccion2 {
+  & > section {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    & > header {
+
+      & > h2 {
+        padding: 0px;
+        font-weight: 400;
+        font-size: 2rem;
+      }
+    }
+    &:nth-child(1) {                                                      // Sin revisar
+      height: 35%;
+      background-color: silver;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 1);
+      margin-bottom: 1rem;
+      justify-content: space-between;
+      padding: 20px 10px;
+      box-sizing: border-box;
+
+      & > section {
+        width: 100%;
+        display: flex;
+        // justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+
+        & > article {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          width: 100%;
+
+          & > i {
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+    &:nth-child(2) {
+      background-color: rgba(255, 255, 255, 1);
+      border-radius: 10px;
+      box-sizing: border-box;
+      height: 65%;
+      justify-content: flex-start;
+      margin-top: 1rem;
+      padding: 20px 10px 10px 10px;
+
+      & > section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+
+        & > div {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+
+          &:nth-child(2) {
+
+            & > article > span {
+              border-left: 1px solid silver;
+              border-right: 1px solid silver;
+            }
+          }
+          & > article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
+        }
+      }
+      & > a {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        color: #0094D4;
+        text-decoration: none;
+        position: absolute;
+        bottom: 10px;
+      }
+    }
+  }
+}
+
+// Seccion 1
+#section1 {
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  height: 100vh;
+  justify-content: center;
+  padding: 0px;
+  padding-top: $navHeight;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: 600px) {
+    max-height: 800px;
+  }
+
+  .sectionContent {
+
+    & > .encabezado {
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: 0px 0px 5px silver;
+      padding: 10px 10px;
+
+      & > p {
+        padding: 10px 0px 0px 0px;
+      }
+
+      @media screen and (min-width: 600px) {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0px 20px;
+      }
+    }
+    & > #radiationContent {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      z-index: 100;
+
+      @media screen and (min-width: 600px) {
+        max-height: 500px;
+      }
+
+      & > #sectionIzq {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+
+        @media screen and (min-width: 600px){
+          border-radius: 10px;
+          max-width: 350px;
+          width: 45%;
+        }
+
+        & > div {
+          align-items: center;
+          border-bottom: 1px solid white;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: 10px 0px;
+          width: 100%;
+
+          & > #ubication {
+            color: $whiteText;
+            font-weight: 400;
+            font-size: 1.2rem;
+            text-align: center;
+            width: 100%;
+
+            @media screen and (min-width: 768px) {
+              font-size: 1.5rem;
+            }
+          }
+          & > #time {
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+            box-sizing: border-box;
+            color: $whiteText;
+            font-size: 1.5rem;
+            font-weight: 100;
+            text-align: center;
+            width: 100%;
+
+            @media screen and (min-width: 768px) {
+              font-size: 1.8rem;
+            }
+          }
+          & > #weather {
+            $medida: 2rem;
+            $coeficiente: 1.17241379;
+
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+
+            & > #temp-weather {
+              color: $whiteText;
+              font-weight: 100;
+              font-size: 1.2rem;
+
+              @media screen and (min-width: 768px) {
+                font-size: 1.5rem;
+              }
+            }
+            & > #icon-weather {
+              background-image: url('../../public/img/clima.png');
+              background-size: cover;
+              height: $medida;
+              margin-right: 5px;
+              width: $medida * $coeficiente;
+            }
+            & > .soleado {
+              background-position: (($medida * $coeficiente) * 0) 0rem;
+            }
+            & > .noche {
+              background-position: (($medida * $coeficiente) * 1) 0rem;
+            }
+            & > .tormenta {
+              background-position: (($medida * $coeficiente) * 2) 0rem;
+            }
+            & > .lluvia {
+              background-position: (($medida * $coeficiente) * 3) 0rem;
+            }
+            & > .inestable {
+              background-position: (($medida * $coeficiente) * 4) 0rem;
+            }
+            & > .nublado {
+              background-position: (($medida * $coeficiente) * 5) 0rem;
+            }
+            & > .parcialmente-nublado {
+              background-position: (($medida * $coeficiente) * 6) 0rem;
+            }
+          }
+        }
+        & > #radiationUv {
+          box-sizing: border-box;
+          padding: 0px 20px;
+        }
+        & > article:nth-child(3) {
+          align-items: center;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          font-size: 2rem;
+          justify-content: center;
+          padding: 0px 20px;
+          width: 100%;
+
+          & > #recomendation {
+            color: $whiteText;
+            font-size: 1.5rem;
+            text-align: center;
+
+            @media screen and (min-width: 768px) {
+              font-size: 1.8rem;
+            }
+          }
+        }
+        & > article:nth-child(4) {
+          align-items: center;
+          border-top: 1px solid white;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: 10px;
+          width: 100%;
+
+          & > i {
+            color: $whiteText;
+            font-size: 2rem;
+            margin-right: 1rem;
+          }
+          & > #actualizacion {
+            color: $whiteText;
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-align: center;
+
+            @media screen and (min-width: 768px) {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+      & > #sectionDer {
+
+        @media screen and (min-width: 600px) {
+          align-items: center;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          justify-content: space-between;
+          max-width: 350px;
+          padding-left: 2rem;
+          position: relative;
+          width: 45%;
+        }
+
+        @extend %seccion2;
+      }
+    }
+  }
+}
+
+// Seccion 2
+#section2 {
+  align-items: center;
+  border-bottom: 1px solid silver;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  height: 100vh;
+  justify-content: center;
+  padding: 0px;
+  padding-top: $navHeight;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: 600px) {
+    display: none;
+    min-height: inherit;
+    height: 600px;
+    max-height: 800px;
+  }
+
+  .sectionContent {
+
+    @extend %seccion2;
+  }
+
+
+}
+
+// Seccion 3
+#section3 {
+  align-items: center;
+  border-bottom: 1px solid silver;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 0px;
+  padding-top: $navHeight;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: 600px) {
+    min-height: inherit;
+    height: 600px;
+    max-height: 800px;
+  }
+
+  .sectionContent {
+
+    & > .encabezado {
+
+      & > p {
+        line-height: 20px;
+        margin: 20px auto;
+
+        @media screen and (min-width: 768px) {
+          line-height: 36px;
+        }
+      }
+    }
+
+    #testimonios {
+      align-items: flex-start;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      max-width: 900px;
+      padding: 0px 20px;
+      width: 100%;
+
+      @media screen and (min-width: 600px) {
+        flex-direction: row;
+      }
+
+      & > article {
+        width: 100%;
+        max-width: 250px;
+
+        & > cite {
+          color: #0094D4;
+          font-size: 2.4rem;
+
+        }
+        & > p {
+          color: $blackText;
+          font-size: 1.5rem;
+          font-weight: 300;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}
+
+// Seccion 4
+#section4 {
+  align-items: center;
+  border-bottom: 1px solid silver;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  height: 100vh;
+  justify-content: center;
+  padding: 0px;
+  padding-top: $navHeight;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: 600px) {
+    min-height: 600px;
+    height: 600px;
+    max-height: 800px;
+  }
+
+  .sectionContent {
+    justify-content: space-around;
+
+    & > .encabezado {
+      margin-bottom: 40px;
+    }
+
+    & > section {
+      width: 100%;
+      padding: 0px 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      #slides {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-direction: row;
+        width: 100%;
+        max-width: 900px;
+
+        .fp-tableCell {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        .slide {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          max-width: 400px;
+          width: 20%;
+
+          .categoria {
+            width: 50%;
+
+            @media screen and (min-width: 600px) {
+              width: 85%;
+              margin-bottom: 20px;
+            }
+          }
+          h3 {
+            width: 85%;
+            margin-top: 1rem;
+          }
+          p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 20px;
+            width: 85%;
+            text-align: center;
+            margin: 1rem 0rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Seccion 5
+#section5 {
+  align-items: center;
+  background-color: #1A1C40;
+  border-bottom: 1px solid silver;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  height: 100vh;
+  justify-content: center;
+  padding: 0px;
+  padding-top: $navHeight;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: 600px) {
+    min-height: inherit;
+    height: 600px;
+  }
+
+  .sectionContent {
+    justify-content: space-around;
+
+    & > .encabezado {
+      & > h2 {
+        color: $whiteText;
+        font-size: 3rem;
+      }
+      & > p {
+        color: $whiteText;
+        font-size: 1.5rem;
+      }
+    }
+
+    & > #lineChart { // Line Chart
+      width: 90%;
+      height: 50%;
+
+      @media screen and (min-width: 768px){
+        height: 70%;
+      }
+
+      #lineChartGraph {
+        fill: none;
+        stroke: url(#image);
+        stroke-linejoin: round;
+        stroke-width: 2;
+
+        @media screen and (min-width: 768px){
+          stroke-width: 5;
+        }
+      }
+      #yAxis {
+
+        path, line {
+          stroke: none;
+        }
+        text {
+          fill: rgba(255, 255, 255, 0.25);
+        }
+      }
+      #xAxisLine1 {
+
+        path, line {
+          stroke: rgba(255, 255, 255, 0.1);
+        }
+        text {
+          fill: rgba(255, 255, 255, 0.25);
+        }
+      }
+      #xAxisLine2 {
+
+        path, line {
+          stroke: none;
+        }
+        text {
+          fill: rgba(255, 255, 255, 0.75);
+        }
+      }
+    }
+  }
+}
+
+// Encabezados
+h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0px;
+  padding: 0px;
+  color: $text;
+  font-weight: 600;
+}
+h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0px;
+  padding: 0px;
+  color: $text;
+  font-weight: 600;
+}
+
+#medidor {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+// Protection UV Icons
+.recomendacion {
+  font-size: 1rem;
+  color: silver;
+  padding: 0px 1rem;
+  text-align: center;
+
+  @media screen and (min-width: 768px){
+    font-size: 1.4rem;
+    line-height: 18px;
+  }
+}
+.protection-icon {
+  width: 7rem;
+  height: 7rem;
+}
+.svgStroke {
+  fill: none;
+  stroke: gray;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.svgFill {
+  fill: gray;
+  stroke: none;
+}
+
+// Forecast
+#forecast {
+  height: 100%;
+  justify-content: space-between;
+  padding: 0px;
+  max-height: 80px;
+
+  .pronostico_barra {
+    width: 100%;
+    padding: 0px 10px;
+  }
+
+  .pronostico_horario {
+    font-size: 1.5rem;
+    color: $blackText;
+    font-weight: 300;
+  }
+
+  .pronostico_estado {
+    font-size: 1.5rem;
+    color: $blackText;
+    width: 150px;
+    text-align: left;
+    font-weight: 300;
+  }
+}
+
+// Img Fondo
+.background {
+  display: none;
+  z-index: 0;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 110vh;
+
+  @media screen and (min-width: 768px) {
+    display: inherit;
+  }
+}
+.iconos-derecha {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  z-index: 10;
+  transform: translateY(-50%);
+  min-width: 125px;
+  max-width: 150px;
+  width: 15%;
+}
+.iconos-izquierda {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  z-index: 10;
+  transform: translateY(-50%);
+  min-width: 125px;
+  max-width: 150px;
+  width: 15%;
+}
