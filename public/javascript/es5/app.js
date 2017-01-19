@@ -1,8 +1,22 @@
 'use strict';
 
-// Global Variables
-var secondCount = 0;
-var globalData = void 0;
+// Dynamic Variables
+var realRadiation = void 0; // Esta variable se acutaliza constantemente en base al valor real de la radiación UV
+var secondsCount = void 0; // Esta variable se actualiza constantemente en base a la cantidad de segundos transcurridos de la última actualización
+var pronostic = void 0; // Esta variable se actualiza constantemente en base a la información que recibe del SMA
+var tempIcon = void 0; // Esta variable se actualiza constantemente en base al valor real de la temperatura
+var temp = void 0; // Esta variable se actualiza constantemente en base al valor real de la temperatura
+
+// Static Variables
+var tempIcons = {
+  'clear': 'soleado',
+  'partlycloudy': 'parcialmente-nublado',
+  'chancerain': 'lluvia',
+  'tstorms': 'tormenta',
+  'nt_clear': 'noche',
+  'cloudy': 'nublado',
+  'chancetstorms': 'inestable'
+};
 
 // Functions Repository
 var sizeObject = function sizeObject(obj) {
@@ -35,22 +49,6 @@ var average = function average(array) {
 
   return total;
 };
-var clock = function clock(date, elementTime) {
-  // Clock Control
-  var hours = formatDate(date.getHours());
-  var minutes = formatDate(date.getMinutes());
-  var seconds = formatDate(date.getSeconds());
-
-  // Count ++
-  secondCount++;
-
-  // Insert Time
-  if (seconds % 2 === 0) {
-    $(elementTime).empty().append(hours + ' <span>:</span> ' + minutes);
-  } else {
-    $(elementTime).empty().append(hours + ' <span style="color: transparent;">:</span> ' + minutes);
-  }
-};
 var stateRadiation = function stateRadiation(object, radiationLvl, data) {
   // Return State Data
 
@@ -69,75 +67,151 @@ var measureConstruct = function measureConstruct(radiation, inicial) {
 
   return medidorUv;
 };
-var getRadiation = function getRadiation(object) {
-  var extraHour = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  // Data to Radiation
-  //console.log(object); // Entorno de desarrollo
-  var date = new Date();
-  var dateNow = date.getFullYear() + '-' + formatDate(date.getMonth() + 1) + '-' + date.getDate();
-  var hours = extraHour === 0 ? formatDate(date.getHours()) : formatDate(date.getHours() + extraHour);
-  var minutes = extraHour === 0 ? formatDate(date.getMinutes()) : '00';
-  var radiation = hours != '00' && hours != '01' && hours != '02' ? Math.floor(object[dateNow][hours][minutes]) : 0;
-
-  return radiation;
-};
 var getResponsive = function getResponsive(max) {
   var responsive = $(window).outerWidth() < max ? true : false;
 
   return responsive;
 };
-var refreshLastUpdate = function refreshLastUpdate(element, time) {
+var calculatePronosticdate = function calculatePronosticdate(hours) {
+  // Devuelve el horario para el pronostico
+  var dat = new Date();
+  dat.setHours(dat.getHours() + hours);
+  var date = formatDate(dat.getDate()) + '-' + formatDate(dat.getMonth() + 1) + '-' + dat.getFullYear();
+  var hour = formatDate(dat.getHours()) + ':' + formatDate(dat.getMinutes()).toString().slice(0, 1) + '0';
+  // console.log({ 'fecha': date, 'hora': hour }); // Entorno de desarrollo
+  return [date, hour];
+};
+var clock = function clock(element) {
+  // Reloj
+  var date = new Date();
+  var hours = formatDate(date.getHours());
+  var minutes = formatDate(date.getMinutes());
+  var seconds = formatDate(date.getSeconds());
 
-  var minuteTime = time / 60;
+  // Count ++
+  secondsCount++;
 
-  if (minuteTime == 1) {
-    element.text('\xDALTIMA ACTUALIZACION HACE ' + Math.floor(minuteTime) + ' MINUTO');
+  // Insert Time
+  if (secondsCount % 2 === 0) {
+    $('#' + element).empty().append(hours + '<span>:</span>' + minutes);
   } else {
-    element.text('\xDALTIMA ACTUALIZACION HACE ' + Math.floor(minuteTime) + ' MINUTOS');
+    $('#' + element).empty().append(hours + '<span style="color:transparent">:</span>' + minutes);
+  }
+};
+var refreshLastUpdate = function refreshLastUpdate(id, seconds) {
+  // Refresca el tiempo de la última actualización
+  var minutes = Math.floor(seconds / 60);
+
+  if (minutes === 0) {
+    d3.select('#' + id).text('ACTUALIZADO');
+  } else if (minutes === 1) {
+    d3.select('#' + id).text('ÚLTIMA ACTUALIZACION HACE ' + minutes + ' MINUTO');
+  } else {
+    d3.select('#' + id).text('ÚLTIMA ACTUALIZACION HACE ' + minutes + ' MINUTOS');
   }
 };
 
-// Get Weather
-var getWeather = function getWeather(updatingFunction) {
+// Solicitud de datos
+var getRadiation = function getRadiation(callback, callback2) {
+  // SMA API
+  var dat = new Date();
+  var date = dat.getDate() + '-' + formatDate(dat.getMonth() + 1) + '-' + dat.getFullYear();
+  var hour = formatDate(dat.getHours()) + ':' + formatDate(dat.getMinutes()).toString().slice(0, 1) + '0:00';
+  // console.log(date);                   // Entorno de desarrollo
+  // console.log(hour);                   // Entorno de desarrollo
 
+  $.get('public/source/realTime.json', function (data) {
+    var arrData = data.datosRecientes[0].indiceUV;
+
+    // console.log(arrData);              // Entorno de desarrollo
+    arrData.forEach(function (v, k) {
+      if (v.fecha === date && v.hora === hour) {
+        realRadiation = Math.floor(v.indiceUV);
+      }
+    });
+    console.log(realRadiation); // Entorno de desarrollo
+    // window.radiation = realRadiation;  // Entorno de desarrollo
+    callback();
+    callback2(arrData);
+  }).fail(function () {
+    console.error('Fallo la conexion con la API del SMA'); // Entorno de desarrollo
+    setTimeout(getRadiation(callback), 1000 * 60 * 5); // Se vuelve a hacer el pedido luego de 5 minutos.
+  });
+};
+var getWeather = function getWeather(callback) {
   // WunderGround API
   var config = {
     apiKey: 'c066b44dfe686a69',
     location: 'mar_del_plata',
     typeFile: 'json'
   };
+  var url = 'http://api.wunderground.com/api/' + config.apiKey + '/conditions/SP/q/' + config.location + '.' + config.typeFile;
 
-  var date = new Date();
-  var dateNow = date.getFullYear() + '-' + formatDate(date.getMonth() + 1) + '-' + date.getDate();
-
-  var urlTemp = 'http://api.wunderground.com/api/' + config.apiKey + '/conditions/SP/q/' + config.location + '.' + config.typeFile;
-  var urlRadiation = 'public/source/pronostico-' + dateNow + '.json';
-  var temp = void 0;
-  var icon = void 0;
-  var radiation = void 0;
-
-  $.get(urlTemp, function (tempData) {
-    //console.log(tempData); // Entorno de desarrollo
-    // Temperature
-    temp = parseFloat(tempData.current_observation.feelslike_c) + ' \xBAC';
-    icon = tempData.current_observation.icon;
-
-    $.get(urlRadiation, function (uvData) {
-      //console.log(uvData); // Entorno de desarrollo
-      globalData = uvData;
-      // window.radiation = uvData; // Entorno de desarrollo
-
-      updatingFunction(temp, icon, false);
-    }).fail(function () {
-      updatingFunction(temp, icon, true);
-    });
+  $.get(url, function (data) {
+    // console.log(data); // Entorno de desarrollo
+    temp = parseFloat(data.current_observation.feelslike_c) + ' \xBAC';
+    tempIcon = data.current_observation.icon;
+    console.log(temp); // Entorno de desarrollo
+    console.log(tempIcon); // Entorno de desarrollo
+    callback();
+  }).fail(function () {
+    console.error('Fallo la conexion con la API de WG'); // Entorno de desarrollo
+    setTimeout(getWeather(callback), 1000 * 60 * 5); // Se vuelve a hacer el pedido luego de 5 minutos.
   });
 };
 
 $(document).ready(function () {
 
-  // Full Page object config
-  var fullpage = {
+  var radiation = { // Global Object Radiation
+    max: 15,
+    min: 0,
+    now: 1,
+    diameter: $('#sectionIzq').outerWidth(),
+    anchor: 15,
+    states: {
+      extrem: {
+        name: 'Peligroso',
+        color: 'rgba(85, 50, 133, 1)',
+        recomendation: 'Evita exponerte al sol',
+        position: 4,
+        minValue: 11,
+        lvl: 6
+      },
+      very: {
+        name: 'Muy Alto',
+        color: 'rgba(242, 56, 90, 1)',
+        recomendation: 'Evita exponerte al sol',
+        position: 3,
+        minValue: 8,
+        lvl: 6
+      },
+      higth: {
+        name: 'Alto',
+        color: 'rgba(241, 133, 75, 1)',
+        recomendation: 'Necesitas protección solar extra',
+        position: 2,
+        minValue: 6,
+        lvl: 4
+      },
+      moderate: {
+        name: 'Moderado',
+        color: 'rgba(233, 184, 66, 1)',
+        recomendation: 'Buscá sombra y usa protección solar',
+        position: 1,
+        minValue: 3,
+        lvl: 3
+      },
+      low: {
+        name: 'Bajo',
+        color: 'rgba(66, 190, 92, 1)',
+        recomendation: 'Podés estar al aire libre con mínima protección',
+        position: 0,
+        minValue: 0,
+        lvl: 2
+      }
+    }
+  };
+  var fullpage = { // Full Page object config
     //Navigation
     menu: '#menu',
     lockAnchors: false,
@@ -207,61 +281,85 @@ $(document).ready(function () {
     onSlideLeave: function onSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {}
   };
 
-  // Full Page Start
-  $('#fullpage').fullpage(fullpage);
+  $('#fullpage').fullpage(fullpage); // Full Page Start
 
-  // Global Object Radiation
-  var radiation = {
-    max: 15,
-    min: 0,
-    now: 1,
-    diameter: $('#sectionIzq').outerWidth(),
-    anchor: 15,
-    states: {
-      extrem: {
-        name: 'Peligroso',
-        color: 'rgba(85, 50, 133, 1)',
-        recomendation: 'Evita exponerte al sol',
-        position: 4,
-        minValue: 11,
-        lvl: 6
-      },
-      very: {
-        name: 'Muy Alto',
-        color: 'rgba(242, 56, 90, 1)',
-        recomendation: 'Evita exponerte al sol',
-        position: 3,
-        minValue: 8,
-        lvl: 6
-      },
-      higth: {
-        name: 'Alto',
-        color: 'rgba(241, 133, 75, 1)',
-        recomendation: 'Necesitas protección solar extra',
-        position: 2,
-        minValue: 6,
-        lvl: 4
-      },
-      moderate: {
-        name: 'Moderado',
-        color: 'rgba(233, 184, 66, 1)',
-        recomendation: 'Buscá sombra y usa protección solar',
-        position: 1,
-        minValue: 3,
-        lvl: 3
-      },
-      low: {
-        name: 'Bajo',
-        color: 'rgba(66, 190, 92, 1)',
-        recomendation: 'Podés estar al aire libre con mínima protección',
-        position: 0,
-        minValue: 0,
-        lvl: 2
+  var updateRadiation = function updateRadiation() {
+    // Actualiza los componentes que dependen del estado de la radiación UV
+    // Reset Timer Update
+    secondsCount = 0;
+
+    radiation.now = realRadiation;
+    // console.log(radiation.now); // Entorno de desarrollo
+
+    $('#dinamic').attr('d', measureConstruct(radiation)); // Dinamic Measure
+    $('#lvlRadiation').text(radiation.now); // Value Radiation UV
+    $('#state').empty().text(stateRadiation(radiation, radiation.now, 'name')); // State Radiation UV
+    $('#sectionIzq').css({ 'backgroundColor': stateRadiation(radiation, radiation.now, 'color') }); // UV Background Color
+    $('#recomendation').empty().text(stateRadiation(radiation, radiation.now, 'recomendation')); // String Recomendation Radiation UV
+
+    var protectionContainer = $('.protection-icon');
+    var protectionLvl = stateRadiation(radiation, radiation.now, 'lvl');
+
+    protectionContainer.each(function (k, v) {
+      var element = protectionContainer.eq(k).attr('id').split('_')[1];
+
+      if (element <= protectionLvl) {
+        protectionContainer.eq(k).children('.svgStroke').css({ 'stroke': stateRadiation(radiation, radiation.now, 'color') });
+        protectionContainer.eq(k).children('.svgFill').css({ 'fill': stateRadiation(radiation, radiation.now, 'color') });
+        protectionContainer.eq(k).parent().children('span').css({ 'color': 'black' });
+      } else {
+        protectionContainer.eq(k).children('.svgStroke').css({ 'stroke': 'silver' });
+        protectionContainer.eq(k).children('.svgFill').css({ 'fill': 'silver' });
+        protectionContainer.eq(k).parent().children('span').css({ 'color': 'silver' });
       }
+    });
+  };
+  var updateWeather = function updateWeather() {
+    // Actualiza los componentes que dependen del estado de la temperatura
+    // Reset Timer Update
+    secondsCount = 0;
+
+    if (temp !== 'null' && tempIcon !== 'null') {
+      d3.select('#temp-weather').text(temp);
+      d3.select('#icon-weather').attr('class', function () {
+        return tempIcons[tempIcon];
+      });
     }
   };
+  var updateForecast = function updateForecast(data) {
+    // Actualiza los componentes que dependen del pronostico
+    // Reset Timer Update
+    secondsCount = 0;
 
+    var dat = new Date();
+    pronostic = [];
+
+    for (var i = 1; i < 4; i++) {
+      pronostic.push(calculatePronosticdate(i));
+    }
+
+    data.forEach(function (v, k) {
+
+      for (var i = 0; i < pronostic.length; i++) {
+
+        if (v.fecha === pronostic[i][0] && v.hora === pronostic[i][1] + ':00') {
+          pronostic[i].push(v.indiceUV);
+        }
+      }
+    });
+    // console.log(pronostic); // Entorno de desarrollo
+    $('#forecast').empty();
+
+    pronostic.forEach(function (v, k) {
+
+      if (v[2]) {
+        console.log(v); // Entorno de desarrollo
+        $('#forecast').append('<article>\n          <span class="pronostico_horario">' + v[1] + '</span>\n          <svg class="pronostico_barra" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 235 15">\n            <line fill="none" stroke="silver" stroke-linecap="round" stroke-linejoin="round" stroke-width="15px" x1="7.5" y1="7.5" x2="227.5" y2="7.5"/>\n            <line fill="none" stroke="' + stateRadiation(radiation, v[2], 'color') + '" stroke-linecap="round" stroke-linejoin="round" stroke-width="15px" x1="7.5" y1="7.5" x2="' + 227.5 / sizeObject(radiation.states) * (stateRadiation(radiation, v[2], 'position') + 1) + '" y2="7.5"/>\n            <circle fill="white" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15px" cx="' + 227.5 / sizeObject(radiation.states) * (stateRadiation(radiation, v[2], 'position') + 1) + '" cy="7.44" r="5.15"/>\n          </svg>\n          <span class="pronostico_estado">' + stateRadiation(radiation, v[2], 'name') + '</span>\n        </article>');
+      }
+    });
+  };
   var createMeasure = function createMeasure() {
+    // Crea el medidor UV
 
     var measure = measureConstruct(radiation, 'inicial');
     var measureUv = measureConstruct(radiation);
@@ -304,100 +402,10 @@ $(document).ready(function () {
       return 'translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px';
     });
   };
-  var updating = function updating(temp, icon) {
-    var uvDefault = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-
-    // Reset Timer Update
-    secondCount = 0;
-
-    // Update UV
-    if (uvDefault) {
-      radiation.now = 0;
-    } else {
-      radiation.now = getRadiation(globalData); // Update Radiation Object
-    }
-
-    $('#dinamic').attr('d', measureConstruct(radiation)); // Dinamic Measure
-    $('#lvlRadiation').text(radiation.now); // Value Radiation UV
-    $('#state').empty().text(stateRadiation(radiation, radiation.now, 'name')); // State Radiation UV
-    $('#sectionIzq').css({ 'backgroundColor': stateRadiation(radiation, radiation.now, 'color') }); // UV Background Color
-    $('#recomendation').empty().text(stateRadiation(radiation, radiation.now, 'recomendation')); // String Recomendation Radiation UV
-
-    if (temp !== 'null' && icon !== 'null') {
-      // Update Temp
-      $('#temp-weather').text(temp);
-
-      switch (icon) {
-        case 'clear':
-          $('#icon-weather').attr('class', 'soleado');
-          break;
-        case 'partlycloudy':
-          $('#icon-weather').attr('class', 'parcialmente-nublado');
-          break;
-        case 'chancerain':
-          $('#icon-weather').attr('class', 'lluvia');
-          break;
-        case 'tstorms':
-          $('#icon-weather').attr('class', 'tormenta');
-          break;
-        case 'nt_clear':
-          $('#icon-weather').attr('class', 'noche');
-          break;
-        case 'cloudy':
-          $('#icon-weather').attr('class', 'nublado');
-          break;
-        case 'chancetstorms':
-          $('#icon-weather').attr('class', 'inestable');
-          break;
-        default:
-          $('#icon-weather').attr('class', 'soleado');
-      }
-    }
-
-    // Update Forecast
-    if (globalData !== undefined) {
-      var date = new Date();
-      var averageArray = [];
-
-      for (var i = 1; i < 4; i++) {
-        averageArray[formatDate(date.getHours() + i)] = getRadiation(globalData, i);
-      }
-
-      $('#forecast').empty();
-
-      averageArray.forEach(function (v, k) {
-        // console.log(averageArray);
-        // console.log(k);
-
-        $('#forecast').append('<article>\n          <span class="pronostico_horario">' + formatDate(k) + ':00</span>\n          <svg class="pronostico_barra" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 235 15">\n            <line fill="none" stroke="silver" stroke-linecap="round" stroke-linejoin="round" stroke-width="15px" x1="7.5" y1="7.5" x2="227.5" y2="7.5"/>\n            <line fill="none" stroke="' + stateRadiation(radiation, v, 'color') + '" stroke-linecap="round" stroke-linejoin="round" stroke-width="15px" x1="7.5" y1="7.5" x2="' + 227.5 / sizeObject(radiation.states) * (stateRadiation(radiation, v, 'position') + 1) + '" y2="7.5"/>\n            <circle fill="white" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15px" cx="' + 227.5 / sizeObject(radiation.states) * (stateRadiation(radiation, v, 'position') + 1) + '" cy="7.44" r="5.15"/>\n          </svg>\n          <span class="pronostico_estado">' + stateRadiation(radiation, v, 'name') + '</span>\n        </article>');
-      });
-    } else {
-      console.error('No hay pronostico');
-    }
-
-    // Update Protection
-    // console.log(radiation.now); // Entorno de desarrollo
-    var lvl = stateRadiation(radiation, radiation.now, 'lvl');
-    var element = $('.protection-icon');
-
-    element.each(function (k, v) {
-      var identification = element.eq(k).attr('id').split('_')[1];
-
-      if (identification <= lvl) {
-        element.eq(k).children('.svgStroke').css({ 'stroke': stateRadiation(radiation, radiation.now, 'color') });
-        element.eq(k).children('.svgFill').css({ 'fill': stateRadiation(radiation, radiation.now, 'color') });
-        element.eq(k).parent().children('span').css({ 'color': 'black' });
-      } else {
-        element.eq(k).children('.svgStroke').css({ 'stroke': 'silver' });
-        element.eq(k).children('.svgFill').css({ 'fill': 'silver' });
-        element.eq(k).parent().children('span').css({ 'color': 'silver' });
-      }
-    });
-  };
-
-  // Secuential Start Functions
-  getWeather(updating);
+  // Solicitud de datos
+  getRadiation(updateRadiation, updateForecast);
+  getWeather(updateWeather);
   createMeasure();
 
   // Resize Control
@@ -432,8 +440,8 @@ $(document).ready(function () {
 
   // Create Line chart
   var createLineChart = function createLineChart(data) {
+    // Gráfico de Linea
 
-    // Set the dimensions of the canvas / graph
     var margin = { top: 10, right: 30, bottom: 40, left: 40 };
     var width = $('#lineChart').outerWidth() - margin.left - margin.right;
     var height = $('#lineChart').outerHeight() - margin.top - margin.bottom;
@@ -541,18 +549,31 @@ $(document).ready(function () {
     graphAxis(graph, yAxis, 'yAxis', 'y');
 
     graph.append('path').attr('id', 'lineChartGraph').attr('d', line(dataset)).attr('stroke', 'url(#image)').attr('stroke-linejoin', 'round').attr('stroke-width', '0.5rem');
-    graph.selectAll('circle').data(dataset).enter().append('circle').attr('style', function (d) {
-      return 'transform: translate(' + x(new Date(d[0])) + 'px, ' + y(d[1]) + 'px)';
-    }).attr('r', '5px').attr('fill', function (d) {
-      return stateRadiation(radiation, d[1], 'color');
-    }).attr('title', function (d, i) {
-      var date = new Date(d[0]);
 
-      return date.getHours() + ' HS: UV ' + d[1];
+    var focus = svg.append('g').attr('class', 'focus').attr('style', 'transform: translate(-100px, -100px)');
+    focus.append('circle').attr('r', 8).attr('stroke-width', '2px');
+    var voronoi = d3.voronoi().x(function (d) {
+      return x(new Date(d[0]));
+    }).y(function (d) {
+      return y(d[1]);
+    }).extent([[0, 0], [width, height + margin.top]]);
+    var voronoiGroup = svg.append('g').attr('class', 'voronoi').attr('style', 'transform: translate(' + margin.left + 'px, ' + margin.top + 'px)');
+    // console.log(dataset); // Entorno de desarrollo
+
+
+    voronoiGroup.selectAll('path').data(voronoi(dataset).polygons()).enter().append('path').attr('d', function (d) {
+      // console.log(d); // Entorno de desarrollo
+      if (d) {
+        return 'M' + d.join('L') + 'Z';
+      }
+    }).on('mouseover', function (d) {
+      var date = new Date(d.data[0]);
+
+      focus.attr('style', 'transform: translate(' + (x(new Date(d.data[0])) + margin.left) + 'px, ' + (y(d.data[1]) + margin.top) + 'px)');
+    }).on('mouseout', function (d) {
+
+      focus.attr('style', 'transform: translate(-100px, -100px)');
     });
-    // .on('mouseover', (d, i) => {
-    //   console.log(d[1]);
-    // });
   };
 
   // Translate Date
@@ -575,12 +596,18 @@ $(document).ready(function () {
     $(v).attr('style', 'margin: 7px 0px');
   });
 
-  // Intervals
+  // Intervalos
   setInterval(function () {
-    updating('null', 'null');
-  }, 1000 * 60); // Se actualiza el pronostico UV cada 1 minuto
-  setInterval(getWeather, 1000 * 60 * 60); // Se consulta la temperatura cada 1 hora
+    // Se actualiza el reloj cada 1 segundo
+    refreshLastUpdate('actualizacion', secondsCount);
+    clock('time');
+  }, 1000);
   setInterval(function () {
-    refreshLastUpdate($('#actualizacion'), secondCount);clock(new Date(), '#time');
-  }, 1000); // Se actualiza el reloj cada 1 segundo
+    // Se actualiza la radiación UV cada 10 minutos
+    getRadiation(updateRadiation, updateForecast);
+  }, 1000 * 60 * 10);
+  setInterval(function () {
+    // Se actualiza la temperatura cada 60 minutos
+    getWeather(updateWeather);
+  }, 1000 * 60 * 60);
 });

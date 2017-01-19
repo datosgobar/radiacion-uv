@@ -470,7 +470,7 @@ html, body {
               #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > #temp-weather {
                 font-size: 1.5rem; } }
           #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > #icon-weather {
-            background-image: url("../../public/img/clima.png");
+            background-image: url("../../img/clima.png");
             background-size: cover;
             height: 2rem;
             margin-right: 5px;
@@ -1007,3 +1007,14 @@ h3 {
   min-width: 125px;
   max-width: 150px;
   width: 15%; }
+
+.chartTooltip {
+  border-radius: 10px; }
+
+.voronoi path {
+  fill: none;
+  pointer-events: all; }
+
+.focus {
+  fill: none;
+  stroke: #5D5D5D; }

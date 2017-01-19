@@ -385,7 +385,7 @@ $navHeight: 52px;
               }
             }
             & > #icon-weather {
-              background-image: url('../../public/img/clima.png');
+              background-image: url('../../img/clima.png');
               background-size: cover;
               height: $medida;
               margin-right: 5px;
@@ -868,4 +868,20 @@ h3 {
   min-width: 125px;
   max-width: 150px;
   width: 15%;
+}
+
+// Tooltip
+.chartTooltip {
+  border-radius: 10px;
+}
+// Voronoi
+.voronoi path {
+  fill: none;
+  // stroke-weight: 1px;
+  // stroke: #5D5D5D;
+  pointer-events: all;
+}
+.focus {
+  fill: none;
+  stroke: #5D5D5D;
 }
