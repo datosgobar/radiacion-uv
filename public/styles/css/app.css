@@ -1,22 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");
 html, body {
   font-family: 'Roboto', sans-serif;
-  font-size: 10px; }
-  @media screen and (min-width: 768px) {
-    html, body {
-      font-size: 10px; } }
-  @media screen and (min-width: 1280px) {
-    html, body {
-      font-size: 10px; } }
-  @media screen and (min-width: 1600px) {
-    html, body {
-      font-size: 10px; } }
+  font-size: 10px;
+  padding: 0px;
+  margin: 0px; }
+
+h4 {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 400; }
 
 #navBar {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
   background-color: white;
   box-shadow: 0px 0px 5px silver;
   box-sizing: border-box;
@@ -24,29 +18,24 @@ html, body {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 52px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 52px;
   left: 0px;
+  top: 0px;
   margin: 0px;
   padding: 0px 20px;
   position: fixed;
-  top: 0px;
   width: 100vw;
-  z-index: 999; }
-  #navBar > nav {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+  z-index: 1000; }
+  #navBar > div {
+    max-width: 900px;
+    width: 100%;
     box-sizing: border-box;
+    margin: 0px;
+    padding: 10px 0px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -59,41 +48,46 @@ html, body {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
         -ms-flex-pack: center;
-            justify-content: center;
-    margin: 0px;
-    max-width: 900px;
-    padding: 10px 0px;
-    position: relative;
-    width: 100%; }
+            justify-content: center; }
     @media screen and (min-width: 600px) {
-      #navBar > nav {
+      #navBar > div {
         -webkit-box-pack: justify;
         -webkit-justify-content: space-between;
             -ms-flex-pack: justify;
                 justify-content: space-between; } }
-    #navBar > nav #gobAr {
+    #navBar > div > #gobAr {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
       width: 150px; }
-    #navBar > nav #acercaDe {
-      border-radius: 10px;
-      color: #0094D4;
-      display: none;
-      font-size: 1.2rem;
-      font-weight: 400;
-      padding: 10px;
-      position: relative;
-      right: -10px;
-      text-decoration: none; }
+      #navBar > div > #gobAr > img {
+        width: 100%; }
+    #navBar > div > #acercaDe {
+      display: none; }
       @media screen and (min-width: 600px) {
-        #navBar > nav #acercaDe {
-          display: block; } }
-      #navBar > nav #acercaDe:hover {
+        #navBar > div > #acercaDe {
+          display: block;
+          border-radius: 10px;
+          color: #0094D4;
+          font-size: 1.2rem;
+          font-weight: 400;
+          padding: 10px;
+          position: relative;
+          right: -10px;
+          text-decoration: none; } }
+      #navBar > div > #acercaDe:hover {
         background-color: rgba(0, 0, 0, 0.1); }
 
 .sectionContent {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -104,14 +98,18 @@ html, body {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0px;
   padding: 0px;
   position: relative;
+  height: 100%;
   width: 100%; }
 
 .encabezado {
@@ -124,47 +122,57 @@ html, body {
     .encabezado {
       padding: 0px 20px;
       margin: 0px 0px 40px 0px; } }
-  .encabezado > h1 {
+  .encabezado > h2 {
     color: #4d4d4d;
+    text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     margin: auto;
     max-width: 900px;
     padding: 0px;
-    text-align: center;
     width: 100%; }
     @media screen and (min-width: 600px) {
-      .encabezado > h1 {
-        color: #009DDB;
-        font-size: 2.75rem; } }
+      .encabezado > h2 {
+        font-size: 2.5rem; } }
     @media screen and (min-width: 768px) {
-      .encabezado > h1 {
-        font-size: 4rem; } }
-  .encabezado > h2 {
-    color: #4d4d4d;
-    text-align: center; }
+      .encabezado > h2 {
+        font-size: 3.5rem; } }
   .encabezado > p {
     color: #4d4d4d;
+    text-align: center;
     font-size: 1.2rem;
     font-weight: 300;
     margin: auto;
     max-width: 900px;
     padding: 0px;
-    text-align: center;
-    width: 100%; }
+    width: 100%;
+    line-height: 20px; }
     @media screen and (min-width: 600px) {
       .encabezado > p {
         font-size: 1.5rem;
-        padding: 20px 0px 0px 0px; } }
+        padding: 10px 0px 0px 0px;
+        line-height: 36px; } }
     @media screen and (min-width: 768px) {
       .encabezado > p {
         font-size: 2rem; } }
 
-#section1 .sectionContent > #radiationContent > #sectionDer > section, #section2 .sectionContent > section {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+#section1 .encabezado {
+  background-color: white;
+  box-shadow: 0px 0px 5px silver;
+  padding: 10px 10px; }
+  @media screen and (min-width: 600px) {
+    #section1 .encabezado {
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0px 20px; } }
+  @media screen and (min-width: 600px) {
+    #section1 .encabezado h2 {
+      color: #009DDB; } }
+
+#section3 .encabezado {
+  margin: 0px; }
+
+#section1 .sectionContent #radiationContent #sectionDer > div, #section2 .sectionContent > div, #section1 .sectionContent #radiationContent #sectionDer > section, #section2 .sectionContent > section {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -172,84 +180,64 @@ html, body {
   -webkit-justify-content: space-around;
       -ms-flex-pack: distribute;
           justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  position: relative;
-  width: 100%; }
-  #section1 .sectionContent > #radiationContent > #sectionDer > section > header > h2, #section2 .sectionContent > section > header > h2 {
+  width: 100%;
+  padding: 10px; }
+  #section1 .sectionContent #radiationContent #sectionDer > div > header > h3, #section2 .sectionContent > div > header > h3, #section1 .sectionContent #radiationContent #sectionDer > section > header > h3, #section2 .sectionContent > section > header > h3 {
     padding: 0px;
     font-weight: 400;
-    font-size: 2rem; }
-  #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(1), #section2 .sectionContent > section:nth-child(1) {
-    height: 35%;
-    background-color: silver;
-    border-radius: 10px;
-    background-color: white;
-    margin-bottom: 1rem;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    padding: 20px 10px;
-    box-sizing: border-box; }
-    #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(1) > section, #section2 .sectionContent > section:nth-child(1) > section {
-      width: 100%;
+    font-size: 2rem;
+    margin-bottom: 10px; }
+
+#section1 .sectionContent #radiationContent #sectionDer #containerFor, #section2 .sectionContent #containerFor {
+  height: 25%;
+  background-color: silver;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 1rem;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  box-sizing: border-box; }
+  #section1 .sectionContent #radiationContent #sectionDer #containerFor #forecast, #section2 .sectionContent #containerFor #forecast {
+    padding: 0px;
+    height: 100%;
+    max-height: 80px;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    #section1 .sectionContent #radiationContent #sectionDer #containerFor #forecast .divPronostic, #section2 .sectionContent #containerFor #forecast .divPronostic {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-          -ms-flex-direction: column;
-              flex-direction: column; }
-      #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(1) > section > article, #section2 .sectionContent > section:nth-child(1) > section > article {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-                flex-direction: row;
-        width: 100%; }
-        #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(1) > section > article > i, #section2 .sectionContent > section:nth-child(1) > section > article > i {
-          font-size: 3rem; }
-  #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(2), #section2 .sectionContent > section:nth-child(2) {
-    background-color: white;
-    border-radius: 10px;
-    box-sizing: border-box;
-    height: 65%;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    margin-top: 1rem;
-    padding: 20px 10px 10px 10px; }
-    #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(2) > section, #section2 .sectionContent > section:nth-child(2) > section {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-justify-content: space-around;
-          -ms-flex-pack: distribute;
-              justify-content: space-around;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       -webkit-box-align: center;
       -webkit-align-items: center;
           -ms-flex-align: center;
@@ -260,14 +248,84 @@ html, body {
           -ms-flex-direction: row;
               flex-direction: row;
       width: 100%; }
-      #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(2) > section > div, #section2 .sectionContent > section:nth-child(2) > section > div {
+      #section1 .sectionContent #radiationContent #sectionDer #containerFor #forecast .divPronostic .pronostico_horario, #section2 .sectionContent #containerFor #forecast .divPronostic .pronostico_horario {
+        font-size: 1.5rem;
+        color: black;
+        font-weight: 300;
+        text-align: center; }
+      #section1 .sectionContent #radiationContent #sectionDer #containerFor #forecast .divPronostic .pronostico_barra, #section2 .sectionContent #containerFor #forecast .divPronostic .pronostico_barra {
+        width: 100%;
+        padding: 0px 10px; }
+      #section1 .sectionContent #radiationContent #sectionDer #containerFor #forecast .divPronostic .pronostico_estado, #section2 .sectionContent #containerFor #forecast .divPronostic .pronostico_estado {
+        font-size: 1.5rem;
+        color: black;
+        width: 150px;
+        text-align: center;
+        font-weight: 300; }
+
+#section1 .sectionContent #radiationContent #sectionDer #containerPro, #section2 .sectionContent #containerPro {
+  background-color: white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 75%;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1rem; }
+  #section1 .sectionContent #radiationContent #sectionDer #containerPro header > h3, #section2 .sectionContent #containerPro header > h3 {
+    margin: 0px; }
+  #section1 .sectionContent #radiationContent #sectionDer #containerPro #protections, #section2 .sectionContent #containerPro #protections {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 100%;
+    height: 65%; }
+    #section1 .sectionContent #radiationContent #sectionDer #containerPro #protections > div, #section2 .sectionContent #containerPro #protections > div {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      width: 100%;
+      height: 100%; }
+      #section1 .sectionContent #radiationContent #sectionDer #containerPro #protections > div:nth-child(2) > article > span, #section2 .sectionContent #containerPro #protections > div:nth-child(2) > article > span {
+        border-left: 1px solid silver;
+        border-right: 1px solid silver; }
+      #section1 .sectionContent #radiationContent #sectionDer #containerPro #protections > div > div, #section2 .sectionContent #containerPro #protections > div > div {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        -webkit-justify-content: space-around;
-            -ms-flex-pack: distribute;
-                justify-content: space-around;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         -webkit-box-align: center;
         -webkit-align-items: center;
             -ms-flex-align: center;
@@ -276,44 +334,24 @@ html, body {
         -webkit-box-direction: normal;
         -webkit-flex-direction: column;
             -ms-flex-direction: column;
-                flex-direction: column;
-        width: 100%;
-        height: 100%; }
-        #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(2) > section > div:nth-child(2) > article > span, #section2 .sectionContent > section:nth-child(2) > section > div:nth-child(2) > article > span {
-          border-left: 1px solid silver;
-          border-right: 1px solid silver; }
-        #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(2) > section > div > article, #section2 .sectionContent > section:nth-child(2) > section > div > article {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-pack: center;
-          -webkit-justify-content: center;
-              -ms-flex-pack: center;
-                  justify-content: center;
-          -webkit-box-align: center;
-          -webkit-align-items: center;
-              -ms-flex-align: center;
-                  align-items: center;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-          -webkit-flex-direction: column;
-              -ms-flex-direction: column;
-                  flex-direction: column; }
-    #section1 .sectionContent > #radiationContent > #sectionDer > section:nth-child(2) > a, #section2 .sectionContent > section:nth-child(2) > a {
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      color: #0094D4;
-      text-decoration: none;
-      position: absolute;
-      bottom: 10px; }
+                flex-direction: column; }
+        #section1 .sectionContent #radiationContent #sectionDer #containerPro #protections > div > div .recomendacion, #section2 .sectionContent #containerPro #protections > div > div .recomendacion {
+          font-size: 1rem;
+          color: silver;
+          padding: 0px 1rem;
+          text-align: center; }
+          @media screen and (min-width: 768px) {
+            #section1 .sectionContent #radiationContent #sectionDer #containerPro #protections > div > div .recomendacion, #section2 .sectionContent #containerPro #protections > div > div .recomendacion {
+              font-size: 1.4rem;
+              line-height: 18px; } }
+  #section1 .sectionContent #radiationContent #sectionDer #containerPro > a, #section2 .sectionContent #containerPro > a {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #0094D4;
+    text-decoration: none;
+    padding: 10px 0px 0px 0px; }
 
 #section1 {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: white;
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -324,129 +362,78 @@ html, body {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  min-height: 100vh;
-  height: 100vh;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0px;
-  padding-top: 52px;
-  position: relative;
-  width: 100vw; }
-  @media screen and (min-width: 600px) {
-    #section1 {
-      max-height: 800px; } }
-  #section1 .sectionContent > .encabezado {
-    background-color: white;
-    box-shadow: 0px 0px 5px silver;
-    padding: 10px 10px; }
-    #section1 .sectionContent > .encabezado > p {
-      padding: 10px 0px 0px 0px; }
-    @media screen and (min-width: 600px) {
-      #section1 .sectionContent > .encabezado {
-        background-color: transparent;
-        box-shadow: none;
-        padding: 0px 20px; } }
-  #section1 .sectionContent > #radiationContent {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    height: 100%;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    position: relative;
-    width: 100%;
-    z-index: 100; }
-    @media screen and (min-width: 600px) {
-      #section1 .sectionContent > #radiationContent {
-        max-height: 500px; } }
-    #section1 .sectionContent > #radiationContent > #sectionIzq {
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 52px 0px 0px 0px;
+  max-height: 900px; }
+  #section1 .sectionContent {
+    background-image: url("../../img/fondo_1.png");
+    background-position: center;
+    background-size: cover; }
+    #section1 .sectionContent #radiationContent {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-orient: vertical;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-          -ms-flex-direction: column;
-              flex-direction: column;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
       height: 100%;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
-              justify-content: space-between;
-      position: relative;
-      width: 100%; }
+      width: 100%;
+      z-index: 100; }
       @media screen and (min-width: 600px) {
-        #section1 .sectionContent > #radiationContent > #sectionIzq {
-          border-radius: 10px;
-          max-width: 350px;
-          width: 45%; } }
-      #section1 .sectionContent > #radiationContent > #sectionIzq > div {
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
-        border-bottom: 1px solid white;
-        box-sizing: border-box;
+        #section1 .sectionContent #radiationContent {
+          max-height: 450px; } }
+      #section1 .sectionContent #radiationContent #sectionIzq {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: horizontal;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-                flex-direction: row;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        padding: 10px 0px;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        height: 100%;
         width: 100%; }
-        #section1 .sectionContent > #radiationContent > #sectionIzq > div > #ubication {
-          color: white;
-          font-weight: 400;
-          font-size: 1.2rem;
-          text-align: center;
-          width: 100%; }
-          @media screen and (min-width: 768px) {
-            #section1 .sectionContent > #radiationContent > #sectionIzq > div > #ubication {
-              font-size: 1.5rem; } }
-        #section1 .sectionContent > #radiationContent > #sectionIzq > div > #time {
-          border-left: 1px solid white;
-          border-right: 1px solid white;
-          box-sizing: border-box;
-          color: white;
-          font-size: 1.5rem;
-          font-weight: 100;
-          text-align: center;
-          width: 100%; }
-          @media screen and (min-width: 768px) {
-            #section1 .sectionContent > #radiationContent > #sectionIzq > div > #time {
-              font-size: 1.8rem; } }
-        #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather {
+        @media screen and (min-width: 600px) {
+          #section1 .sectionContent #radiationContent #sectionIzq {
+            border-radius: 10px;
+            max-width: 350px;
+            width: 45%; } }
+        #section1 .sectionContent #radiationContent #sectionIzq > header {
           -webkit-box-align: center;
           -webkit-align-items: center;
               -ms-flex-align: center;
                   align-items: center;
+          border-bottom: 1px solid white;
+          box-sizing: border-box;
           display: -webkit-box;
           display: -webkit-flex;
           display: -ms-flexbox;
@@ -460,126 +447,176 @@ html, body {
           -webkit-justify-content: center;
               -ms-flex-pack: center;
                   justify-content: center;
-          text-align: center;
+          padding: 10px 0px;
           width: 100%; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > #temp-weather {
+          #section1 .sectionContent #radiationContent #sectionIzq > header #ubication {
             color: white;
-            font-weight: 100;
-            font-size: 1.2rem; }
+            font-weight: 400;
+            font-size: 1.2rem;
+            text-align: center;
+            width: 100%; }
             @media screen and (min-width: 768px) {
-              #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > #temp-weather {
+              #section1 .sectionContent #radiationContent #sectionIzq > header #ubication {
                 font-size: 1.5rem; } }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > #icon-weather {
-            background-image: url("../../img/clima.png");
-            background-size: cover;
-            height: 2rem;
-            margin-right: 5px;
-            width: 2.34483rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .soleado {
-            background-position: 0rem 0rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .noche {
-            background-position: 2.34483rem 0rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .tormenta {
-            background-position: 4.68966rem 0rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .lluvia {
-            background-position: 7.03448rem 0rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .inestable {
-            background-position: 9.37931rem 0rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .nublado {
-            background-position: 11.72414rem 0rem; }
-          #section1 .sectionContent > #radiationContent > #sectionIzq > div > #weather > .parcialmente-nublado {
-            background-position: 14.06897rem 0rem; }
-      #section1 .sectionContent > #radiationContent > #sectionIzq > #radiationUv {
-        box-sizing: border-box;
-        padding: 0px 20px; }
-      #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(3) {
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
-        box-sizing: border-box;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-                flex-direction: row;
-        font-size: 2rem;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        padding: 0px 20px;
-        width: 100%; }
-        #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(3) > #recomendation {
-          color: white;
-          font-size: 1.5rem;
-          text-align: center; }
-          @media screen and (min-width: 768px) {
-            #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(3) > #recomendation {
-              font-size: 1.8rem; } }
-      #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(4) {
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
-        border-top: 1px solid white;
-        box-sizing: border-box;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-                flex-direction: row;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        padding: 10px;
-        width: 100%; }
-        #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(4) > i {
-          color: white;
-          font-size: 2rem;
-          margin-right: 1rem; }
-        #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(4) > #actualizacion {
-          color: white;
-          font-size: 1.2rem;
-          font-weight: 300;
-          text-align: center; }
-          @media screen and (min-width: 768px) {
-            #section1 .sectionContent > #radiationContent > #sectionIzq > article:nth-child(4) > #actualizacion {
-              font-size: 1.5rem; } }
-    @media screen and (min-width: 600px) {
-      #section1 .sectionContent > #radiationContent > #sectionDer {
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
-        border-radius: 10px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        height: 100%;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-        max-width: 350px;
-        padding-left: 2rem;
-        position: relative;
-        width: 45%; } }
+          #section1 .sectionContent #radiationContent #sectionIzq > header #time {
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+            box-sizing: border-box;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 100;
+            text-align: center;
+            width: 100%;
+            max-width: 90px; }
+            @media screen and (min-width: 768px) {
+              #section1 .sectionContent #radiationContent #sectionIzq > header #time {
+                font-size: 1.5rem; } }
+          #section1 .sectionContent #radiationContent #sectionIzq > header #weather {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            text-align: center;
+            width: 100%;
+            max-width: 90px; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather #temp-weather {
+              color: white;
+              font-weight: 100;
+              font-size: 1.2rem;
+              -webkit-box-align: center;
+              -webkit-align-items: center;
+                  -ms-flex-align: center;
+                      align-items: center; }
+              @media screen and (min-width: 768px) {
+                #section1 .sectionContent #radiationContent #sectionIzq > header #weather #temp-weather {
+                  font-size: 1.5rem; } }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather #icon-weather {
+              background-image: url("../../img/clima.png");
+              background-size: cover;
+              height: 2rem;
+              margin-right: 5px;
+              width: 2.34483rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .soleado {
+              background-position: 0rem 0rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .noche {
+              background-position: 2.34483rem 0rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .tormenta {
+              background-position: 4.68966rem 0rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .lluvia {
+              background-position: 7.03448rem 0rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .inestable {
+              background-position: 9.37931rem 0rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .nublado {
+              background-position: 11.72414rem 0rem; }
+            #section1 .sectionContent #radiationContent #sectionIzq > header #weather .parcialmente-nublado {
+              background-position: 14.06897rem 0rem; }
+        #section1 .sectionContent #radiationContent #sectionIzq #radiationUv {
+          box-sizing: border-box;
+          padding: 0px 20px;
+          width: 100%;
+          height: 100%;
+          max-width: 400px;
+          max-height: 60%; }
+        #section1 .sectionContent #radiationContent #sectionIzq #containerRecom {
+          box-sizing: border-box;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+                  flex-direction: row;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          padding: 0px 20px;
+          width: 100%; }
+          #section1 .sectionContent #radiationContent #sectionIzq #containerRecom #recomendation {
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            height: 50px; }
+            @media screen and (min-width: 768px) {
+              #section1 .sectionContent #radiationContent #sectionIzq #containerRecom #recomendation {
+                font-size: 1.8rem; } }
+        #section1 .sectionContent #radiationContent #sectionIzq #containerUpdate {
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          border-top: 1px solid white;
+          box-sizing: border-box;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+                  flex-direction: row;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          padding: 10px;
+          width: 100%; }
+          #section1 .sectionContent #radiationContent #sectionIzq #containerUpdate > i {
+            color: white;
+            font-size: 2rem;
+            margin-right: 1rem; }
+          #section1 .sectionContent #radiationContent #sectionIzq #containerUpdate #actualizacion {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-align: center; }
+            @media screen and (min-width: 768px) {
+              #section1 .sectionContent #radiationContent #sectionIzq #containerUpdate #actualizacion {
+                font-size: 1.5rem; } }
+      @media screen and (min-width: 600px) {
+        #section1 .sectionContent #radiationContent #sectionDer {
+          border-radius: 10px;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          max-width: 350px;
+          padding-left: 2rem;
+          height: 100%;
+          width: 45%; } }
 
 #section2 {
   -webkit-box-align: center;
@@ -615,80 +652,87 @@ html, body {
       max-height: 800px; } }
 
 #section3 {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-bottom: 1px solid silver;
-  box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  min-height: 100vh;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  border-bottom: 1px solid silver;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
   padding: 0px;
   padding-top: 52px;
-  position: relative;
-  width: 100vw; }
+  background-image: url("../../img/fondo_2.png");
+  background-position: center;
+  background-size: cover; }
   @media screen and (min-width: 600px) {
     #section3 {
-      min-height: inherit;
-      height: 600px;
-      max-height: 800px; } }
-  #section3 .sectionContent > .encabezado > p {
-    line-height: 20px;
-    margin: 20px auto; }
-    @media screen and (min-width: 768px) {
-      #section3 .sectionContent > .encabezado > p {
-        line-height: 36px; } }
-  #section3 .sectionContent #testimonios {
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    box-sizing: border-box;
+      max-height: 900px; } }
+  #section3 .sectionContent {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
     -webkit-justify-content: space-around;
         -ms-flex-pack: distribute;
             justify-content: space-around;
-    max-width: 900px;
-    padding: 0px 20px;
-    width: 100%; }
-    @media screen and (min-width: 600px) {
-      #section3 .sectionContent #testimonios {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-                flex-direction: row; } }
-    #section3 .sectionContent #testimonios > article {
-      width: 100%;
-      max-width: 250px; }
-      #section3 .sectionContent #testimonios > article > cite {
-        color: #0094D4;
-        font-size: 2.4rem; }
-      #section3 .sectionContent #testimonios > article > p {
-        color: black;
-        font-size: 1.5rem;
-        font-weight: 300;
-        line-height: 20px; }
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    #section3 .sectionContent #testimonios {
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+      box-sizing: border-box;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      max-width: 900px;
+      padding: 0px 20px;
+      width: 100%; }
+      @media screen and (min-width: 600px) {
+        #section3 .sectionContent #testimonios {
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+                  flex-direction: row; } }
+      #section3 .sectionContent #testimonios > div {
+        width: 100%;
+        max-width: 250px; }
+        #section3 .sectionContent #testimonios > div > cite {
+          color: #0094D4;
+          font-size: 2.4rem; }
+        #section3 .sectionContent #testimonios > div > p {
+          color: black;
+          font-size: 1.5rem;
+          font-weight: 300;
+          line-height: 20px; }
 
 #section4 {
   -webkit-box-align: center;
@@ -719,15 +763,14 @@ html, body {
   @media screen and (min-width: 600px) {
     #section4 {
       min-height: 600px;
-      height: 600px;
-      max-height: 800px; } }
+      height: 600px; } }
   #section4 .sectionContent {
     -webkit-justify-content: space-around;
         -ms-flex-pack: distribute;
             justify-content: space-around; }
     #section4 .sectionContent > .encabezado {
       margin-bottom: 40px; }
-    #section4 .sectionContent > section {
+    #section4 .sectionContent > div {
       width: 100%;
       padding: 0px 20px;
       box-sizing: border-box;
@@ -748,7 +791,7 @@ html, body {
       -webkit-flex-direction: row;
           -ms-flex-direction: row;
               flex-direction: row; }
-      #section4 .sectionContent > section #slides {
+      #section4 .sectionContent > div #slides {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -767,7 +810,7 @@ html, body {
                 flex-direction: row;
         width: 100%;
         max-width: 900px; }
-        #section4 .sectionContent > section #slides .fp-tableCell {
+        #section4 .sectionContent > div #slides .fp-tableCell {
           display: -webkit-box;
           display: -webkit-flex;
           display: -ms-flexbox;
@@ -785,7 +828,7 @@ html, body {
           -webkit-flex-direction: column;
               -ms-flex-direction: column;
                   flex-direction: column; }
-        #section4 .sectionContent > section #slides .slide {
+        #section4 .sectionContent > div #slides .slide {
           display: -webkit-box;
           display: -webkit-flex;
           display: -ms-flexbox;
@@ -805,16 +848,16 @@ html, body {
                   flex-direction: column;
           max-width: 400px;
           width: 20%; }
-          #section4 .sectionContent > section #slides .slide .categoria {
+          #section4 .sectionContent > div #slides .slide .categoria {
             width: 50%; }
             @media screen and (min-width: 600px) {
-              #section4 .sectionContent > section #slides .slide .categoria {
+              #section4 .sectionContent > div #slides .slide .categoria {
                 width: 85%;
                 margin-bottom: 20px; } }
-          #section4 .sectionContent > section #slides .slide h3 {
+          #section4 .sectionContent > div #slides .slide h3 {
             width: 85%;
             margin-top: 1rem; }
-          #section4 .sectionContent > section #slides .slide p {
+          #section4 .sectionContent > div #slides .slide p {
             font-size: 1.5rem;
             font-weight: 300;
             line-height: 20px;
@@ -889,6 +932,10 @@ html, body {
         stroke: none; }
       #section5 .sectionContent > #lineChart #xAxisLine2 text {
         fill: rgba(255, 255, 255, 0.75); }
+      #section5 .sectionContent > #lineChart .yIndex {
+        -webkit-transform: translate(20px, 10px);
+            -ms-transform: translate(20px, 10px);
+                transform: translate(20px, 10px); }
 
 h2 {
   text-align: center;
@@ -920,17 +967,8 @@ h3 {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%; }
-
-.recomendacion {
-  font-size: 1rem;
-  color: silver;
-  padding: 0px 1rem;
-  text-align: center; }
-  @media screen and (min-width: 768px) {
-    .recomendacion {
-      font-size: 1.4rem;
-      line-height: 18px; } }
+  width: 100%;
+  height: 100%; }
 
 .protection-icon {
   width: 7rem;
@@ -947,42 +985,6 @@ h3 {
 .svgFill {
   fill: gray;
   stroke: none; }
-
-#forecast {
-  height: 100%;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 0px;
-  max-height: 80px; }
-  #forecast .pronostico_barra {
-    width: 100%;
-    padding: 0px 10px; }
-  #forecast .pronostico_horario {
-    font-size: 1.5rem;
-    color: black;
-    font-weight: 300; }
-  #forecast .pronostico_estado {
-    font-size: 1.5rem;
-    color: black;
-    width: 150px;
-    text-align: left;
-    font-weight: 300; }
-
-.background {
-  display: none;
-  z-index: 0;
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-  height: 110vh; }
-  @media screen and (min-width: 768px) {
-    .background {
-      display: inherit; } }
 
 .iconos-derecha {
   position: absolute;
@@ -1008,13 +1010,63 @@ h3 {
   max-width: 150px;
   width: 15%; }
 
-.chartTooltip {
-  border-radius: 10px; }
+#medidor .staticMeasure {
+  fill: rgba(0, 0, 0, 0.1); }
+
+#medidor #dynamic {
+  fill: white; }
+
+#medidor .measureText {
+  text-anchor: middle;
+  alignment-baseline: middle;
+  fill: rgba(0, 0, 0, 0.1);
+  font-size: 14rem; }
+
+#medidor .measureMinMax {
+  text-anchor: middle;
+  alignment-baseline: end;
+  fill: white;
+  font-size: 1.5rem; }
+
+#medidor #state {
+  text-anchor: middle;
+  alignment-baseline: end;
+  fill: white;
+  font-size: 3rem;
+  font-weight: 200; }
+
+#medidor #lvlRadiation {
+  text-anchor: middle;
+  alignment-baseline: end;
+  fill: white;
+  font-size: 3rem;
+  font-weight: 800; }
+
+#tooltip > .toolRect {
+  width: 100px;
+  height: 30px;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  rx: 10px;
+  ry: 10px; }
+
+#tooltip > .toolText {
+  text-anchor: middle;
+  alignment-baseline: middle;
+  fill: white; }
+
+#tooltip > .toolCircle {
+  fill: none;
+  r: 8;
+  stroke-width: 4;
+  -webkit-transform: translateY(30px);
+      -ms-transform: translateY(30px);
+          transform: translateY(30px); }
 
 .voronoi path {
   fill: none;
   pointer-events: all; }
 
-.focus {
-  fill: none;
-  stroke: #5D5D5D; }
+.hide {
+  display: none; }

@@ -1,89 +1,93 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
 
 // Estate Colors
-$low: rgba(66, 190, 92, 1);
-$moderate: rgba(233, 184, 66, 1);
+$low: rgba(2, 213, 122, 1);
+$moderate: rgba(255, 187, 66, 1);
 $high: rgba(241, 133, 75, 1);
 $veryHigh: rgba(242, 56, 90, 1);
 $danger: rgba(85, 50, 133, 1);
 
-$stateColor: ($low, $moderate, $high, $veryHigh, $danger);
-
 // Text
-$text: rgba(77, 77, 77, 1);
-$whiteText: rgba(255, 255, 255, 1);
-$blackText: rgba(0, 0, 0, 1);
+$color-font: rgba(77, 77, 77, 1);
+$white-font: rgba(255, 255, 255, 1);
+$black-font: rgba(0, 0, 0, 1);
+
+// Queries
+$query1: 600px;
+$query2: 768px;
+$query3: 1280px;
+$query4: 1600px;
+
+$celeste: rgba(39, 180, 245, 1);
+$navHeight: 52px;
+$medida: 2rem;
+$coeficiente: 1.17241379;
 
 // General
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
-
-  // Tablet 768x1024px
-  @media screen and (min-width: 768px){
-    font-size: 10px;
-  }
-  // Laptop 1280x802px
-  @media screen and (min-width: 1280px){
-    font-size: 10px;
-  }
-  // Desktop 1600x992px
-  @media screen and (min-width: 1600px){
-    font-size: 10px;
-  }
+  padding: 0px;
+  margin: 0px;
 }
-
+h4 {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 400;
+}
 // Barra de Navegación
-$navHeight: 52px;
 #navBar {
-  align-items: center;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: white;
   box-shadow: 0px 0px 5px silver;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  height: $navHeight;
   justify-content: center;
+  height: $navHeight;
   left: 0px;
+  top: 0px;
   margin: 0px;
   padding: 0px 20px;
   position: fixed;
-  top: 0px;
   width: 100vw;
-  z-index: 999;
+  z-index: 1000;
 
-  & > nav {
-    align-items: center;
+  & > div {
+    max-width: 900px;
+    width: 100%;
     box-sizing: border-box;
+    margin: 0px;
+    padding: 10px 0px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 0px;
-    max-width: 900px;
-    padding: 10px 0px;
-    position: relative;
-    width: 100%;
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $query1) {
       justify-content: space-between;
     }
 
-    #gobAr {
+    & > #gobAr {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
       width: 150px;
-    }
-    #acercaDe {
-      border-radius: 10px;
-      color: #0094D4;
-      display: none;
-      font-size: 1.2rem;
-      font-weight: 400;
-      padding: 10px;
-      position: relative;
-      right: -10px;
-      text-decoration: none;
 
-      @media screen and (min-width: 600px) {
+      & > img {
+        width: 100%;
+      }
+    }
+    & > #acercaDe {
+      display: none;
+
+      @media screen and (min-width: $query1) {
         display: block;
+        border-radius: 10px;
+        color: #0094D4;
+        font-size: 1.2rem;
+        font-weight: 400;
+        padding: 10px;
+        position: relative;
+        right: -10px;
+        text-decoration: none;
       }
 
       &:hover {
@@ -93,24 +97,21 @@ $navHeight: 52px;
   }
 }
 
-// Ajustes de Full Page
-#fullpage {}
-
 // Contenedor de seccion
 .sectionContent {
-  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
+  align-items: center;
   margin: 0px;
   padding: 0px;
   position: relative;
+  height: 100%;
   width: 100%;
 }
 
-// Encabezado Sección
+// Encabezados Sección
 .encabezado {
   box-sizing: border-box;
   margin: 0px;
@@ -118,209 +119,235 @@ $navHeight: 52px;
   width: 100%;
   z-index: 50;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $query1) {
     padding: 0px 20px;
     margin: 0px 0px 40px 0px;
   }
 
-  & > h1 {
-    color: $text;
+  & > h2 {
+    color: $color-font;
+    text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     margin: auto;
     max-width: 900px;
     padding: 0px;
-    text-align: center;
     width: 100%;
 
-    @media screen and (min-width: 600px) {
-      color: #009DDB;
-      font-size: 2.75rem;
+    @media screen and (min-width: $query1) {
+      font-size: 2.5rem;
     }
-    @media screen and (min-width: 768px) {
-      font-size: 4rem;
+    @media screen and (min-width: $query2) {
+      font-size: 3.5rem;
     }
-  }
-  & > h2 {
-    color: $text;
-    text-align: center;
   }
   & > p {
-    color: $text;
+    color: $color-font;
+    text-align: center;
     font-size: 1.2rem;
     font-weight: 300;
     margin: auto;
     max-width: 900px;
     padding: 0px;
-    text-align: center;
     width: 100%;
+    line-height: 20px;
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $query1) {
       font-size: 1.5rem;
-      padding: 20px 0px 0px 0px;
+      padding: 10px 0px 0px 0px;
+      line-height: 36px;
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $query2) {
       font-size: 2rem;
     }
   }
 }
+#section1 .encabezado {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 5px silver;
+  padding: 10px 10px;
 
+  @media screen and (min-width: $query1) {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0px 20px;
+  }
+
+  h2 {
+
+    @media screen and (min-width: $query1) {
+      color: #009DDB;
+    }
+  }
+}
+#section3 .encabezado {
+  margin: 0px;
+}
 // Bloque Seccion 2
 %seccion2 {
+
+  & > div,
   & > section {
-    align-items: center;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-direction: column;
-    position: relative;
     width: 100%;
+    padding: 10px;
 
-    & > header {
-
-      & > h2 {
-        padding: 0px;
-        font-weight: 400;
-        font-size: 2rem;
-      }
+    & > header > h3 {
+      padding: 0px;
+      font-weight: 400;
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
-    &:nth-child(1) {                                                      // Sin revisar
-      height: 35%;
-      background-color: silver;
-      border-radius: 10px;
-      background-color: rgba(255, 255, 255, 1);
-      margin-bottom: 1rem;
-      justify-content: space-between;
-      padding: 20px 10px;
-      box-sizing: border-box;
+  }
+  #containerFor {
+    height: 25%;
+    background-color: silver;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    box-sizing: border-box;
 
-      & > section {
-        width: 100%;
+    #forecast {
+      padding: 0px;
+      height: 100%;
+      max-height: 80px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+
+      .divPronostic {
         display: flex;
-        // justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-
-        & > article {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: row;
-          width: 100%;
-
-          & > i {
-            font-size: 3rem;
-          }
-        }
-      }
-    }
-    &:nth-child(2) {
-      background-color: rgba(255, 255, 255, 1);
-      border-radius: 10px;
-      box-sizing: border-box;
-      height: 65%;
-      justify-content: flex-start;
-      margin-top: 1rem;
-      padding: 20px 10px 10px 10px;
-
-      & > section {
-        display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         flex-direction: row;
         width: 100%;
 
+        .pronostico_horario {
+          font-size: 1.5rem;
+          color: $black-font;
+          font-weight: 300;
+          text-align: center;
+        }
+        .pronostico_barra {
+          width: 100%;
+          padding: 0px 10px;
+        }
+        .pronostico_estado {
+          font-size: 1.5rem;
+          color: $black-font;
+          width: 150px;
+          text-align: center;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  #containerPro {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 75%;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    header > h3 {
+      margin: 0px;
+    }
+    #protections {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+      width: 100%;
+      height: 65%;
+
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        &:nth-child(2) {
+
+          & > article > span {
+            border-left: 1px solid silver;
+            border-right: 1px solid silver;
+          }
+        }
         & > div {
           display: flex;
-          justify-content: space-around;
+          justify-content: center;
           align-items: center;
           flex-direction: column;
-          width: 100%;
-          height: 100%;
 
-          &:nth-child(2) {
+          .recomendacion {
+            font-size: 1rem;
+            color: silver;
+            padding: 0px 1rem;
+            text-align: center;
 
-            & > article > span {
-              border-left: 1px solid silver;
-              border-right: 1px solid silver;
+            @media screen and (min-width: 768px){
+              font-size: 1.4rem;
+              line-height: 18px;
             }
-          }
-          & > article {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
           }
         }
       }
-      & > a {
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        color: #0094D4;
-        text-decoration: none;
-        position: absolute;
-        bottom: 10px;
-      }
+    }
+    & > a {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #0094D4;
+      text-decoration: none;
+      padding: 10px 0px 0px 0px;
     }
   }
 }
 
 // Seccion 1
 #section1 {
-  align-items: center;
-  background-color: white;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
-  height: 100vh;
   justify-content: center;
-  padding: 0px;
-  padding-top: $navHeight;
-  position: relative;
+  align-items: center;
   width: 100vw;
-
-  @media screen and (min-width: 600px) {
-    max-height: 800px;
-  }
+  height: 100vh;
+  padding: $navHeight 0px 0px 0px;
+  max-height: 900px;
 
   .sectionContent {
+    background-image: url('../../img/fondo_1.png');
+    background-position: center;
+    background-size: cover;
 
-    & > .encabezado {
-      background-color: rgba(255, 255, 255, 1);
-      box-shadow: 0px 0px 5px silver;
-      padding: 10px 10px;
-
-      & > p {
-        padding: 10px 0px 0px 0px;
-      }
-
-      @media screen and (min-width: 600px) {
-        background-color: transparent;
-        box-shadow: none;
-        padding: 0px 20px;
-      }
-    }
-    & > #radiationContent {
-      align-items: center;
+    #radiationContent {
       display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: row;
       height: 100%;
-      justify-content: center;
-      position: relative;
       width: 100%;
       z-index: 100;
 
-      @media screen and (min-width: 600px) {
-        max-height: 500px;
+      @media screen and (min-width: $query1) {
+        max-height: 450px;
       }
 
-      & > #sectionIzq {
-        align-items: center;
+      #sectionIzq {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         flex-direction: column;
         height: 100%;
-        justify-content: space-between;
-        position: relative;
         width: 100%;
 
         @media screen and (min-width: 600px){
@@ -329,7 +356,7 @@ $navHeight: 52px;
           width: 45%;
         }
 
-        & > div {
+        & > header {
           align-items: center;
           border-bottom: 1px solid white;
           box-sizing: border-box;
@@ -339,106 +366,111 @@ $navHeight: 52px;
           padding: 10px 0px;
           width: 100%;
 
-          & > #ubication {
-            color: $whiteText;
+          #ubication {
+            color: $white-font;
             font-weight: 400;
             font-size: 1.2rem;
             text-align: center;
             width: 100%;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: $query2) {
               font-size: 1.5rem;
             }
           }
-          & > #time {
+          #time {
             border-left: 1px solid white;
             border-right: 1px solid white;
             box-sizing: border-box;
-            color: $whiteText;
-            font-size: 1.5rem;
+            color: $white-font;
+            font-size: 1.2rem;
             font-weight: 100;
             text-align: center;
             width: 100%;
+            max-width: 90px;
 
-            @media screen and (min-width: 768px) {
-              font-size: 1.8rem;
+            @media screen and (min-width: $query2) {
+              font-size: 1.5rem;
             }
           }
-          & > #weather {
-            $medida: 2rem;
-            $coeficiente: 1.17241379;
-
-            align-items: center;
+          #weather {
             display: flex;
-            flex-direction: row;
             justify-content: center;
+            align-items: center;
+            flex-direction: row;
             text-align: center;
             width: 100%;
+            max-width: 90px;
 
-            & > #temp-weather {
-              color: $whiteText;
+            #temp-weather {
+              color: $white-font;
               font-weight: 100;
               font-size: 1.2rem;
+              align-items: center;
 
-              @media screen and (min-width: 768px) {
+              @media screen and (min-width: $query2) {
                 font-size: 1.5rem;
               }
             }
-            & > #icon-weather {
+            #icon-weather {
               background-image: url('../../img/clima.png');
               background-size: cover;
               height: $medida;
               margin-right: 5px;
               width: $medida * $coeficiente;
             }
-            & > .soleado {
+            .soleado {
               background-position: (($medida * $coeficiente) * 0) 0rem;
             }
-            & > .noche {
+            .noche {
               background-position: (($medida * $coeficiente) * 1) 0rem;
             }
-            & > .tormenta {
+            .tormenta {
               background-position: (($medida * $coeficiente) * 2) 0rem;
             }
-            & > .lluvia {
+            .lluvia {
               background-position: (($medida * $coeficiente) * 3) 0rem;
             }
-            & > .inestable {
+            .inestable {
               background-position: (($medida * $coeficiente) * 4) 0rem;
             }
-            & > .nublado {
+            .nublado {
               background-position: (($medida * $coeficiente) * 5) 0rem;
             }
-            & > .parcialmente-nublado {
+            .parcialmente-nublado {
               background-position: (($medida * $coeficiente) * 6) 0rem;
             }
           }
         }
-        & > #radiationUv {
+        #radiationUv {
           box-sizing: border-box;
           padding: 0px 20px;
+          width: 100%;
+          height: 100%;
+          max-width: 400px;
+          max-height: 60%;
         }
-        & > article:nth-child(3) {
-          align-items: center;
+        #containerRecom {
           box-sizing: border-box;
           display: flex;
           flex-direction: row;
-          font-size: 2rem;
+          // font-size: 2rem;
           justify-content: center;
+          align-items: center;
           padding: 0px 20px;
           width: 100%;
 
-          & > #recomendation {
-            color: $whiteText;
+          #recomendation {
+            color: $white-font;
             font-size: 1.5rem;
             text-align: center;
+            height: 50px;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: $query2) {
               font-size: 1.8rem;
             }
           }
         }
-        & > article:nth-child(4) {
+        #containerUpdate {
           align-items: center;
           border-top: 1px solid white;
           box-sizing: border-box;
@@ -449,43 +481,40 @@ $navHeight: 52px;
           width: 100%;
 
           & > i {
-            color: $whiteText;
+            color: $white-font;
             font-size: 2rem;
             margin-right: 1rem;
           }
-          & > #actualizacion {
-            color: $whiteText;
+          #actualizacion {
+            color: $white-font;
             font-size: 1.2rem;
             font-weight: 300;
             text-align: center;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: $query2) {
               font-size: 1.5rem;
             }
           }
         }
       }
-      & > #sectionDer {
+      #sectionDer {
+        @extend %seccion2;
 
-        @media screen and (min-width: 600px) {
-          align-items: center;
+        @media screen and (min-width: $query1) {
           border-radius: 10px;
           display: flex;
           flex-direction: column;
-          height: 100%;
           justify-content: space-between;
+          align-items: center;
           max-width: 350px;
           padding-left: 2rem;
-          position: relative;
+          height: 100%;
           width: 45%;
         }
-
-        @extend %seccion2;
       }
     }
   }
 }
-
 // Seccion 2
 #section2 {
   align-items: center;
@@ -501,7 +530,7 @@ $navHeight: 52px;
   position: relative;
   width: 100vw;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $query1) {
     display: none;
     min-height: inherit;
     height: 600px;
@@ -515,56 +544,46 @@ $navHeight: 52px;
 
 
 }
-
 // Seccion 3
 #section3 {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: row;
   border-bottom: 1px solid silver;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
-  justify-content: center;
+  height: 100vh;
+  width: 100vw;
   padding: 0px;
   padding-top: $navHeight;
-  position: relative;
-  width: 100vw;
+  background-image: url('../../img/fondo_2.png');
+  background-position: center;
+  background-size: cover;
 
-  @media screen and (min-width: 600px) {
-    min-height: inherit;
-    height: 600px;
-    max-height: 800px;
+  @media screen and (min-width: $query1) {
+    max-height: 900px;
   }
 
   .sectionContent {
-
-    & > .encabezado {
-
-      & > p {
-        line-height: 20px;
-        margin: 20px auto;
-
-        @media screen and (min-width: 768px) {
-          line-height: 36px;
-        }
-      }
-    }
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     #testimonios {
       align-items: flex-start;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       max-width: 900px;
       padding: 0px 20px;
       width: 100%;
 
-      @media screen and (min-width: 600px) {
+      @media screen and (min-width: $query1) {
         flex-direction: row;
       }
 
-      & > article {
+      & > div {
         width: 100%;
         max-width: 250px;
 
@@ -574,7 +593,7 @@ $navHeight: 52px;
 
         }
         & > p {
-          color: $blackText;
+          color: $black-font;
           font-size: 1.5rem;
           font-weight: 300;
           line-height: 20px;
@@ -583,7 +602,6 @@ $navHeight: 52px;
     }
   }
 }
-
 // Seccion 4
 #section4 {
   align-items: center;
@@ -599,10 +617,9 @@ $navHeight: 52px;
   position: relative;
   width: 100vw;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $query1) {
     min-height: 600px;
     height: 600px;
-    max-height: 800px;
   }
 
   .sectionContent {
@@ -612,7 +629,7 @@ $navHeight: 52px;
       margin-bottom: 40px;
     }
 
-    & > section {
+    & > div {
       width: 100%;
       padding: 0px 20px;
       box-sizing: border-box;
@@ -646,7 +663,7 @@ $navHeight: 52px;
           .categoria {
             width: 50%;
 
-            @media screen and (min-width: 600px) {
+            @media screen and (min-width: $query1) {
               width: 85%;
               margin-bottom: 20px;
             }
@@ -685,7 +702,7 @@ $navHeight: 52px;
   position: relative;
   width: 100vw;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $query1) {
     min-height: inherit;
     height: 600px;
   }
@@ -695,11 +712,11 @@ $navHeight: 52px;
 
     & > .encabezado {
       & > h2 {
-        color: $whiteText;
+        color: $white-font;
         font-size: 3rem;
       }
       & > p {
-        color: $whiteText;
+        color: $white-font;
         font-size: 1.5rem;
       }
     }
@@ -749,6 +766,12 @@ $navHeight: 52px;
           fill: rgba(255, 255, 255, 0.75);
         }
       }
+      .xIndex {
+        // transform: translateY(100%);
+      }
+      .yIndex {
+        transform: translate(20px, 10px);
+      }
     }
   }
 }
@@ -759,7 +782,7 @@ h2 {
   font-size: 3rem;
   margin: 0px;
   padding: 0px;
-  color: $text;
+  color: $color-font;
   font-weight: 600;
 }
 h3 {
@@ -767,7 +790,7 @@ h3 {
   font-size: 2rem;
   margin: 0px;
   padding: 0px;
-  color: $text;
+  color: $color-font;
   font-weight: 600;
 }
 
@@ -777,20 +800,11 @@ h3 {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 }
 
 // Protection UV Icons
-.recomendacion {
-  font-size: 1rem;
-  color: silver;
-  padding: 0px 1rem;
-  text-align: center;
 
-  @media screen and (min-width: 768px){
-    font-size: 1.4rem;
-    line-height: 18px;
-  }
-}
 .protection-icon {
   width: 7rem;
   height: 7rem;
@@ -809,46 +823,9 @@ h3 {
 }
 
 // Forecast
-#forecast {
-  height: 100%;
-  justify-content: space-between;
-  padding: 0px;
-  max-height: 80px;
 
-  .pronostico_barra {
-    width: 100%;
-    padding: 0px 10px;
-  }
-
-  .pronostico_horario {
-    font-size: 1.5rem;
-    color: $blackText;
-    font-weight: 300;
-  }
-
-  .pronostico_estado {
-    font-size: 1.5rem;
-    color: $blackText;
-    width: 150px;
-    text-align: left;
-    font-weight: 300;
-  }
-}
 
 // Img Fondo
-.background {
-  display: none;
-  z-index: 0;
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 110vh;
-
-  @media screen and (min-width: 768px) {
-    display: inherit;
-  }
-}
 .iconos-derecha {
   position: absolute;
   top: 50%;
@@ -870,18 +847,73 @@ h3 {
   width: 15%;
 }
 
-// Tooltip
-.chartTooltip {
-  border-radius: 10px;
+// Medidor
+#medidor {
+  .staticMeasure {
+    fill: rgba(0, 0, 0, 0.1);
+  }
+  #dynamic {
+    fill: white;
+  }
+  .measureText {
+    text-anchor: middle;
+    alignment-baseline: middle;
+    fill: rgba(0, 0, 0, 0.1);
+    font-size: 14rem;
+  }
+  .measureMinMax {
+    text-anchor: middle;
+    alignment-baseline: end;
+    fill: white;
+    font-size: 1.5rem;
+  }
+  #state {
+    text-anchor: middle;
+    alignment-baseline: end;
+    fill: white;
+    font-size: 3rem;
+    font-weight: 200;
+  }
+  #lvlRadiation {
+    text-anchor: middle;
+    alignment-baseline: end;
+    fill: white;
+    font-size: 3rem;
+    font-weight: 800;
+  }
 }
+
+// Tooltip
+#tooltip {
+
+  & > .toolRect {
+    width: 100px;
+    height: 30px;
+    transform: translate(-50%, -50%);
+    rx: 10px;
+    ry: 10px;
+  }
+  & > .toolText {
+    text-anchor: middle;
+    alignment-baseline: middle;
+    fill: white;
+  }
+  & > .toolCircle {
+    fill: none;
+    r: 8;
+    stroke-width: 4;
+    transform: translateY(30px);
+  }
+}
+
 // Voronoi
 .voronoi path {
   fill: none;
-  // stroke-weight: 1px;
   // stroke: #5D5D5D;
   pointer-events: all;
 }
-.focus {
-  fill: none;
-  stroke: #5D5D5D;
+
+// Hide
+.hide {
+  display: none;
 }

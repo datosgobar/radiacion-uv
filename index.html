@@ -35,238 +35,210 @@
   <script src="public/javascript/d3.min.js" type="text/javascript"></script>
   <!-- Voronoi -->
   <script src="https://d3js.org/d3-voronoi.v1.min.js" type="text/javascript"></script>
-  <!-- Fullpage -->
-  <link rel="stylesheet" href="public/styles/jquery.fullpage.min.css" rel="stylesheet">
-  <script src="public/javascript/jquery.fullpage.min.js" type="text/javascript"></script>
-  <script src="public/javascript/jquery.fullpage.extensions.min.js" type="text/javascript"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="public/fonts/font-ionicons/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="public/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="public/styles/css/app.css" rel="stylesheet">
   <!-- JS -->
   <script src="public/javascript/es5/app.js" type="text/javascript"></script>
-
-  <!-- <script type="text/javascript">
-  // $(document).ready(() => {
-  //   const getData = () => {
-  //     let url = 'http://geouv.citedef.gob.ar/api/uvDiario/581b4637445ea55b1b1769f3';
-  //
-  //     $.get(url, (data) => {
-  //       let date = new Date();
-  //       let dateData = new Date(data.medidas[0].date);
-  //
-  //       date = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-  //       dateData = `${dateData.getFullYear()}-${dateData.getMonth()}-${dateData.getDate()}`;
-  //
-  //       if (date === dateData) {
-  //         let dataJson = JSON.stringify(data);
-  //         $('input').val(dataJson).parent().submit();
-  //       } else {
-  //         console.error('No funciona la API');
-  //         setTimeout(getData, (1000 * 60));
-  //       }
-  //     });
-  //   }
-  //   getData();
-  // });
-  </script> -->
 </head>
 
 <body>
+  <h1 class="hide">Visualización sobre el índice de radiación UV</h1>
 
-  <!-- <form action="pronostico.php" method="post">
-    <input type="hidden" name="pronostico" value="">
-  </form> -->
-
-  <header id="navBar">
-    <nav>
+  <nav id="navBar">
+    <div>
+      <h2 class="hide">Argentina.gob.ar</h2>
       <a id="gobAr" href="#"><img src="public/img/header_gobar.svg"></a>
       <a id="acercaDe" href="#">ACERCA DE</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
-  <div id="fullpage">
-    <div id="section1" class="sectionFullPage">
-      <img class="background" src="public/img/trama-celeste.png">
-      <section class="sectionContent">
-        <img class="iconos-derecha" src="public/img/iconos-derecha.png">
-        <img class="iconos-izquierda" src="public/img/iconos-izq.png">
-        <div class="encabezado">
-          <h1>¿Cómo está el sol en Capital Federal?</h1>
-          <p>Índice de radiación ultravioleta (UV)</p>
-        </div>
-        <div id="radiationContent">
-          <div id="sectionIzq">
-            <div>
-              <article id="ubication">Capital Federal</article>
-              <article id="time">00:00 hs</article>
-              <article id="weather">
-                <div id="icon-weather" class="soleado"></div>
-                <span id="temp-weather">00.0 ºC</span>
-              </article>
-            </div>
-            <article id="radiationUv">
-              <div id="medidor"></div><!-- Se inserta Medidor desde D3 -->
-            </article>
-            <article>
-              <span id="recomendation">RECOMENDACION</span>
-            </article>
-            <article>
-              <i class="fa fa-refresh" aria-hidden="true"></i>
-              <span id="actualizacion">ÚLTIMA ACTUALIZACÓN HACE 2 MINUTOS</span>
-            </article>
+  <div id="section1">
+    <div class="sectionContent">
+      <div class="encabezado">
+        <h2>¿Cómo está el sol en Capital Federal?</h2>
+        <p>Índice de radiación ultravioleta (UV)</p>
+      </div>
+      <div id="ubicaciones">
+        <button id="caba" type="button" name="button">Capital Federal</button>
+        <button id="ushuaia" type="button" name="button">Ushuaia</button>
+      </div>
+      <div id="radiationContent">
+        <div id="sectionIzq">
+          <header>
+            <h3 class="hide">Radiación UV</h3>
+            <div id="ubication"></div>
+            <div id="time"></div>
+            <div id="weather">
+              <div id="icon-weather" class="soleado"></div>
+              <span id="temp-weather"></span>
+            </header>
+          </header>
+          <div id="radiationUv">
+            <div id="medidor"></div><!-- Se inserta Medidor desde D3 -->
           </div>
-          <div id="sectionDer"></div>
+          <div id="containerRecom">
+            <span id="recomendation">RECOMENDACION</span>
+          </div>
+          <div id="containerUpdate">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            <span id="actualizacion">ÚLTIMA ACTUALIZACÓN HACE 2 MINUTOS</span>
+          </div>
         </div>
-      </section>
+        <div id="sectionDer"></div>
+      </div>
+      <img class="iconos-derecha" src="public/img/iconos-derecha.png">
+      <img class="iconos-izquierda" src="public/img/iconos-izq.png">
     </div>
-    <div id="section2">
-      <section class="sectionContent">
-        <section>
-          <header>
-            <h2>Pronóstico UV</h2>
-          </header>
-          <section id="forecast"></section><!-- JavaScript -->
-        </section>
-        <section>
-          <header>
-            <h2>Protección solar recomendada</h2>
-          </header>
-          <section>
+  </div>
+  <div id="section2">
+    <div class="sectionContent">
+      <div id="containerFor">
+        <header>
+          <h3>Pronóstico UV</h3>
+        </header>
+        <div id="forecast"></div><!-- JavaScript -->
+      </div>
+      <div id="containerPro">
+        <header>
+          <h3>Protección solar recomendada</h3>
+        </header>
+        <div id="protections">
+          <div>
             <div>
-              <article>
-                <svg id="protection_1" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
-                  <path class="svgStroke" d="M58.4,52.8c-0.6,2.6-3.2,4.7-5.8,4.7H37.4c-2.6,0-5.2-2.1-5.8-4.7l-4.8-22.3c-0.6-2.6,1.1-4.7,3.8-4.7h28.8c2.6,0,4.3,2.1,3.8,4.7 L58.4,52.8z" />
-                	<rect class="svgStroke" x="35.6" y="57.5" width="18.7" height="6.7" />
-                	<line class="svgStroke" x1="39" y1="50.5" x2="51" y2="50.5" />
-                </svg>
-                <span class="recomendacion">Bloqueador solar</span>
-              </article>
-              <article>
-                <svg id="protection_4" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
-                  <path class="svgFill" d="M45.3,34.6c5.6,0,10.1,4.5,10.1,10.1s-4.5,10.1-10.1,10.1s-10.1-4.5-10.1-10.1S39.7,34.6,45.3,34.6 M45.3,31.6c-7.2,0-13.1,5.9-13.1,13.1c0,7.2,5.9,13.1,13.1,13.1s13.1-5.9,13.1-13.1C58.3,37.4,52.5,31.6,45.3,31.6L45.3,31.6z"/>
-                  <line class="svgStroke" x1="59.8" y1="16.6" x2="30.2" y2="73.4"/>
-                  <line class="svgStroke" x1="59.8" y1="16.6" x2="30.2" y2="73.4"/>
-              		<line class="svgStroke" x1="58" y1="46.5" x2="64" y2="46.5"/>
-              		<line class="svgStroke" x1="26" y1="46.5" x2="33" y2="46.5"/>
-              		<line class="svgStroke" x1="43.5" y1="32" x2="43.5" y2="26"/>
-              		<line class="svgStroke" x1="43.5" y1="64" x2="43.5" y2="57"/>
-              		<line class="svgStroke" x1="54.4" y1="35.7" x2="58.8" y2="31.2"/>
-              		<line class="svgStroke" x1="31.7" y1="58.3" x2="36.4" y2="53.7"/>
-              		<line class="svgStroke" x1="54.1" y1="53.6" x2="58.8" y2="58.3"/>
-              		<line class="svgStroke" x1="31.7" y1="31.2" x2="36.3" y2="35.8"/>
-                </svg>
-                <span class="recomendacion">Cuidado con niños y bebés</span>
-              </article>
+              <svg id="protection_1" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
+                <path class="svgStroke" d="M58.4,52.8c-0.6,2.6-3.2,4.7-5.8,4.7H37.4c-2.6,0-5.2-2.1-5.8-4.7l-4.8-22.3c-0.6-2.6,1.1-4.7,3.8-4.7h28.8c2.6,0,4.3,2.1,3.8,4.7 L58.4,52.8z" />
+              	<rect class="svgStroke" x="35.6" y="57.5" width="18.7" height="6.7" />
+              	<line class="svgStroke" x1="39" y1="50.5" x2="51" y2="50.5" />
+              </svg>
+              <span class="recomendacion">Bloqueador solar</span>
             </div>
             <div>
-              <article>
-                <svg id="protection_2" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
-                	<path class="svgStroke" d="M21.2,56.2c-0.6-1.1-1.3-2.3-1.9-3.4c1.3-1,2.6-2.1,4-3c4.5-3,9.2-5.3,14.3-6.8c3.8-1.2,7.4-3,10.4-5.6c2.7-2.3,5.5-4.5,8.6-6.3 c3.1-1.8,6.3-3.4,9.7-4.5c0.4-0.1,0.5,0,0.7,0.3c0.5,0.9,1,1.7,1.4,2.6c0.1,0.2,0.2,0.5,0.2,0.8c-0.1,0.8,0.1,1.5,0.4,2.2 c0.5,1.1,0.9,2.3,1.3,3.4c1,3.8,0.3,7.1-2.6,9.9c-2.2,2.1-4.8,3.6-7.7,4.4c-2,0.6-4,0.4-5.8-0.8c-0.8-0.5-1.6-1.2-2.3-1.8 c-1.3-1-2.5-2.1-3.8-3.1c-0.4-0.3-1-0.6-1.5-0.8c-1-0.4-1.7,0-1.9,1c-0.1,0.5-0.2,1-0.1,1.4c0.1,1.4,0.3,2.8,0.4,4.2 c0.1,1.3,0.4,2.6,0.4,3.9c0.1,2-0.7,3.8-2.2,5.2c-2.5,2.3-5.4,3.8-8.7,4.5c-2.9,0.6-5.5-0.1-7.8-2c-1.4-1.2-2.6-2.6-3.5-4.2 C22.7,56.9,22.1,56.4,21.2,56.2z"/>
-                	<path class="svgStroke" d="M22.7,49.9c-0.1,0.1-0.2,0.1-0.4,0.2c0-0.1,0-0.2,0-0.2c1.5-3.3,3-6.6,4.5-9.9c0.6-1.3,1.5-2.5,2.6-3.5c0.4-0.2,0.7-0.4,1.1-0.6 c1-0.3,2.1-0.3,3.1,0"/>
-                	<path class="svgStroke" d="M44.9,29.6c0.4-1,0.9-1.9,1.7-2.7c0.4-0.2,0.7-0.4,1.1-0.6c2.2-0.6,4.5-0.4,6.7-0.1c2.8,0.4,5.6,0.7,8.6,1.1 c-0.2,0.1-0.3,0.2-0.4,0.3"/>
-                </svg>
-                <span class="recomendacion">Lentes de sol y sombrero</span>
-              </article>
-              <article>
-                <svg id="protection_5" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
-                	<path class="svgStroke" d="M72.5,44.1c-1.7,1.7-3.3,3.5-5.1,5.3c-0.7-0.9-1.4-1.7-2.1-2.6c-1.9-2.4-3.8-4.7-5.7-7.1c-0.6-0.8-1.2-1.2-2.2-0.6 c0,7.8,0,15.7,0,23.6c-8.4,0-16.8,0-25.2,0c0-7.9,0-15.8,0-23.6c-0.7-0.6-1.1-0.3-1.6,0.3c-2.5,3.1-5,6.3-7.5,9.4 c-0.2,0.2-0.4,0.4-0.6,0.7c-1.7-1.8-3.4-3.5-5.1-5.3c1.1-1.4,2.2-2.8,3.3-4.1c3-3.7,6-7.5,9-11.2c0.7-0.9,1.6-1.3,2.7-1.3 c1.9,0,3.7,0,5.6,0c0.2,0,0.6,0.3,0.7,0.5c1.4,2.6,2.7,5.3,4.1,7.9c1,2,2.9,2,3.9,0c1.4-2.6,2.7-5.3,4.1-7.9 c0.1-0.2,0.4-0.5,0.6-0.5c2.2,0,4.5-0.1,6.7,0.1c0.7,0.1,1.5,0.6,2,1.2c4,4.9,7.9,9.8,11.9,14.7C72.2,43.6,72.3,43.8,72.5,44.1z"/>
-                </svg>
-                <span class="recomendacion">Prendas de manga larga</span>
-              </article>
+              <svg id="protection_4" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
+                <path class="svgFill" d="M45.3,34.6c5.6,0,10.1,4.5,10.1,10.1s-4.5,10.1-10.1,10.1s-10.1-4.5-10.1-10.1S39.7,34.6,45.3,34.6 M45.3,31.6c-7.2,0-13.1,5.9-13.1,13.1c0,7.2,5.9,13.1,13.1,13.1s13.1-5.9,13.1-13.1C58.3,37.4,52.5,31.6,45.3,31.6L45.3,31.6z"/>
+                <line class="svgStroke" x1="59.8" y1="16.6" x2="30.2" y2="73.4"/>
+                <line class="svgStroke" x1="59.8" y1="16.6" x2="30.2" y2="73.4"/>
+            		<line class="svgStroke" x1="58" y1="46.5" x2="64" y2="46.5"/>
+            		<line class="svgStroke" x1="26" y1="46.5" x2="33" y2="46.5"/>
+            		<line class="svgStroke" x1="43.5" y1="32" x2="43.5" y2="26"/>
+            		<line class="svgStroke" x1="43.5" y1="64" x2="43.5" y2="57"/>
+            		<line class="svgStroke" x1="54.4" y1="35.7" x2="58.8" y2="31.2"/>
+            		<line class="svgStroke" x1="31.7" y1="58.3" x2="36.4" y2="53.7"/>
+            		<line class="svgStroke" x1="54.1" y1="53.6" x2="58.8" y2="58.3"/>
+            		<line class="svgStroke" x1="31.7" y1="31.2" x2="36.3" y2="35.8"/>
+              </svg>
+              <span class="recomendacion">Cuidado con niños y bebés</span>
+            </div>
+          </div>
+          <div>
+            <div>
+              <svg id="protection_2" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
+              	<path class="svgStroke" d="M21.2,56.2c-0.6-1.1-1.3-2.3-1.9-3.4c1.3-1,2.6-2.1,4-3c4.5-3,9.2-5.3,14.3-6.8c3.8-1.2,7.4-3,10.4-5.6c2.7-2.3,5.5-4.5,8.6-6.3 c3.1-1.8,6.3-3.4,9.7-4.5c0.4-0.1,0.5,0,0.7,0.3c0.5,0.9,1,1.7,1.4,2.6c0.1,0.2,0.2,0.5,0.2,0.8c-0.1,0.8,0.1,1.5,0.4,2.2 c0.5,1.1,0.9,2.3,1.3,3.4c1,3.8,0.3,7.1-2.6,9.9c-2.2,2.1-4.8,3.6-7.7,4.4c-2,0.6-4,0.4-5.8-0.8c-0.8-0.5-1.6-1.2-2.3-1.8 c-1.3-1-2.5-2.1-3.8-3.1c-0.4-0.3-1-0.6-1.5-0.8c-1-0.4-1.7,0-1.9,1c-0.1,0.5-0.2,1-0.1,1.4c0.1,1.4,0.3,2.8,0.4,4.2 c0.1,1.3,0.4,2.6,0.4,3.9c0.1,2-0.7,3.8-2.2,5.2c-2.5,2.3-5.4,3.8-8.7,4.5c-2.9,0.6-5.5-0.1-7.8-2c-1.4-1.2-2.6-2.6-3.5-4.2 C22.7,56.9,22.1,56.4,21.2,56.2z"/>
+              	<path class="svgStroke" d="M22.7,49.9c-0.1,0.1-0.2,0.1-0.4,0.2c0-0.1,0-0.2,0-0.2c1.5-3.3,3-6.6,4.5-9.9c0.6-1.3,1.5-2.5,2.6-3.5c0.4-0.2,0.7-0.4,1.1-0.6 c1-0.3,2.1-0.3,3.1,0"/>
+              	<path class="svgStroke" d="M44.9,29.6c0.4-1,0.9-1.9,1.7-2.7c0.4-0.2,0.7-0.4,1.1-0.6c2.2-0.6,4.5-0.4,6.7-0.1c2.8,0.4,5.6,0.7,8.6,1.1 c-0.2,0.1-0.3,0.2-0.4,0.3"/>
+              </svg>
+              <span class="recomendacion">Lentes de sol y sombrero</span>
             </div>
             <div>
-              <article>
-                <svg id="protection_3" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
-                	<line class="svgStroke" x1="42.1" y1="48.6" x2="28.8" y2="61.9"/>
-                	<polygon class="svgStroke" points="58.3,33.2 57.3,32.2 59.7,29.7 60.7,30.7 	"/>
-                	<path class="svgStroke" d="M57.1,63.4c8.4-8.4,8.4-22.1,0-30.5s-22.1-8.4-30.5,0L57.1,63.4z"/>
-                </svg>
-                <span class="recomendacion">Áreas sombrías</span>
-              </article>
-              <article>
-                <svg id="protection_6" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
-              		<path class="svgStroke" d="M65.2,32.5L63.4,34c0,0,0,0.6,0.4,2.1c0.4,1.6,1.4,5.6-3.3,9.4S34.8,66.1,34.8,66.1s-2.7,1.2-4.3-0.9c-1.7-2.1,0-4.7,0-4.7"/>
-              		<path class="svgStroke" d="M30.4,60.8c0,0-2.5,1.6-4.9-1.7c-1.5-2,0.4-4.1,0.4-4.1s-2.8,1.1-4.5-1c-1.7-2.1,0.1-4.4,0.1-4.4s21-16.8,25.7-20.6 c4.7-3.8,8.4-2,9.9-1.2c1.5,0.7,2,0.9,2,0.9l1.8-1.4"/>
-              		<polyline class="svgStroke" points="60,26.2 63.3,23.6 69.3,31 66,33.6 	"/>
-              		<path class="svgStroke" d="M44.8,30.8C45.2,31.3,58,47.2,58,47.2"/>
-              		<path class="svgStroke" d="M33.8,39.6C34.2,40.1,47,56,47,56"/>
-                </svg>
-                <span class="recomendacion">Beber mucha agua</span>
-              </article>
+              <svg id="protection_5" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
+              	<path class="svgStroke" d="M72.5,44.1c-1.7,1.7-3.3,3.5-5.1,5.3c-0.7-0.9-1.4-1.7-2.1-2.6c-1.9-2.4-3.8-4.7-5.7-7.1c-0.6-0.8-1.2-1.2-2.2-0.6 c0,7.8,0,15.7,0,23.6c-8.4,0-16.8,0-25.2,0c0-7.9,0-15.8,0-23.6c-0.7-0.6-1.1-0.3-1.6,0.3c-2.5,3.1-5,6.3-7.5,9.4 c-0.2,0.2-0.4,0.4-0.6,0.7c-1.7-1.8-3.4-3.5-5.1-5.3c1.1-1.4,2.2-2.8,3.3-4.1c3-3.7,6-7.5,9-11.2c0.7-0.9,1.6-1.3,2.7-1.3 c1.9,0,3.7,0,5.6,0c0.2,0,0.6,0.3,0.7,0.5c1.4,2.6,2.7,5.3,4.1,7.9c1,2,2.9,2,3.9,0c1.4-2.6,2.7-5.3,4.1-7.9 c0.1-0.2,0.4-0.5,0.6-0.5c2.2,0,4.5-0.1,6.7,0.1c0.7,0.1,1.5,0.6,2,1.2c4,4.9,7.9,9.8,11.9,14.7C72.2,43.6,72.3,43.8,72.5,44.1z"/>
+              </svg>
+              <span class="recomendacion">Prendas de manga larga</span>
             </div>
-          </section>
-          <a href="#section4">Ver más</a>
-        </section>
-      </section>
+          </div>
+          <div>
+            <div>
+              <svg id="protection_3" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
+              	<line class="svgStroke" x1="42.1" y1="48.6" x2="28.8" y2="61.9"/>
+              	<polygon class="svgStroke" points="58.3,33.2 57.3,32.2 59.7,29.7 60.7,30.7 	"/>
+              	<path class="svgStroke" d="M57.1,63.4c8.4-8.4,8.4-22.1,0-30.5s-22.1-8.4-30.5,0L57.1,63.4z"/>
+              </svg>
+              <span class="recomendacion">Áreas sombrías</span>
+            </div>
+            <div>
+              <svg id="protection_6" class="protection-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">
+            		<path class="svgStroke" d="M65.2,32.5L63.4,34c0,0,0,0.6,0.4,2.1c0.4,1.6,1.4,5.6-3.3,9.4S34.8,66.1,34.8,66.1s-2.7,1.2-4.3-0.9c-1.7-2.1,0-4.7,0-4.7"/>
+            		<path class="svgStroke" d="M30.4,60.8c0,0-2.5,1.6-4.9-1.7c-1.5-2,0.4-4.1,0.4-4.1s-2.8,1.1-4.5-1c-1.7-2.1,0.1-4.4,0.1-4.4s21-16.8,25.7-20.6 c4.7-3.8,8.4-2,9.9-1.2c1.5,0.7,2,0.9,2,0.9l1.8-1.4"/>
+            		<polyline class="svgStroke" points="60,26.2 63.3,23.6 69.3,31 66,33.6 	"/>
+            		<path class="svgStroke" d="M44.8,30.8C45.2,31.3,58,47.2,58,47.2"/>
+            		<path class="svgStroke" d="M33.8,39.6C34.2,40.1,47,56,47,56"/>
+              </svg>
+              <span class="recomendacion">Beber mucha agua</span>
+            </div>
+          </div>
+        </div>
+        <a href="#section4">Ver más</a>
+      </div>
     </div>
-    <div id="section3">
-      <section class="sectionContent">
-        <div class="encabezado">
-          <h2>¿Qué es el índice UV?</h2>
-          <p>El índice UV <b>mide la intensidad de la radiación ultravioleta del sol</b>. Se expresa como un valor superior a cero y, <b>cuanto más alto, más peligroso es para la salud</b>. Aunque el sol, en su justa medida, nos hace bien, <b>cuando la radición es muy alta, lastima nuestra piel</b> hasta el punto de desarrolla <b>cáncer de piel</b>, acelera el envejecimiento de ésta, <b>daña nuestros ojos y nuestro sistema inmunológico</b>.</p>
+  </div>
+  <div id="section3">
+    <div class="sectionContent">
+      <div class="encabezado">
+        <h2>¿Qué es el índice UV?</h2>
+        <p>El índice UV <b>mide la intensidad de la radiación ultravioleta del sol</b>. Se expresa como un valor superior a cero y, <b>cuanto más alto, más peligroso es para la salud</b>. Aunque el sol, en su justa medida, nos hace bien, <b>cuando la radición es muy alta, lastima nuestra piel</b> hasta el punto de desarrolla <b>cáncer de piel</b>, acelera el envejecimiento de ésta, <b>daña nuestros ojos y nuestro sistema inmunológico</b>.</p>
+      </div>
+      <div id="testimonios">
+        <div>
+          <cite>"Si está nublado, no hay peligro".</cite>
+          <p>¡Hasta el 80% de la radiación UV atraviesa las nubes!</p>
         </div>
-        <div id="testimonios">
-          <article>
-            <cite>"Si está nublado, no hay peligro".</cite>
-            <p>¡Hasta el 80% de la radiación UV atraviesa las nubes!</p>
-          </article>
-          <article>
-            <cite>"Si me pongo bronceador ya está".</cite>
-            <p>El protector solar protege en una pequeña medida. No es suficiente cuando la radiación es moderada, alta o altísima.</p>
-          </article>
-          <article>
-            <cite>"Adentro del agua no pasa nada".</cite>
-            <p>El agua te da una protección mínima, que no es suficiente para cuidarse de los rayos UV.</p>
-          </article>
+        <div>
+          <cite>"Si me pongo bronceador ya está".</cite>
+          <p>El protector solar protege en una pequeña medida. No es suficiente cuando la radiación es moderada, alta o altísima.</p>
         </div>
-      </section>
+        <div>
+          <cite>"Adentro del agua no pasa nada".</cite>
+          <p>El agua te da una protección mínima, que no es suficiente para cuidarse de los rayos UV.</p>
+        </div>
+      </div>
     </div>
-    <div id="section4" class="sectionFullPage fp-auto-height">
-      <section class="sectionContent">
-        <div class="encabezado">
-          <h2>Categorías y recomendaciones</h2>
-        </div>
-        <section>
-          <div id="slides" class="section">
-            <div class="slide">
-              <img class="categoria" src="public/img/bajo.png">
-              <h3>UV Bajo</h3>
-              <p>Podés estar al aire libre con bloqueador solar adecuado a tu tipo de piel. ¡Qué disfrutes del aire libre!</p>
-            </div>
-            <div class="slide">
-              <img class="categoria" src="public/img/moderado.png">
-              <h3>UV Moderado</h3>
-              <p>Usá bloqueador solar acorde a tu tipo de piel, lentes de sol y sombrero. Elegí lugares con sombra.</p>
-            </div>
-            <div class="slide">
-              <img class="categoria" src="public/img/alto.png">
-              <h3>UV Alto</h3>
-              <p>¡No te expongas al sol al mediodía! Además: usá bloqueador solar, lentes de sol y sombrero. Elegí lugares con sombra.</p>
-            </div>
-            <div class="slide">
-              <img class="categoria" src="public/img/muy-alto.png">
-              <h3>UV Muy Alto</h3>
-              <p>Tomá mucha agua y evitá exponerte al sol al mediodía. Además: usá bloqueador solar, lentes de sol, sombrero y remera. Elegí lugares con sombra.</p>
-            </div>
-            <div class="slide">
-              <img class="categoria" src="public/img/extremo.png">
-              <h3>UV Extremo</h3>
-              <p>Por favor, evitá totalmente el sol en las horas centrales, hasta que la radiación baje. Es la mejor forma de proteger tu salud.</p>
-            </div>
-        </div>
-        </section>
-      </section>
+  </div>
+  <div id="section4">
+    <div class="sectionContent">
+      <div class="encabezado">
+        <h2>Categorías y recomendaciones</h2>
+      </div>
+      <div>
+        <div id="slides" class="section">
+          <div class="slide">
+            <img class="categoria" src="public/img/bajo.png">
+            <h3>UV Bajo</h3>
+            <p>Podés estar al aire libre con bloqueador solar adecuado a tu tipo de piel. ¡Qué disfrutes del aire libre!</p>
+          </div>
+          <div class="slide">
+            <img class="categoria" src="public/img/moderado.png">
+            <h3>UV Moderado</h3>
+            <p>Usá bloqueador solar acorde a tu tipo de piel, lentes de sol y sombrero. Elegí lugares con sombra.</p>
+          </div>
+          <div class="slide">
+            <img class="categoria" src="public/img/alto.png">
+            <h3>UV Alto</h3>
+            <p>¡No te expongas al sol al mediodía! Además: usá bloqueador solar, lentes de sol y sombrero. Elegí lugares con sombra.</p>
+          </div>
+          <div class="slide">
+            <img class="categoria" src="public/img/muy-alto.png">
+            <h3>UV Muy Alto</h3>
+            <p>Tomá mucha agua y evitá exponerte al sol al mediodía. Además: usá bloqueador solar, lentes de sol, sombrero y remera. Elegí lugares con sombra.</p>
+          </div>
+          <div class="slide">
+            <img class="categoria" src="public/img/extremo.png">
+            <h3>UV Extremo</h3>
+            <p>Por favor, evitá totalmente el sol en las horas centrales, hasta que la radiación baje. Es la mejor forma de proteger tu salud.</p>
+          </div>
+      </div>
     </div>
-    <div id="section5">
-      <section class="sectionContent">
-        <div class="encabezado">
-          <h2>Histórico</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div id="lineChart"></div><!-- JavaScript -->
-      </section>
+    </div>
+  </div>
+  <div id="section5">
+    <div class="sectionContent">
+      <div class="encabezado">
+        <h2>Histórico</h2>
+        <p>Radiación UV de las últimas 72 horas.</p>
+      </div>
+      <div id="lineChart"></div><!-- JavaScript -->
     </div>
   </div>
 </body>
+
 </html>
