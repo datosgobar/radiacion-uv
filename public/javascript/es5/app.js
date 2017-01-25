@@ -55,24 +55,30 @@ var getResponsive = function getResponsive(max) {
 $(document).ready(function () {
   var ejecutarClima = function ejecutarClima() {
     var getWeather = function getWeather(updateTemp) {
-      // WunderGround API
-      $.get('http://www.smn.gov.ar/mensajes/index.php?observacion=decodificado&operacion=consultar&idSynop=36221396&87585=on', function (data) {
 
-        var getData = function getData(str) {
-          var regex1 = /<td class="valor"> \d?\d?.\d?\d?<\/td>/ig;
-          var regex2 = /\d\d?\d?\.?\d?\d?/i;
-
-          var res = str.match(regex1);
-          res = res[3].match(regex2);
-
-          return res[0];
-        };
-
-        var temp = parseFloat(getData(data)) + ' \xBAC';
+      $.get('https://sheetsu.com/apis/v1.0/790070be9227', function (data) {
+        var temp = parseFloat(data[10]['']) + ' \xBAC';
 
         console.log(temp); // Entorno de desarrollo
         updateTemp(temp);
       });
+      // $.get('http://www.smn.gov.ar/mensajes/index.php?observacion=decodificado&operacion=consultar&idSynop=36221396&87585=on', (data) => {
+      //
+      //   const getData = (str) => {
+      //     let regex1 = /<td class="valor"> \d?\d?.\d?\d?<\/td>/ig;
+      //     let regex2 = /\d\d?\d?\.?\d?\d?/i;
+      //
+      //     let res = str.match(regex1);
+      //     res = res[3].match(regex2);
+      //
+      //     return res[0];
+      //   };
+      //
+      //   let temp = `${ parseFloat(getData(data)) } ºC`;
+      //
+      //   console.log(temp);                // Entorno de desarrollo
+      //   updateTemp(temp);
+      // });
     };
     var updateWeather = function updateWeather(temp) {
       // Reset Timer Update
