@@ -2,7 +2,7 @@
 
 var secondsCount = void 0;
 var ubicacion = 'caba';
-var archivo = 'public/source/caba.json';
+var archivo = 'http://181.209.63.67/RecienteRedIUVBSMNA.json';
 var updateHistory = void 0;
 var getExecute = 0;
 // let forecastData;
@@ -14,7 +14,12 @@ var position = 40;
 // Funciones Globales
 var ubicationUpdate = function ubicationUpdate(ubication) {
   ubicacion = ubication;
-  archivo = 'public/source/' + ubication + '.json';
+
+  if (ubicacion === 'caba') {
+    archivo = 'http://181.209.63.67/RecienteRedIUVBSMNA.json';
+  } else {
+    archivo = 'public/source/' + ubication + '.json';
+  }
 };
 var formatDate = function formatDate(date) {
   return date > 9 ? date : '0' + date;

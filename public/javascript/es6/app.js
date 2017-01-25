@@ -1,6 +1,6 @@
 let secondsCount;
 let ubicacion = 'caba';
-let archivo   = 'public/source/caba.json';
+let archivo   = 'http://181.209.63.67/RecienteRedIUVBSMNA.json';
 let updateHistory;
 let getExecute = 0;
 // let forecastData;
@@ -12,7 +12,12 @@ let position = 40;
 // Funciones Globales
 const ubicationUpdate = (ubication) => {
   ubicacion = ubication;
-  archivo = `public/source/${ ubication }.json`;
+
+  if (ubicacion === 'caba') {
+    archivo = 'http://181.209.63.67/RecienteRedIUVBSMNA.json';
+  } else {
+    archivo = `public/source/${ ubication }.json`;
+  }
 };
 const formatDate = (date) => ((date > 9) ? (date) : (`0${date}`));  // Return date with two digits
 const createObjectDate = (roundMinutes = false, roundSeconds = false) => {
