@@ -301,7 +301,6 @@ button {
 
         & > header {
           align-items: center;
-          // border-bottom: 1px solid rgba(255, 255, 255, 0.5);
           box-sizing: border-box;
           display: flex;
           flex-direction: row;
@@ -339,7 +338,7 @@ button {
             font-size: 16px;
             font-weight: 100;
             text-align: center;
-            // max-width: 90px;
+            letter-spacing: 2px;
 
             @media screen and (min-width: $query2) {
               font-size: 1.5rem;
@@ -356,7 +355,6 @@ button {
           box-sizing: border-box;
           display: flex;
           flex-direction: row;
-          // font-size: 2rem;
           justify-content: center;
           align-items: center;
           padding: 0px 20px;
@@ -417,15 +415,11 @@ button {
 // Seccion 2
 #section2 {
   align-items: center;
-  border-bottom: 1px solid silver;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  // min-height: 100vh;
-  // height: 100vh;
   justify-content: center;
   padding: 0px;
-  // padding-top: $navHeight;
   position: relative;
   width: 100vw;
 
@@ -445,7 +439,6 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  border-bottom: 1px solid silver;
   box-sizing: border-box;
   min-height: 100vh;
   height: 100%;
@@ -455,6 +448,7 @@ button {
 
   @media screen and (min-width: $query1) {
     max-height: 900px;
+    padding-top: $navHeight * 3;
   }
 
   .sectionContent {
@@ -480,19 +474,29 @@ button {
       }
 
       & > div {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
         width: 100%;
         max-width: 250px;
 
+        & > span {
+          font-size: 16px;
+          color: silver;
+        }
+
         & > cite {
-          color: #0094D4;
-          font-size: 2.4rem;
+          color: $color-font;
+          font-size: 20px;
           font-weight: 300;
+          font-style: italic;
+          height: 24px * 3;
         }
         & > p {
-          color: $black-font;
-          font-size: 1.5rem;
+          color: #0094D4;
+          font-size: 26px;
           font-weight: 300;
-          line-height: 20px;
           margin: 15px 0px 45px 0px;
 
           @media screen and (min-width: $query1) {
@@ -510,16 +514,15 @@ button {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  // height: 100vh;
   justify-content: center;
   padding: 40px 0px;
-  // padding-top: $navHeight;
   position: relative;
   width: 100vw;
   overflow: hidden;
 
   @media screen and (min-width: $query1) {
     max-height: 900px;
+    padding-top: $navHeight;
   }
 
   .sectionContent {
@@ -800,8 +803,6 @@ h3 {
     width: 120px;
     height: 30px;
     transform: translate(-50%, -50%);
-    rx: 10px;
-    ry: 10px;
   }
   & > .toolText {
     text-anchor: middle;
@@ -811,7 +812,6 @@ h3 {
   }
   & > .toolCircle {
     fill: none;
-    r: 8;
     stroke-width: 2;
     stroke: white;
     transform: translateY(30px);
@@ -821,7 +821,6 @@ h3 {
 // Voronoi
 .voronoi path {
   fill: none;
-  // stroke: #5D5D5D;
   pointer-events: all;
 }
 
@@ -954,7 +953,6 @@ h3 {
   margin: 0px;
   height: 30%;
   box-sizing: border-box;
-  border-bottom: 1px solid silver;
 
   @media screen and (min-width: $query1) {
     display: inherit;
@@ -1022,8 +1020,6 @@ h3 {
 .iconos-derecha,
 .iconos-izquierda {
   display: none;
-  // width: 0px;
-  // height: 0px;
 }
 
 @media screen and (min-width: $query1) {
@@ -1099,9 +1095,6 @@ h3 {
     text {
       fill: rgba(255, 255, 255, 0.75);
     }
-  }
-  .xIndex {
-    // transform: translateY(100%);
   }
   .yIndex {
     transform: translate(5px, 10px);

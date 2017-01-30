@@ -1,15 +1,23 @@
 let secondsCount = 0;
-let ubicacion = 'caba';
-let archivo   = 'public/source/caba.json';
 let updateHistory;
 let arrData;
 let position = 40;
 
-// Funciones Globales
-const ubicationUpdate = (ubication) => {
-  ubicacion = ubication;
-  archivo = `public/source/${ ubication }.json`;
+let spanish = {
+  'dateTime': '%A, %e de %B de %Y, %X',
+  'date': '%d/%m/%Y',
+  'time': '%H:%M:%S',
+  'periods': ['AM', 'PM'],
+  'days': ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+  'shortDays': ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+  'months': ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  'shortMonths': ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 };
+
+let spanishFormatDate = d3.timeFormatDefaultLocale(spanish);
+let d3Format = d3.timeFormat('%c');
+
+// Funciones Globales
 const formatDate = (date) => ((date > 9) ? (date) : (`0${date}`));
 const createObjectDate = (roundMinutes = false, roundSeconds = false) => {
   let dateObj = {};
@@ -34,25 +42,6 @@ const sizeObject = (obj) => {
 const getResponsive = (max) => ($(window).outerWidth() < max) ? (true) : (false);
 
 $(document).ready(() => {
-  const ejecutarClima = () => {
-    const getWeather = (updateTemp) => {
-      let url = 'https://sheetsu.com/apis/v1.0/790070be9227';
-
-      $.get(url, (data) => {
-        let clima = `${ parseFloat(data[10]['']) } ºC`;
-        console.log(clima); // Entorno de desarrollo
-        updateTemp(clima);
-      });
-    };
-    const updateWeather = (temp) => {
-      secondsCount = 0; // Reset Timer Update
-
-      d3.select('#temp-weather').text(temp);
-    };
-
-    getWeather(updateWeather);
-    setInterval(() => { getWeather(updateWeather); }, (1000 * 60 * 60));
-  };
   const ejecutarReloj = () => {
     const updateClock = () => {
       let dateObj = createObjectDate(false, false);
@@ -181,7 +170,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
-                  -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
+                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
                   -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);`;
         });
       svg.append('svg:path')    // Medidor Dinamico
@@ -190,7 +179,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
-                  -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
+                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
                   -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);`;
         });
       svg.append('svg:text')    // Texto UV
@@ -198,7 +187,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
-                  -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
+                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
                   -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);`;
         })
         .text('UV');
@@ -207,7 +196,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 8) * 0.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
-                  -ms-transform: translate(${ (radiation.diameter / 8) * 0.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
+                  -moz-transform: translate(${ (radiation.diameter / 8) * 0.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
                   -webkit-transform: translate(${ (radiation.diameter / 8) * 0.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);`;
         })
         .text('0');
@@ -216,7 +205,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 8) * 7.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
-                  -ms-transform: translate(${ (radiation.diameter / 8) * 7.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
+                  -moz-transform: translate(${ (radiation.diameter / 8) * 7.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
                   -webkit-transform: translate(${ (radiation.diameter / 8) * 7.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);`;
         })
         .text('11+');
@@ -225,7 +214,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 5.4 }px);
-                  -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 5.4 }px);
+                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 5.4 }px);
                   -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 5.4 }px);`;
         })
         .text(stateRadiation(radiation.now, 'name'));
@@ -234,7 +223,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);
-                  -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);
+                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);
                   -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);`;
         })
         .text(radiation.now);
@@ -290,7 +279,7 @@ $(document).ready(() => {
     const getRadiation = (radiacion, recomendation, history, force = false) => {
       let dateObj = createObjectDate(true, true);
 
-        $.get(archivo, (data) => {
+        $.get('public/source/caba.json', (data) => {
           arrData = data.datosRecientes[0].indiceUV;
 
           radiation.now = arrData[arrData.length - 1].indiceUV;
@@ -310,20 +299,6 @@ $(document).ready(() => {
 
       return date;
     };
-    // const processHistory = (data) => {
-    //   let date = new Date();
-    //   // console.log(data.length); // ERROR
-    //   let aux = data;
-    //
-    //   let lastElement = convertElement(aux[aux.length - 1]);
-    //
-    //   while (lastElement > date) {
-    //     aux.pop();
-    //     lastElement = convertElement(aux[aux.length - 1]);
-    //   }
-    //   // console.log(data.length);
-    //   return aux;
-    // };
     const createHistory = (data) => {
       history.container = d3.select('#lineChart');
       history.width     = history.container.node().getBoundingClientRect().width - history.margin.left - history.margin.right;
@@ -347,7 +322,7 @@ $(document).ready(() => {
             .attr('style', () => {
 
               return `transform: translate(0px, ${ history.height }px);
-                      -ms-transform: translate(0px, ${ history.height }px);
+                      -moz-transform: translate(0px, ${ history.height }px);
                       -webkit-transform: translate(0px, ${ history.height }px);`;
             })
             .call(axis);
@@ -357,7 +332,7 @@ $(document).ready(() => {
               .attr('style', () => {
 
                 return `transform: translate(${ history.width }px, 35px);
-                        -ms-transform: translate(${ history.width }px, 35px);
+                        -moz-transform: translate(${ history.width }px, 35px);
                         -webkit-transform: translate(${ history.width }px, 35px);`;
               })
               .text('TIEMPO');
@@ -369,7 +344,7 @@ $(document).ready(() => {
             .attr('style', () => {
 
               return `transform: translate(-20px, 0px);
-                      -ms-transform: translate(-20px, 0px);
+                      -moz-transform: translate(-20px, 0px);
                       -webkit-transform: translate(-20px, 0px);`;
             })
             .call(axis);
@@ -484,7 +459,7 @@ $(document).ready(() => {
       history.graph = history.svg.append('svg:g')
         .attr('style', () => {
           return `transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
-                  -ms-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
+                  -moz-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
                   -webkit-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);`;
         });
 
@@ -500,9 +475,9 @@ $(document).ready(() => {
         .attr('stroke-width', '0.5rem');
 
       let tooltip = history.svg.append('g').attr('id', 'tooltip').attr('class', 'hide');
-      let rect    = tooltip.append('rect').attr('class', 'toolRect');
+      let rect    = tooltip.append('rect').attr('class', 'toolRect').attr('rx', '10px').attr('ry', '10px');
       let text    = tooltip.append('text').attr('class', 'toolText');
-      let focus   = tooltip.append('circle').attr('class', 'toolCircle');
+      let focus   = tooltip.append('circle').attr('class', 'toolCircle').attr('r', '8px');
 
       history.voronoi = d3.voronoi()
         .x((d) => history.ranges.x(new Date(convertElement(d))))
@@ -512,7 +487,7 @@ $(document).ready(() => {
         .attr('class', 'voronoi')
         .attr('style', () => {
           return `transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
-                  -ms-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
+                  -moz-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
                   -webkit-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);`;
         });
 
@@ -529,7 +504,7 @@ $(document).ready(() => {
             tooltip.attr('class', '')
             .attr('style', () => {
               return `transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);
-                      -ms-transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);
+                      -moz-transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);
                       -webkit-transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);`;
             });
 
@@ -554,64 +529,6 @@ $(document).ready(() => {
 
     getRadiation(crearSeccionRadiacionUv, updateRecomendation, createHistory, true);
 
-    $('#caba').on('click', () => {
-      if (ubicacion !== 'caba') {
-        ubicationUpdate('caba');
-
-        $('#ubicaciones').attr('class', () => {
-          if (radiation.now == 0) {
-            return 'ubicacionNoche';
-          } else {
-            return 'ubicacionDia';
-          }
-        });
-
-        $('#ushuaia').attr('class', 'botonUbicacion');
-        $('#resistencia').attr('class', 'botonUbicacion');
-        $('#caba').attr('class', 'botonUbicacion botonActivo');
-
-        getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory, true);
-      }
-    });
-    $('#ushuaia').on('click', () => {
-      if (ubicacion !== 'ushuaia') {
-        ubicationUpdate('ushuaia');
-
-        $('#ubicaciones').attr('class', () => {
-          if (radiation.now == 0) {
-            return 'ubicacionNoche';
-          } else {
-            return 'ubicacionDia';
-          }
-        });
-
-        $('#caba').attr('class', 'botonUbicacion');
-        $('#resistencia').attr('class', 'botonUbicacion');
-        $('#ushuaia').attr('class', 'botonUbicacion botonActivo');
-
-        getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory, true);
-      }
-    });
-    $('#resistencia').on('click', () => {
-      if (ubicacion !== 'resistencia') {
-        ubicationUpdate('resistencia');
-
-        $('#ubicaciones').attr('class', () => {
-          if (radiation.now == 0) {
-            return 'ubicacionNoche';
-          } else {
-            return 'ubicacionDia';
-          }
-        });
-
-        $('#caba').attr('class', 'botonUbicacion');
-        $('#ushuaia').attr('class', 'botonUbicacion');
-        $('#resistencia').attr('class', 'botonUbicacion botonActivo');
-
-        getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory, true);
-      }
-    });
-
     $('#flecha_izq').on('click', () => {
       d3.select('#slides')
         .transition()
@@ -628,7 +545,7 @@ $(document).ready(() => {
           }
 
           return `transform: translateX(${ position }%);
-                  -ms-transform: translateX(${ position }%);
+                  -moz-transform: translateX(${ position }%);
                   -webkit-transform: translateX(${ position }%);`;
         });
     });
@@ -648,7 +565,7 @@ $(document).ready(() => {
           }
 
           return `transform: translateX(${ position }%);
-                  -ms-transform: translateX(${ position }%);
+                  -moz-transform: translateX(${ position }%);
                   -webkit-transform: translateX(${ position }%);`;
         });
     });
@@ -672,7 +589,7 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translateX(0%);
-                  -ms-transform: translateX(0%);
+                  -moz-transform: translateX(0%);
                   -webkit-transform: translateX(0%);`;
         });
     } else {
@@ -697,14 +614,13 @@ $(document).ready(() => {
         .attr('style', () => {
 
           return `transform: translateX(40%);
-                  -ms-transform: translateX(40%);
+                  -moz-transform: translateX(40%);
                   -webkit-transform: translateX(40%);`;
         });
     }
   };
 
   ejecutarReloj();
-  ejecutarClima();
   ejecutarRadiacion();
   adjustResponsive();
 

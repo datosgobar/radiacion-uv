@@ -412,7 +412,8 @@ button {
           color: white;
           font-size: 16px;
           font-weight: 100;
-          text-align: center; }
+          text-align: center;
+          letter-spacing: 2px; }
           @media screen and (min-width: 768px) {
             #section1 .sectionContent #radiationContent #sectionIzq > header #time {
               font-size: 1.5rem; } }
@@ -511,7 +512,6 @@ button {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid silver;
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -554,7 +554,6 @@ button {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  border-bottom: 1px solid silver;
   box-sizing: border-box;
   min-height: 100vh;
   height: 100%;
@@ -563,7 +562,8 @@ button {
   background-color: white; }
   @media screen and (min-width: 600px) {
     #section3 {
-      max-height: 900px; } }
+      max-height: 900px;
+      padding-top: 156px; } }
   #section3 .sectionContent {
     display: -webkit-box;
     display: -webkit-flex;
@@ -613,17 +613,38 @@ button {
               -ms-flex-align: start;
                   align-items: flex-start; } }
       #section3 .sectionContent #testimonios > div {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
         width: 100%;
         max-width: 250px; }
+        #section3 .sectionContent #testimonios > div > span {
+          font-size: 16px;
+          color: silver; }
         #section3 .sectionContent #testimonios > div > cite {
-          color: #0094D4;
-          font-size: 2.4rem;
-          font-weight: 300; }
-        #section3 .sectionContent #testimonios > div > p {
-          color: black;
-          font-size: 1.5rem;
+          color: #4d4d4d;
+          font-size: 20px;
           font-weight: 300;
-          line-height: 20px;
+          font-style: italic;
+          height: 72px; }
+        #section3 .sectionContent #testimonios > div > p {
+          color: #0094D4;
+          font-size: 26px;
+          font-weight: 300;
           margin: 15px 0px 45px 0px; }
           @media screen and (min-width: 600px) {
             #section3 .sectionContent #testimonios > div > p {
@@ -654,7 +675,8 @@ button {
   overflow: hidden; }
   @media screen and (min-width: 600px) {
     #section4 {
-      max-height: 900px; } }
+      max-height: 900px;
+      padding-top: 52px; } }
   #section4 .sectionContent {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -968,9 +990,7 @@ h3 {
   height: 30px;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  rx: 10px;
-  ry: 10px; }
+          transform: translate(-50%, -50%); }
 
 #tooltip > .toolText {
   text-anchor: middle;
@@ -980,7 +1000,6 @@ h3 {
 
 #tooltip > .toolCircle {
   fill: none;
-  r: 8;
   stroke-width: 2;
   stroke: white;
   -webkit-transform: translateY(30px);
@@ -1127,8 +1146,7 @@ h3 {
   border-radius: 0px;
   margin: 0px;
   height: 30%;
-  box-sizing: border-box;
-  border-bottom: 1px solid silver; }
+  box-sizing: border-box; }
   @media screen and (min-width: 600px) {
     #contenedorReferencias {
       display: inherit;

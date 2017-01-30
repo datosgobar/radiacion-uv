@@ -1,17 +1,25 @@
 'use strict';
 
 var secondsCount = 0;
-var ubicacion = 'caba';
-var archivo = 'public/source/caba.json';
 var updateHistory = void 0;
 var arrData = void 0;
 var position = 40;
 
-// Funciones Globales
-var ubicationUpdate = function ubicationUpdate(ubication) {
-  ubicacion = ubication;
-  archivo = 'public/source/' + ubication + '.json';
+var spanish = {
+  'dateTime': '%A, %e de %B de %Y, %X',
+  'date': '%d/%m/%Y',
+  'time': '%H:%M:%S',
+  'periods': ['AM', 'PM'],
+  'days': ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+  'shortDays': ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+  'months': ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  'shortMonths': ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 };
+
+var spanishFormatDate = d3.timeFormatDefaultLocale(spanish);
+var d3Format = d3.timeFormat('%c');
+
+// Funciones Globales
 var formatDate = function formatDate(date) {
   return date > 9 ? date : '0' + date;
 };
@@ -47,27 +55,6 @@ var getResponsive = function getResponsive(max) {
 };
 
 $(document).ready(function () {
-  var ejecutarClima = function ejecutarClima() {
-    var getWeather = function getWeather(updateTemp) {
-      var url = 'https://sheetsu.com/apis/v1.0/790070be9227';
-
-      $.get(url, function (data) {
-        var clima = parseFloat(data[10]['']) + ' \xBAC';
-        console.log(clima); // Entorno de desarrollo
-        updateTemp(clima);
-      });
-    };
-    var updateWeather = function updateWeather(temp) {
-      secondsCount = 0; // Reset Timer Update
-
-      d3.select('#temp-weather').text(temp);
-    };
-
-    getWeather(updateWeather);
-    setInterval(function () {
-      getWeather(updateWeather);
-    }, 1000 * 60 * 60);
-  };
   var ejecutarReloj = function ejecutarReloj() {
     var updateClock = function updateClock() {
       var dateObj = createObjectDate(false, false);
@@ -188,37 +175,37 @@ $(document).ready(function () {
       svg.append('path') // Medidor Estatico
       .attr('d', medidorEstatico()).attr('class', 'staticMeasure').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
       });
       svg.append('svg:path') // Medidor Dinamico
       .attr('id', 'dynamic').attr('d', medidorDinamico()).attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
       });
       svg.append('svg:text') // Texto UV
       .attr('class', 'measureText').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);';
       }).text('UV');
       svg.append('svg:text') // vMin
       .attr('class', 'measureMinMax').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 8 * 0.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 8 * 0.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 8 * 0.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 8 * 0.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 8 * 0.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 8 * 0.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);';
       }).text('0');
       svg.append('svg:text') // vMax
       .attr('class', 'measureMinMax').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);';
       }).text('11+');
       svg.append('svg:text') // Estado
       .attr('id', 'state').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 5.4 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 5.4 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 5.4 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 5.4 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 5.4 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 5.4 + 'px);';
       }).text(stateRadiation(radiation.now, 'name'));
       svg.append('svg:text') // Valor
       .attr('id', 'lvlRadiation').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px);\n                  -ms-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 6.3 + 'px);';
       }).text(radiation.now);
 
       d3.select('#recomendation').text(stateRadiation(radiation.now, 'recomendation'));
@@ -274,7 +261,7 @@ $(document).ready(function () {
 
       var dateObj = createObjectDate(true, true);
 
-      $.get(archivo, function (data) {
+      $.get('public/source/caba.json', function (data) {
         arrData = data.datosRecientes[0].indiceUV;
 
         radiation.now = arrData[arrData.length - 1].indiceUV;
@@ -296,20 +283,6 @@ $(document).ready(function () {
 
       return date;
     };
-    // const processHistory = (data) => {
-    //   let date = new Date();
-    //   // console.log(data.length); // ERROR
-    //   let aux = data;
-    //
-    //   let lastElement = convertElement(aux[aux.length - 1]);
-    //
-    //   while (lastElement > date) {
-    //     aux.pop();
-    //     lastElement = convertElement(aux[aux.length - 1]);
-    //   }
-    //   // console.log(data.length);
-    //   return aux;
-    // };
     var createHistory = function createHistory(data) {
       history.container = d3.select('#lineChart');
       history.width = history.container.node().getBoundingClientRect().width - history.margin.left - history.margin.right;
@@ -333,18 +306,18 @@ $(document).ready(function () {
         if (axisValue === 'x') {
           var element = svgElemento.append('svg:g').attr('id', axisName).attr('class', 'x axis').attr('style', function () {
 
-            return 'transform: translate(0px, ' + history.height + 'px);\n                      -ms-transform: translate(0px, ' + history.height + 'px);\n                      -webkit-transform: translate(0px, ' + history.height + 'px);';
+            return 'transform: translate(0px, ' + history.height + 'px);\n                      -moz-transform: translate(0px, ' + history.height + 'px);\n                      -webkit-transform: translate(0px, ' + history.height + 'px);';
           }).call(axis);
           if (index === true) {
             element.append('svg:text').attr('class', 'xIndex').attr('style', function () {
 
-              return 'transform: translate(' + history.width + 'px, 35px);\n                        -ms-transform: translate(' + history.width + 'px, 35px);\n                        -webkit-transform: translate(' + history.width + 'px, 35px);';
+              return 'transform: translate(' + history.width + 'px, 35px);\n                        -moz-transform: translate(' + history.width + 'px, 35px);\n                        -webkit-transform: translate(' + history.width + 'px, 35px);';
             }).text('TIEMPO');
           }
         } else {
           var _element = svgElemento.append('svg:g').attr('id', axisName).attr('class', 'y axis').attr('style', function () {
 
-            return 'transform: translate(-20px, 0px);\n                      -ms-transform: translate(-20px, 0px);\n                      -webkit-transform: translate(-20px, 0px);';
+            return 'transform: translate(-20px, 0px);\n                      -moz-transform: translate(-20px, 0px);\n                      -webkit-transform: translate(-20px, 0px);';
           }).call(axis);
           if (index === true) {
             _element.append('svg:text').attr('class', 'yIndex').text('UV');
@@ -421,7 +394,7 @@ $(document).ready(function () {
         return history.height;
       });
       history.graph = history.svg.append('svg:g').attr('style', function () {
-        return 'transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -ms-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -webkit-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);';
+        return 'transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -moz-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -webkit-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);';
       });
 
       history.graphAxis(history.graph, history.axis.xAxisLine1, 'xAxisLine1', 'x', true);
@@ -431,9 +404,9 @@ $(document).ready(function () {
       history.graph.append('path').attr('id', 'lineChartGraph').attr('d', history.line(dataset)).attr('stroke', 'url(#image)').attr('stroke-linejoin', 'round').attr('stroke-width', '0.5rem');
 
       var tooltip = history.svg.append('g').attr('id', 'tooltip').attr('class', 'hide');
-      var rect = tooltip.append('rect').attr('class', 'toolRect');
+      var rect = tooltip.append('rect').attr('class', 'toolRect').attr('rx', '10px').attr('ry', '10px');
       var text = tooltip.append('text').attr('class', 'toolText');
-      var focus = tooltip.append('circle').attr('class', 'toolCircle');
+      var focus = tooltip.append('circle').attr('class', 'toolCircle').attr('r', '8px');
 
       history.voronoi = d3.voronoi().x(function (d) {
         return history.ranges.x(new Date(convertElement(d)));
@@ -441,7 +414,7 @@ $(document).ready(function () {
         return history.ranges.y(d.indiceUV);
       }).extent([[0, 0], [history.width, history.height]]);
       history.voronoiGroup = history.svg.append('g').attr('class', 'voronoi').attr('style', function () {
-        return 'transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -ms-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -webkit-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);';
+        return 'transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -moz-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);\n                  -webkit-transform: translate(' + history.margin.left + 'px, ' + history.margin.top + 'px);';
       });
 
       history.voronoiGroup.selectAll('path').data(history.voronoi(dataset).polygons()).enter().append('path').attr('d', function (d) {
@@ -452,7 +425,7 @@ $(document).ready(function () {
         var date = new Date(convertElement(d.data));
 
         tooltip.attr('class', '').attr('style', function () {
-          return 'transform: translate(' + (history.ranges.x(date) + history.margin.left) + 'px, ' + (history.ranges.y(d.data.indiceUV) + history.margin.top - 30) + 'px);\n                      -ms-transform: translate(' + (history.ranges.x(date) + history.margin.left) + 'px, ' + (history.ranges.y(d.data.indiceUV) + history.margin.top - 30) + 'px);\n                      -webkit-transform: translate(' + (history.ranges.x(date) + history.margin.left) + 'px, ' + (history.ranges.y(d.data.indiceUV) + history.margin.top - 30) + 'px);';
+          return 'transform: translate(' + (history.ranges.x(date) + history.margin.left) + 'px, ' + (history.ranges.y(d.data.indiceUV) + history.margin.top - 30) + 'px);\n                      -moz-transform: translate(' + (history.ranges.x(date) + history.margin.left) + 'px, ' + (history.ranges.y(d.data.indiceUV) + history.margin.top - 30) + 'px);\n                      -webkit-transform: translate(' + (history.ranges.x(date) + history.margin.left) + 'px, ' + (history.ranges.y(d.data.indiceUV) + history.margin.top - 30) + 'px);';
         });
 
         rect.style('fill', function () {
@@ -475,64 +448,6 @@ $(document).ready(function () {
 
     getRadiation(crearSeccionRadiacionUv, updateRecomendation, createHistory, true);
 
-    $('#caba').on('click', function () {
-      if (ubicacion !== 'caba') {
-        ubicationUpdate('caba');
-
-        $('#ubicaciones').attr('class', function () {
-          if (radiation.now == 0) {
-            return 'ubicacionNoche';
-          } else {
-            return 'ubicacionDia';
-          }
-        });
-
-        $('#ushuaia').attr('class', 'botonUbicacion');
-        $('#resistencia').attr('class', 'botonUbicacion');
-        $('#caba').attr('class', 'botonUbicacion botonActivo');
-
-        getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory, true);
-      }
-    });
-    $('#ushuaia').on('click', function () {
-      if (ubicacion !== 'ushuaia') {
-        ubicationUpdate('ushuaia');
-
-        $('#ubicaciones').attr('class', function () {
-          if (radiation.now == 0) {
-            return 'ubicacionNoche';
-          } else {
-            return 'ubicacionDia';
-          }
-        });
-
-        $('#caba').attr('class', 'botonUbicacion');
-        $('#resistencia').attr('class', 'botonUbicacion');
-        $('#ushuaia').attr('class', 'botonUbicacion botonActivo');
-
-        getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory, true);
-      }
-    });
-    $('#resistencia').on('click', function () {
-      if (ubicacion !== 'resistencia') {
-        ubicationUpdate('resistencia');
-
-        $('#ubicaciones').attr('class', function () {
-          if (radiation.now == 0) {
-            return 'ubicacionNoche';
-          } else {
-            return 'ubicacionDia';
-          }
-        });
-
-        $('#caba').attr('class', 'botonUbicacion');
-        $('#ushuaia').attr('class', 'botonUbicacion');
-        $('#resistencia').attr('class', 'botonUbicacion botonActivo');
-
-        getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory, true);
-      }
-    });
-
     $('#flecha_izq').on('click', function () {
       d3.select('#slides').transition().attr('style', function () {
         position = position + 20;
@@ -546,7 +461,7 @@ $(document).ready(function () {
           $('#flecha_der').show();
         }
 
-        return 'transform: translateX(' + position + '%);\n                  -ms-transform: translateX(' + position + '%);\n                  -webkit-transform: translateX(' + position + '%);';
+        return 'transform: translateX(' + position + '%);\n                  -moz-transform: translateX(' + position + '%);\n                  -webkit-transform: translateX(' + position + '%);';
       });
     });
     $('#flecha_der').on('click', function () {
@@ -562,7 +477,7 @@ $(document).ready(function () {
           $('#flecha_der').show();
         }
 
-        return 'transform: translateX(' + position + '%);\n                  -ms-transform: translateX(' + position + '%);\n                  -webkit-transform: translateX(' + position + '%);';
+        return 'transform: translateX(' + position + '%);\n                  -moz-transform: translateX(' + position + '%);\n                  -webkit-transform: translateX(' + position + '%);';
       });
     });
 
@@ -585,7 +500,7 @@ $(document).ready(function () {
 
       d3.select('#slides').attr('style', function () {
 
-        return 'transform: translateX(0%);\n                  -ms-transform: translateX(0%);\n                  -webkit-transform: translateX(0%);';
+        return 'transform: translateX(0%);\n                  -moz-transform: translateX(0%);\n                  -webkit-transform: translateX(0%);';
       });
     } else {
       section2.children().append(section1.children());
@@ -607,13 +522,12 @@ $(document).ready(function () {
 
       d3.select('#slides').attr('style', function () {
 
-        return 'transform: translateX(40%);\n                  -ms-transform: translateX(40%);\n                  -webkit-transform: translateX(40%);';
+        return 'transform: translateX(40%);\n                  -moz-transform: translateX(40%);\n                  -webkit-transform: translateX(40%);';
       });
     }
   };
 
   ejecutarReloj();
-  ejecutarClima();
   ejecutarRadiacion();
   adjustResponsive();
 
