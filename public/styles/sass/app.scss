@@ -5,7 +5,7 @@ $low: rgba(2, 213, 122, 1);
 $moderate: rgba(255, 187, 66, 1);
 $high: rgba(241, 133, 75, 1);
 $veryHigh: rgba(242, 56, 90, 1);
-$danger: rgba(85, 50, 133, 1);
+$danger: rgba(153, 51, 255, 1);
 
 // Text
 $color-font: rgba(77, 77, 77, 1);
@@ -76,10 +76,6 @@ button {
 .fullHeight {
   height: 100%;
 }
-
-
-
-
 
 // Barra de Navegación
 #navBar {
@@ -208,7 +204,7 @@ button {
     }
   }
 }
-#section1 .encabezado.dia {
+#section1 .encabezado {
   padding: 10px 10px;
   margin: 0px;
 
@@ -232,34 +228,6 @@ button {
     }
   }
 }
-#section1 .encabezado.noche {
-  background-color: rgba(255, 255, 255, 1);
-  // box-shadow: 0px 0px 5px silver;
-  padding: 10px 10px;
-  margin: 0px;
-
-  @media screen and (min-width: $query1) {
-    background-color: transparent;
-    box-shadow: none;
-    padding: 0px 20px;
-    margin: 0px 0px 20px 0px;
-  }
-
-  h2 {
-
-    @media screen and (min-width: $query1) {
-      color: rgba(77, 77, 77, 1);
-      font-size: 50px;
-    }
-  }
-  p {
-    color: rgba(77, 77, 77, 1);
-
-    @media screen and (min-width: $query1) {
-      padding: 0px;
-    }
-  }
-}
 #section3 .encabezado {
   padding: 0px 20px;
 
@@ -268,21 +236,36 @@ button {
   }
   & > p {
     padding: 30px 0px;
+    text-align: left;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
 
     @media screen and (min-width: $query1) {
       padding: 30px 0px 0px 0px;
+      text-align: center;
+      line-height: 3.6rem;
+      font-size: 1.5rem;
     }
+    @media screen and (min-width: $query2) {
+      font-size: 2rem;
+    }
+  }
+}
+#section4 .encabezado {
+
+  h2 {
+    width: 100vw;
   }
 }
 
 // Seccion 1
 #section1 {
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  box-sizing: border-box;
+  width: 100%;
   height: 100vh;
   padding: $navHeight 0px 0px 0px;
   max-height: 900px;
@@ -318,96 +301,56 @@ button {
 
         & > header {
           align-items: center;
-          border-bottom: 1px solid white;
+          // border-bottom: 1px solid rgba(255, 255, 255, 0.5);
           box-sizing: border-box;
           display: flex;
           flex-direction: row;
           justify-content: center;
-          padding: 10px 0px;
+          padding: 20px 0px 0px 0px;
           width: 100%;
 
-          // #ubication {
-          //   color: $white-font;
-          //   font-weight: 400;
-          //   font-size: 1.2rem;
-          //   text-align: center;
-          //   width: 100%;
-          //
-          //   @media screen and (min-width: $query2) {
-          //     font-size: 1.5rem;
-          //   }
-          // }
-          #time {
-            // border-left: 1px solid white;
-            border-right: 1px solid white;
-            box-sizing: border-box;
+          #ubication {
             color: $white-font;
-            font-size: 1.2rem;
-            font-weight: 100;
+            font-weight: 400;
+            font-size: 16px;
             text-align: center;
             width: 100%;
+
+            @media screen and (min-width: $query2) {
+              font-size: 1.5rem;
+            }
+          }
+          #relojPack {
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+          }
+          #clock {
+            height: 19px;
+            width: 19px;
+            margin-right: 10px;
+          }
+          #time {
+            box-sizing: border-box;
+            color: $white-font;
+            font-size: 16px;
+            font-weight: 100;
+            text-align: center;
             // max-width: 90px;
 
             @media screen and (min-width: $query2) {
               font-size: 1.5rem;
             }
           }
-          #weather {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            text-align: center;
-            width: 100%;
-            // max-width: 90px;
-
-            #temp-weather {
-              color: $white-font;
-              font-weight: 100;
-              font-size: 1.2rem;
-              align-items: center;
-
-              @media screen and (min-width: $query2) {
-                font-size: 1.5rem;
-              }
-            }
-            #icon-weather {
-              background-image: url('../../img/clima.png');
-              background-size: cover;
-              height: $medida;
-              margin-right: 5px;
-              width: $medida * $coeficiente;
-            }
-            .soleado {
-              background-position: (($medida * $coeficiente) * 0) 0rem;
-            }
-            .noche {
-              background-position: (($medida * $coeficiente) * 1) 0rem;
-            }
-            .tormenta {
-              background-position: (($medida * $coeficiente) * 2) 0rem;
-            }
-            .lluvia {
-              background-position: (($medida * $coeficiente) * 3) 0rem;
-            }
-            .inestable {
-              background-position: (($medida * $coeficiente) * 4) 0rem;
-            }
-            .nublado {
-              background-position: (($medida * $coeficiente) * 5) 0rem;
-            }
-            .parcialmente-nublado {
-              background-position: (($medida * $coeficiente) * 6) 0rem;
-            }
-          }
         }
         #radiationUv {
           box-sizing: border-box;
-          padding: 0px 20px;
+          padding: 40px 20px 20px 20px;
           width: 100%;
-          // height: 100%;
           max-width: 400px;
-          // max-height: 60%;
         }
         #containerRecom {
           box-sizing: border-box;
@@ -432,7 +375,7 @@ button {
         }
         #containerUpdate {
           align-items: center;
-          border-top: 1px solid white;
+          border-top: 1px solid rgba(255, 255, 255, 0.5);
           box-sizing: border-box;
           display: flex;
           flex-direction: row;
@@ -470,6 +413,7 @@ button {
     }
   }
 }
+
 // Seccion 2
 #section2 {
   align-items: center;
@@ -477,11 +421,11 @@ button {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
-  height: 100vh;
+  // min-height: 100vh;
+  // height: 100vh;
   justify-content: center;
   padding: 0px;
-  padding-top: $navHeight;
+  // padding-top: $navHeight;
   position: relative;
   width: 100vw;
 
@@ -494,6 +438,7 @@ button {
 
 
 }
+
 // Seccion 3
 #section3 {
   display: flex;
@@ -520,16 +465,17 @@ button {
     #testimonios {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       flex-direction: column;
       box-sizing: border-box;
       max-width: 900px;
-      padding: 0px;
-      margin: 0px 20px;
+      margin: 40px 20px 0px 20px;
       width: 100%;
+      align-items: flex-start;
+      padding: 0px 20px;
 
       @media screen and (min-width: $query1) {
         flex-direction: row;
+        padding: 0px;
         align-items: flex-start;
       }
 
@@ -547,21 +493,27 @@ button {
           font-size: 1.5rem;
           font-weight: 300;
           line-height: 20px;
+          margin: 15px 0px 45px 0px;
+
+          @media screen and (min-width: $query1) {
+            margin: 15px 0px;
+          }
         }
       }
     }
   }
 }
+
 // Seccion 4
 #section4 {
   align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  // height: 100vh;
   justify-content: center;
-  padding: 0px;
-  padding-top: $navHeight;
+  padding: 40px 0px;
+  // padding-top: $navHeight;
   position: relative;
   width: 100vw;
   overflow: hidden;
@@ -574,7 +526,11 @@ button {
     justify-content: center;
 
     & > .encabezado {
-      margin-bottom: 80px;
+      margin: 20px 0px;
+
+      @media screen and (min-width: $query1) {
+        margin: 0px 0px 80px 0px;
+      }
     }
 
     & > div {
@@ -585,6 +541,7 @@ button {
       justify-content: center;
       align-items: center;
       flex-direction: row;
+      flex-direction: column;
 
       @media screen and (min-width: $query1) {
         width: 100%;
@@ -650,7 +607,6 @@ button {
   box-sizing: border-box;
   height: 100vh;
   padding: 0px;
-  padding-top: $navHeight;
   position: relative;
   width: 100vw;
 
@@ -670,6 +626,88 @@ button {
       & > p {
         color: $white-font;
       }
+    }
+  }
+}
+
+
+.contenedorResponsive {
+  width: 100%;
+  max-width: 900px;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  margin: auto;
+  text-align: center;
+}
+
+// Footer
+$color_light: rgba(242, 242, 242, 1);
+$color_dark: rgba(77, 77, 77, 1);
+
+footer {
+  padding: 60px 0px 40px 0px;
+  background-color: $color_light;
+
+  h2 {
+    font-size: 30px;
+    font-weight: 400;
+    width: 100%;
+    color: $color_dark;
+    text-align: center;
+  }
+  button {
+    margin: 15px 0px 60px 0px;
+    padding: 5px 30px;
+    border-radius: 30px;
+    border: 1px solid $color_dark;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color_dark;
+      color: white;
+    }
+  }
+  p {
+    font-size: 1.4rem;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 20px;
+  }
+}
+#comunidad {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto 0px auto;
+  padding: 0px 20px;
+  box-sizing: border-box;
+
+  & > h3 {
+    font-weight: 300;
+    font-size: 15px;
+    color: $color-font;
+
+    @media screen and (min-width: $query1) {
+      font-size: 20px;
+    }
+  }
+  #redes_sociales {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding: 15px 0px 0px 0px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    box-sizing: border-box;
+
+    .social_icon {
+      font-size: 4rem;
+      color: $color-font;
     }
   }
 }
@@ -703,8 +741,8 @@ h3 {
 
 // Protection UV Icons
 .protection-icon {
-  width: 7rem;
-  height: 7rem;
+  width: 100px;
+  height: 100px;
 }
 .svgStroke {
   fill: none;
@@ -737,7 +775,7 @@ h3 {
     text-anchor: middle;
     alignment-baseline: end;
     fill: white;
-    font-size: 1.5rem;
+    font-size: 12px;
   }
   #state {
     text-anchor: middle;
@@ -795,26 +833,19 @@ h3 {
   color: transparent;
 }
 
-#left {
+#flecha_izq {
   margin: 0px;
   padding: 0px;
-  width: 56px;
-  height: 60px;
-  left: 0px;
-  transform: rotate(180deg);
-  position: absolute;
+  width: 40px;
   z-index: 20;
   display: none;
 }
-
-#right {
+#flecha_der {
   margin: 0px;
   padding: 0px;
-  width: 56px;
-  height: 60px;
-  right: 0px;
-  position: absolute;
+  width: 40px;
   z-index: 20;
+  transform: rotate(180deg);
 }
 
 // Protecciones
@@ -822,21 +853,25 @@ h3 {
   background-color: white;
   border-radius: 0px;
   margin: 0px;
-  height: 70%;
   box-sizing: border-box;
-
 
   @media screen and (min-width: $query1) {
     border-radius: 10px;
     padding: 0px 10px;
+    height: 70%;
   }
 
   header h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 28px;
+    font-weight: 400;
     color: $color-font;
-    text-transform: uppercase;
-    margin: 20px 0px 0px 0px;
+    margin: 20px 0px 20px 0px;
+
+    @media screen and (min-width: $query1) {
+      font-size: 15px;
+      text-transform: uppercase;
+      margin: 20px 0px 0px 0px;
+    }
   }
 
   & > a {
@@ -845,30 +880,67 @@ h3 {
     color: #0094D4;
     text-decoration: none;
     margin: 0px 0px 10px 0px;
+    display: none;
+
+    @media screen and (min-width: $query1) {
+      display: inherit;
+    }
   }
 }
 #protections {
-  max-height: 230px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 
-  div {
+  @media screen and (min-width: $query1) {
+    flex-direction: row;
+    max-height: 230px;
+    height: 100%;
+  }
 
-    &:nth-child(2) {
+  .protection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 
-      & > div > span {
-        border-left: 1px solid silver;
-        border-right: 1px solid silver;
+    @media screen and (min-width: $query1) {
+      flex-direction: column;
+
+      &:nth-child(2) {
+
+        & > div > span {
+          border-left: 1px solid silver;
+          border-right: 1px solid silver;
+        }
       }
     }
+
+    .itemProtection {
+      width: 50%;
+
+      @media screen and (min-width: $query1) {
+        width: 100%;
+      }
+    }
+
     .recomendacion {
-      font-size: 1.4rem;
-      line-height: 18px;
+      font-size: 18px;
+      line-height: 24px;
       color: silver;
       padding: 0px 1rem;
       text-align: center;
       height: 54px;
+      font-weight: 300;
 
       @media screen and (min-width: $query1) {
         height: inherit;
+        font-size: 14px;
+        line-height: 20px;
       }
     }
   }
@@ -876,6 +948,7 @@ h3 {
 
 // Contenedor con referencias
 #contenedorReferencias {
+  display: none;
   background-color: white;
   border-radius: 0px;
   margin: 0px;
@@ -884,6 +957,7 @@ h3 {
   border-bottom: 1px solid silver;
 
   @media screen and (min-width: $query1) {
+    display: inherit;
     border-radius: 10px;
     margin: 2rem 0px 0px 0px;
     padding: 0px 10px;
@@ -894,8 +968,11 @@ h3 {
     font-size: 1.5rem;
     font-weight: 400;
     color: $color-font;
-    text-transform: uppercase;
     margin: 20px 0px 0px 0px;
+
+    @media screen and (min-width: $query1) {
+      text-transform: uppercase;
+    }
   }
 }
 .referencia {
@@ -908,19 +985,19 @@ h3 {
   margin-bottom: 10px;
 }
 .refBajo {
-  background-color: rgba(2, 213, 122, 1);
+  background-color: $low;
 }
 .refMod {
-  background-color: rgba(255, 187, 66, 1);
+  background-color: $moderate;
 }
 .refAlto {
-  background-color: rgba(255, 129, 64, 1);
+  background-color: $high;
 }
 .refMAlto {
-  background-color: rgba(242, 56, 90, 1);
+  background-color: $veryHigh;
 }
 .refExt {
-  background-color: rgba(85, 50, 133, 1);
+  background-color: $danger;
 }
 .refTexto {
   color: silver;
@@ -941,76 +1018,12 @@ h3 {
   }
 }
 
-// Botones de las ubicaciones en donde se miden radiación UV
-#ubicaciones .botonUbicacion {
-  padding: 5px 15px;
-  border-radius: 30px;
-  background: transparent;
-  border: 1px solid rgba(179, 179, 179, 1);
-  color: rgba(179, 179, 179, 1);
-  text-transform: uppercase;
-  margin: 5px 0px 5px 0px;
-  cursor: pointer;
-
-  @media screen and (min-width: $query1) {
-    margin: 0px 0px 20px 0px;
-  }
-
-  &:hover {
-    background: rgba(179, 179, 179, 1);
-    color: white;
-  }
-}
-#ubicaciones .botonActivo {
-  background: rgba(179, 179, 179, 1);
-  color: white;
-}
-
-@media screen and (min-width: $query1) {
-  #ubicaciones.ubicacionDia {
-    .botonUbicacion {
-      border: 1px solid #009DDB;
-      color: #009DDB;
-
-      &:hover {
-        background-color: #009DDB;
-        color: white;
-      }
-    }
-    .botonActivo {
-      background-color: #009DDB;
-      color: white;
-    }
-  }
-  #ubicaciones.ubicacionNoche{
-    .botonUbicacion {
-      border: 1px solid rgba(77, 77, 77, 1);
-      color: rgba(77, 77, 77, 1);
-
-      &:hover {
-        background-color: rgba(77, 77, 77, 1);
-        color: white;
-      }
-    }
-    .botonActivo {
-      background-color: rgba(77, 77, 77, 1);
-      color: white;
-    }
-  }
-}
-
-#caba {}
-#ushuaia {
-  margin: 0px 5px 0px 5px;
-}
-#resistencia {}
-
 // Imagenes de Fondo para representar Día/Noche
 .iconos-derecha,
 .iconos-izquierda {
   display: none;
-  width: 0px;
-  height: 0px;
+  // width: 0px;
+  // height: 0px;
 }
 
 @media screen and (min-width: $query1) {
@@ -1021,16 +1034,6 @@ h3 {
   }
   .footerDia {
     background-image: url('../../img/fondo_dia_2.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .fondoNoche {
-    background-image: url('../../img/fondo_noche_1.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .footerNoche {
-    background-image: url('../../img/fondo_noche_2.png');
     background-position: center;
     background-size: cover;
   }

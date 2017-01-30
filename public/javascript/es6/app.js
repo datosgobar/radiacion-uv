@@ -1,8 +1,7 @@
-let secondsCount;
+let secondsCount = 0;
 let ubicacion = 'caba';
 let archivo   = 'public/source/caba.json';
 let updateHistory;
-let getExecute = 0;
 let arrData;
 let position = 40;
 
@@ -59,7 +58,6 @@ $(document).ready(() => {
       let dateObj = createObjectDate(false, false);
 
       secondsCount++;
-
       if ((secondsCount % 2) === 0) {
         $('#time').empty().append(dateObj.hour + '<span>:</span>' +  dateObj.minute);
       } else {
@@ -93,7 +91,7 @@ $(document).ready(() => {
       states    : {
         extrem: {
           name: 'Peligroso',
-          color: 'rgba(85, 50, 133, 1)',
+          color: 'rgba(153, 51, 255, 1)',
           recomendation: 'Evita exponerte al sol',
           position: 4,
           minValue: 11,
@@ -133,7 +131,7 @@ $(document).ready(() => {
         },
         hide: {
           name: 'Sin Radiación',
-          color: 'rgba(77, 77, 77, 1)',
+          color: 'rgba(39, 180, 245, 1)',
           recomendation: 'En este momento no hay niveles de radiación detectados',
           position: -1,
           minValue: 0,
@@ -176,12 +174,11 @@ $(document).ready(() => {
 
       let svg = contenedorMedidor.append('svg')
         .attr('id', 'svgMedidor')
-        // .attr('viewBox', () => `0 0 ${ (radiation.diameter) } ${ (radiation.diameter - ((radiation.diameter / 2) * 0.29289)) }`)
-        .attr('viewBox', () => `0 0 ${ (radiation.diameter) } ${ (radiation.diameter) }`);
+        .attr('viewBox', () => `0 0 ${ (radiation.diameter) } ${ (radiation.diameter - ((radiation.diameter / 2) * 0.29289)) }`);
       svg.append('path')        // Medidor Estatico
         .attr('d', medidorEstatico())
         .attr('class', 'staticMeasure')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
                   -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
@@ -190,7 +187,7 @@ $(document).ready(() => {
       svg.append('svg:path')    // Medidor Dinamico
         .attr('id', 'dynamic')
         .attr('d', medidorDinamico())
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
                   -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 2) }px);
@@ -198,7 +195,7 @@ $(document).ready(() => {
         });
       svg.append('svg:text')    // Texto UV
         .attr('class', 'measureText')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
                   -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
@@ -207,7 +204,7 @@ $(document).ready(() => {
         .text('UV');
       svg.append('svg:text')    // vMin
         .attr('class', 'measureMinMax')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 8) * 0.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
                   -ms-transform: translate(${ (radiation.diameter / 8) * 0.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
@@ -216,7 +213,7 @@ $(document).ready(() => {
         .text('0');
       svg.append('svg:text')    // vMax
         .attr('class', 'measureMinMax')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 8) * 7.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
                   -ms-transform: translate(${ (radiation.diameter / 8) * 7.5 }px, ${ (radiation.diameter / 8) * 6.75 }px);
@@ -225,7 +222,7 @@ $(document).ready(() => {
         .text('11+');
       svg.append('svg:text')    // Estado
         .attr('id', 'state')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 5.4 }px);
                   -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 5.4 }px);
@@ -234,33 +231,13 @@ $(document).ready(() => {
         .text(stateRadiation(radiation.now, 'name'));
       svg.append('svg:text')    // Valor
         .attr('id', 'lvlRadiation')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
 
           return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);
                   -ms-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);
                   -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 6.3 }px);`;
         })
         .text(radiation.now);
-
-      // svg.append('svg:circle')  // Punto
-      //   .attr('id', 'medidorCircle')
-      //   .style('r', (radiation.anchor / 4))
-      //   .style('transform', () => {
-      //     let x = (radiation.diameter / 2);
-      //     let y = (radiation.diameter / 2);
-      //
-      //     let diametro = radiation.diameter;
-      //     let radio = radiation.diameter / 2;
-      //
-      //     let angulo = (Math.PI / 4) * radiation.now;
-      //
-      //     console.log('Resultado en X');
-      //     console.log((radiation.diameter / 2));
-      //     console.log('Resultado en Y');
-      //     console.log((radiation.diameter / 2));
-      //
-      //     return (`translate(${ x }px, ${ y }px)`);
-      //   });
 
       d3.select('#recomendation').text(stateRadiation(radiation.now, 'recomendation'));
       d3.select('#sectionIzq').style('background-color', stateRadiation(radiation.now, 'color'));
@@ -313,10 +290,6 @@ $(document).ready(() => {
     const getRadiation = (radiacion, recomendation, history, force = false) => {
       let dateObj = createObjectDate(true, true);
 
-      getExecute++;
-
-      if (getExecute > 30 || force) {
-
         $.get(archivo, (data) => {
           arrData = data.datosRecientes[0].indiceUV;
 
@@ -324,54 +297,11 @@ $(document).ready(() => {
 
           arrData.forEach((v, k) => { v = standarDate(v); });
 
-          if (radiation.now === '0.0') {
-            d3.select('#section1 .sectionContent').attr('class', 'sectionContent fondoNoche');
-            d3.select('#section3').attr('class', 'footerNoche');
-            d3.select('#section1 .encabezado').attr('class', 'encabezado noche');
-
-            $('#ubicaciones').attr('class', () => {
-              if (radiation.now == 0) {
-                return 'ubicacionNoche';
-              } else {
-                return 'ubicacionDia';
-              }
-            });
-
-            $('.iconos-derecha').hide();
-            $('.iconos-izquierda').hide();
-          } else {
-            d3.select('#section1 .sectionContent').attr('class', 'sectionContent fondoDia');
-            d3.select('#section3').attr('class', 'footerDia');
-            d3.select('#section1 .encabezado').attr('class', 'encabezado dia');
-
-            $('#ubicaciones').attr('class', () => {
-              if (radiation.now == 0) {
-                return 'ubicacionNoche';
-              } else {
-                return 'ubicacionDia';
-              }
-            });
-
-            $('.iconos-derecha').show();
-            $('.iconos-izquierda').show();
-          }
-
           console.log('Se hace pedido GET');
           radiacion();
           recomendation();
           history(arrData);
-
-          getExecute = 0;
         });
-      } else {
-
-        radiation.now = arrData[arrData.length - 1].indiceUV;
-
-        console.log('Se accede a variable');
-        radiacion();
-        recomendation();
-        history(arrData);
-      }
     };
     const convertElement = (element) => {
       // console.log(element);
@@ -414,7 +344,7 @@ $(document).ready(() => {
           let element = svgElemento.append('svg:g')
             .attr('id', axisName)
             .attr('class', 'x axis')
-            .attr('style', () => { // Compatible
+            .attr('style', () => {
 
               return `transform: translate(0px, ${ history.height }px);
                       -ms-transform: translate(0px, ${ history.height }px);
@@ -424,7 +354,7 @@ $(document).ready(() => {
           if (index === true) {
             element.append('svg:text')
               .attr('class', 'xIndex')
-              .attr('style', () => { // Compatible
+              .attr('style', () => {
 
                 return `transform: translate(${ history.width }px, 35px);
                         -ms-transform: translate(${ history.width }px, 35px);
@@ -436,7 +366,7 @@ $(document).ready(() => {
           let element = svgElemento.append('svg:g')
             .attr('id', axisName)
             .attr('class', 'y axis')
-            .attr('style', () => { // Compatible
+            .attr('style', () => {
 
               return `transform: translate(-20px, 0px);
                       -ms-transform: translate(-20px, 0px);
@@ -552,7 +482,7 @@ $(document).ready(() => {
           .attr('width', () => history.width)
           .attr('height', () => history.height);
       history.graph = history.svg.append('svg:g')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
           return `transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
                   -ms-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
                   -webkit-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);`;
@@ -580,7 +510,7 @@ $(document).ready(() => {
         .extent([[0, 0], [history.width, history.height]]);
       history.voronoiGroup = history.svg.append('g')
         .attr('class', 'voronoi')
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
           return `transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
                   -ms-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);
                   -webkit-transform: translate(${ history.margin.left }px, ${ history.margin.top }px);`;
@@ -597,7 +527,7 @@ $(document).ready(() => {
             let date = new Date(convertElement(d.data));
 
             tooltip.attr('class', '')
-            .attr('style', () => { // Compatible
+            .attr('style', () => {
               return `transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);
                       -ms-transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);
                       -webkit-transform: translate(${ history.ranges.x(date) + history.margin.left }px, ${ history.ranges.y(d.data.indiceUV) + history.margin.top - 30 }px);`;
@@ -663,7 +593,7 @@ $(document).ready(() => {
       }
     });
     $('#resistencia').on('click', () => {
-      if (ubicacion !== 'ushuaia') {
+      if (ubicacion !== 'resistencia') {
         ubicationUpdate('resistencia');
 
         $('#ubicaciones').attr('class', () => {
@@ -682,19 +612,19 @@ $(document).ready(() => {
       }
     });
 
-    $('#left').on('click', () => {
+    $('#flecha_izq').on('click', () => {
       d3.select('#slides')
         .transition()
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
           position = position + 20;
 
           if (position === 40 ) {
-            $('#left').hide();
+            $('#flecha_izq').hide();
           } else if (position === (- 40)) {
-            $('#right').hide();
+            $('#flecha_der').hide();
           } else {
-            $('#left').show();
-            $('#right').show();
+            $('#flecha_izq').show();
+            $('#flecha_der').show();
           }
 
           return `transform: translateX(${ position }%);
@@ -702,19 +632,19 @@ $(document).ready(() => {
                   -webkit-transform: translateX(${ position }%);`;
         });
     });
-    $('#right').on('click', () => {
+    $('#flecha_der').on('click', () => {
       d3.select('#slides')
         .transition()
-        .attr('style', () => { // Compatible
+        .attr('style', () => {
           position = position - 20;
 
           if (position === 40 ) {
-            $('#left').hide();
+            $('#flecha_izq').hide();
           } else if (position === (- 40)) {
-            $('#right').hide();
+            $('#flecha_der').hide();
           } else {
-            $('#left').show();
-            $('#right').show();
+            $('#flecha_izq').show();
+            $('#flecha_der').show();
           }
 
           return `transform: translateX(${ position }%);
@@ -732,38 +662,44 @@ $(document).ready(() => {
     if (!getResponsive(600)) {
       section1.append(section2.children().children());
 
-      $('#left').hide();
-      $('#right').hide();
+      $('#flecha_izq').hide();
+      $('#flecha_der').hide();
+
+      $('.iconos-derecha').show();
+      $('.iconos-izquierda').show();
 
       d3.select('#slides')
-      .attr('style', () => { // Compatible
+        .attr('style', () => {
 
-        return `transform: translateX(0%);
-                -ms-transform: translateX(0%);
-                -webkit-transform: translateX(0%);`;
-      });
+          return `transform: translateX(0%);
+                  -ms-transform: translateX(0%);
+                  -webkit-transform: translateX(0%);`;
+        });
     } else {
       section2.children().append(section1.children());
 
-      $('#left').show();
-      $('#right').show();
+      $('#flecha_izq').show();
+      $('#flecha_der').show();
+
+      $('.iconos-derecha').hide();
+      $('.iconos-izquierda').hide();
 
       if (position === 40 ) {
-        $('#left').hide();
+        $('#flecha_izq').hide();
       } else if (position === (- 40)) {
-        $('#right').hide();
+        $('#flecha_der').hide();
       } else {
-        $('#left').show();
-        $('#right').show();
+        $('#flecha_izq').show();
+        $('#flecha_der').show();
       }
 
       d3.select('#slides')
-      .attr('style', () => { // Compatible
+        .attr('style', () => {
 
-        return `transform: translateX(40%);
-                -ms-transform: translateX(40%);
-                -webkit-transform: translateX(40%);`;
-      });
+          return `transform: translateX(40%);
+                  -ms-transform: translateX(40%);
+                  -webkit-transform: translateX(40%);`;
+        });
     }
   };
 
