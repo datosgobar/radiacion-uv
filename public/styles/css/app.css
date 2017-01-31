@@ -250,10 +250,14 @@ button {
       box-shadow: none;
       padding: 0px 20px;
       margin: 0px 0px 20px 0px; } }
-  @media screen and (min-width: 600px) {
-    #section1 .encabezado h2 {
-      color: #009DDB;
-      font-size: 50px; } }
+  #section1 .encabezado h2 {
+    font-weight: 600;
+    margin-bottom: 10px; }
+    @media screen and (min-width: 600px) {
+      #section1 .encabezado h2 {
+        color: #009DDB;
+        font-size: 45px;
+        margin-bottom: 0px; } }
   @media screen and (min-width: 600px) {
     #section1 .encabezado p {
       padding: 0px; } }
@@ -634,7 +638,8 @@ button {
         max-width: 250px; }
         #section3 .sectionContent #testimonios > div > span {
           font-size: 16px;
-          color: silver; }
+          color: silver;
+          margin-bottom: 15px; }
         #section3 .sectionContent #testimonios > div > cite {
           color: #4d4d4d;
           font-size: 20px;
@@ -643,12 +648,13 @@ button {
           height: 72px; }
         #section3 .sectionContent #testimonios > div > p {
           color: #0094D4;
-          font-size: 26px;
+          font-size: 22px;
+          line-height: 30px;
           font-weight: 300;
-          margin: 15px 0px 45px 0px; }
+          margin: 0px 0px 45px 0px; }
           @media screen and (min-width: 600px) {
             #section3 .sectionContent #testimonios > div > p {
-              margin: 15px 0px; } }
+              margin: 0px 0px 15px 0px; } }
 
 #section4 {
   -webkit-box-align: center;
@@ -675,7 +681,7 @@ button {
   overflow: hidden; }
   @media screen and (min-width: 600px) {
     #section4 {
-      max-height: 900px;
+      height: 700px;
       padding-top: 52px; } }
   #section4 .sectionContent {
     -webkit-box-pack: center;
@@ -829,6 +835,10 @@ button {
       #section5 .sectionContent > .encabezado > p {
         color: white; }
 
+#section6 a {
+  text-decoration: none;
+  color: #4d4d4d; }
+
 .contenedorResponsive {
   width: 100%;
   max-width: 900px;
@@ -836,6 +846,8 @@ button {
   box-sizing: border-box;
   margin: auto;
   text-align: center; }
+  .contenedorResponsive p {
+    line-height: 24px; }
 
 footer {
   padding: 60px 0px 40px 0px;
@@ -1185,7 +1197,7 @@ h3 {
   background-color: #f2385a; }
 
 .refExt {
-  background-color: #9933ff; }
+  background-color: #695386; }
 
 .refTexto {
   color: silver;
@@ -1204,7 +1216,10 @@ h3 {
 
 .iconos-derecha,
 .iconos-izquierda {
-  display: none; }
+  display: none;
+  min-width: 125px;
+  max-width: 200px;
+  width: 15%; }
 
 @media screen and (min-width: 600px) {
   .fondoDia {
@@ -1222,10 +1237,7 @@ h3 {
     z-index: 10;
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-    min-width: 125px;
-    max-width: 150px;
-    width: 15%; }
+            transform: translateY(-50%); }
   .iconos-izquierda {
     position: absolute;
     top: 50%;
@@ -1233,10 +1245,7 @@ h3 {
     z-index: 10;
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-    min-width: 125px;
-    max-width: 150px;
-    width: 15%; } }
+            transform: translateY(-50%); } }
 
 #lineChart {
   width: 100%;

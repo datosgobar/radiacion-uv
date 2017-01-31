@@ -5,6 +5,13 @@ var updateHistory = void 0;
 var arrData = void 0;
 var position = 40;
 
+var chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+var darken = function darken(c, n, i, d) {
+  for (i = 3; i--; c[i] = d < 0 ? 0 : d > 255 ? 255 : d | 0) {
+    d = c[i] + n;
+  }return c;
+};
+
 var spanish = {
   'dateTime': '%A, %e de %B de %Y, %X',
   'date': '%d/%m/%Y',
@@ -93,48 +100,48 @@ $(document).ready(function () {
       states: {
         extrem: {
           name: 'Peligroso',
-          color: 'rgba(153, 51, 255, 1)',
-          recomendation: 'Evita exponerte al sol',
+          color: 'rgb(105, 83, 134)',
+          recomendation: 'Por favor, no te expongas al sol.',
           position: 4,
           minValue: 11,
           lvl: 6
         },
         very: {
           name: 'Muy Alto',
-          color: 'rgba(242, 56, 90, 1)',
-          recomendation: 'Evita exponerte al sol',
+          color: 'rgb(242, 56, 90)',
+          recomendation: 'Por favor, no te expongas al sol.',
           position: 3,
           minValue: 8,
           lvl: 6
         },
         higth: {
           name: 'Alto',
-          color: 'rgba(255, 129, 64, 1)',
-          recomendation: 'Necesitas protección solar extra',
+          color: 'rgb(255, 129, 64)',
+          recomendation: 'Usá mucha protección y buscá sombra.',
           position: 2,
           minValue: 6,
           lvl: 4
         },
         moderate: {
           name: 'Moderado',
-          color: 'rgba(255, 187, 66, 1)',
-          recomendation: 'Buscá sombra y usa protección solar',
+          color: 'rgb(255, 187, 66)',
+          recomendation: 'Usá bloqueador solar y buscá sombra.',
           position: 1,
           minValue: 3,
           lvl: 3
         },
         low: {
           name: 'Bajo',
-          color: 'rgba(2, 213, 122, 1)',
-          recomendation: 'Podés estar al aire libre con mínima protección',
+          color: 'rgb(2, 213, 122)',
+          recomendation: 'Disfrutá el aire libre con bloqueador solar adecuado a tu piel.',
           position: 0,
           minValue: 0.1,
           lvl: 2
         },
         hide: {
           name: 'Sin Radiación',
-          color: 'rgba(39, 180, 245, 1)',
-          recomendation: 'En este momento no hay niveles de radiación detectados',
+          color: 'rgb(39, 180, 245)',
+          recomendation: 'El sol está durmiendo. ¡Hasta luego!',
           position: -1,
           minValue: 0,
           lvl: 0
@@ -142,8 +149,11 @@ $(document).ready(function () {
       }
     };
     var medidorDinamico = void 0;
+    var medidorPunto = void 0;
     var medidor = void 0;
+    var medPunto = void 0;
     var escala = void 0;
+    var ahora = void 0;
     var history = {
       'margin': { top: 50, right: 50, bottom: 40, left: 50 },
       'ranges': {},
@@ -162,12 +172,19 @@ $(document).ready(function () {
       var contenedorMedidor = d3.select('#medidor');
 
       escala = d3.scaleLinear().domain([radiation.min, radiation.max]).range([5, radiation.max]);
-      medidor = function medidor(valor) {
-        return d3.arc().outerRadius(radiation.diameter / 2).innerRadius(radiation.diameter / 2 - radiation.anchor).startAngle(Math.PI / 4 * 5).endAngle(Math.PI / 4 * valor).cornerRadius(radiation.anchor);
+      medidor = function medidor(final) {
+        return d3.arc().outerRadius(radiation.diameter / 2).innerRadius(radiation.diameter / 2 - radiation.anchor).startAngle(Math.PI / 4 * 5).endAngle(Math.PI / 4 * final).cornerRadius(radiation.anchor);
+      };
+      medPunto = function medPunto(inicial, final) {
+        return d3.arc().outerRadius(radiation.diameter / 2 - radiation.anchor / 4).innerRadius(radiation.diameter / 2 - radiation.anchor + radiation.anchor / 4).startAngle(Math.PI / 4 * inicial).endAngle(Math.PI / 4 * final).cornerRadius(radiation.anchor);
       };
 
-      var medidorEstatico = medidor(escala(radiation.max));
-      medidorDinamico = medidor(escala(radiation.now <= 11 ? radiation.now : 11));
+      var maximo = escala(radiation.max);
+      ahora = escala(radiation.now <= 11 ? radiation.now : 11);
+
+      var medidorEstatico = medidor(maximo);
+      medidorDinamico = medidor(ahora);
+      medidorPunto = medPunto(ahora - 0.07 - 0.04, ahora - 0.04);
 
       var svg = contenedorMedidor.append('svg').attr('id', 'svgMedidor').attr('viewBox', function () {
         return '0 0 ' + radiation.diameter + ' ' + (radiation.diameter - radiation.diameter / 2 * 0.29289);
@@ -182,6 +199,19 @@ $(document).ready(function () {
 
         return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
       });
+      svg.append('svg:path') // Nuevo Medidor
+      .attr('id', 'medidorPunto1').attr('d', medidorPunto()).attr('style', function () {
+
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
+      }).style('fill', function () {
+        return stateRadiation(radiation.now, 'color');
+      });
+      svg.append('svg:path') // Nuevo Medidor
+      .attr('id', 'medidorPunto2').attr('d', medidorPunto()).attr('style', function () {
+
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 2 + 'px);';
+      }).style('fill', 'rgba(0, 0, 0, 0.1)');
+
       svg.append('svg:text') // Texto UV
       .attr('class', 'measureText').attr('style', function () {
 
@@ -197,6 +227,7 @@ $(document).ready(function () {
 
         return 'transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 8 * 7.5 + 'px, ' + radiation.diameter / 8 * 6.75 + 'px);';
       }).text('11+');
+
       svg.append('svg:text') // Estado
       .attr('id', 'state').attr('style', function () {
 
@@ -215,9 +246,15 @@ $(document).ready(function () {
       // Reset Timer Update
       secondsCount = 0;
 
-      medidorDinamico = medidor(escala(radiation.now <= 11 ? radiation.now : 11));
+      ahora = escala(radiation.now <= 11 ? radiation.now : 11);
+
+      medidorDinamico = medidor(ahora);
+      medidorPunto = medPunto(ahora - 0.07 - 0.04, ahora - 0.04);
 
       d3.select('#dynamic').attr('d', medidorDinamico()); // Medidor
+      d3.select('#medidorPunto1').attr('d', medidorPunto()).style('fill', function () {
+        return stateRadiation(radiation.now, 'color');
+      }); // Medidor
       d3.select('#lvlRadiation').text(radiation.now); // Valor
       d3.select('#state').text(stateRadiation(radiation.now, 'name')); // Estado
       d3.select('#recomendation').text(stateRadiation(radiation.now, 'recomendation')); // Recomendacion
@@ -265,6 +302,12 @@ $(document).ready(function () {
         arrData = data.datosRecientes[0].indiceUV;
 
         radiation.now = arrData[arrData.length - 1].indiceUV;
+
+        if (dateObj.hour >= 21) {
+          radiation.states.hide.recomedation = 'El sol está durmiendo. ¡Hasta luego!';
+        } else {
+          radiation.states.hide.recomedation = 'El día está feo y la radiación es muy baja.';
+        }
 
         arrData.forEach(function (v, k) {
           v = standarDate(v);
@@ -388,7 +431,7 @@ $(document).ready(function () {
         return viewBox;
       });
       history.defs = history.svg.append('svg:defs');
-      history.defs.append('svg:pattern').attr('id', 'image').attr('x', 0).attr('y', 0).attr('patternUnits', 'userSpaceOnUse').attr('height', '100%').attr('width', '100%').append('svg:image').attr('id', 'mascara').attr('y', history.margin.top).attr('x', 0).attr('xlink:href', 'public/img/gradient.svg').attr('width', function () {
+      history.defs.append('svg:pattern').attr('id', 'image').attr('x', 0).attr('y', 0).attr('patternUnits', 'userSpaceOnUse').attr('height', '100%').attr('width', '100%').append('svg:image').attr('id', 'mascara').attr('y', 0).attr('x', 0).attr('xlink:href', 'public/img/gradient.svg').attr('width', function () {
         return history.width;
       }).attr('height', function () {
         return history.height;
@@ -401,7 +444,13 @@ $(document).ready(function () {
       history.graphAxis(history.graph, history.axis.xAxisLine2, 'xAxisLine2', 'x', false);
       history.graphAxis(history.graph, history.axis.yAxis, 'yAxis', 'y', true);
 
-      history.graph.append('path').attr('id', 'lineChartGraph').attr('d', history.line(dataset)).attr('stroke', 'url(#image)').attr('stroke-linejoin', 'round').attr('stroke-width', '0.5rem');
+      history.graph.append('path').attr('id', 'lineChartGraph').attr('d', history.line(dataset)).attr('stroke', function () {
+        if (chrome) {
+          return 'url(#image)';
+        } else {
+          return 'rgba(255, 255, 255, 0.5)';
+        }
+      }).attr('stroke-linejoin', 'round').attr('stroke-width', '0.5rem');
 
       var tooltip = history.svg.append('g').attr('id', 'tooltip').attr('class', 'hide');
       var rect = tooltip.append('rect').attr('class', 'toolRect').attr('rx', '10px').attr('ry', '10px');
