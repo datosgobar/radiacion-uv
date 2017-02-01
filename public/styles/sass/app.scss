@@ -19,7 +19,6 @@ $query3: 1280px;
 $query4: 1600px;
 
 $celeste: rgba(39, 180, 245, 1);
-$navHeight: 52px;
 $medida: 2rem;
 $coeficiente: 1.17241379;
 
@@ -46,7 +45,6 @@ button {
   display: flex;
   justify-content: flex-end;
 }
-
 .center {
   display: flex;
   justify-content: center;
@@ -60,7 +58,6 @@ button {
   display: flex;
   align-items: center;
 }
-
 .flow {
   display: flex;
   flex-flow: row;
@@ -69,7 +66,6 @@ button {
   display: flex;
   flex-flow: column;
 }
-
 .fullWidth {
   width: 100%;
 }
@@ -78,6 +74,8 @@ button {
 }
 
 // Barra de Navegación
+$navHeight: 72px;
+
 #navBar {
   background-color: white;
   box-shadow: 0px 0px 5px silver;
@@ -85,11 +83,11 @@ button {
   display: flex;
   justify-content: center;
   height: $navHeight;
+  position: fixed;
   left: 0px;
   top: 0px;
   margin: 0px;
   padding: 0px 20px;
-  position: fixed;
   width: 100vw;
   z-index: 1000;
 
@@ -102,6 +100,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
     @media screen and (min-width: $query1) {
       justify-content: space-between;
@@ -111,29 +110,10 @@ button {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      width: 150px;
+      height: 40px;
 
       & > img {
-        width: 100%;
-      }
-    }
-    & > #acercaDe {
-      display: none;
-
-      @media screen and (min-width: $query1) {
-        display: block;
-        border-radius: 10px;
-        color: #0094D4;
-        font-size: 1.2rem;
-        font-weight: 400;
-        padding: 10px;
-        position: relative;
-        right: -10px;
-        text-decoration: none;
-      }
-
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
+        height: 100%;
       }
     }
   }
@@ -141,13 +121,13 @@ button {
 
 // Contenedor de seccion
 .sectionContent {
-  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
   margin: 0px;
-  padding: 0px;
+  padding: 80px 0px;
   position: relative;
   height: 100%;
   width: 100%;
@@ -163,7 +143,6 @@ button {
 
   @media screen and (min-width: $query1) {
     padding: 0px 20px;
-    margin: 0px 0px 40px 0px;
   }
 
   & > h2 {
@@ -171,7 +150,7 @@ button {
     text-align: center;
     font-size: 2.8rem;
     font-weight: 400;
-    margin: auto;
+    margin: 0px auto 20px auto;
     max-width: 900px;
     padding: 0px;
     width: 100%;
@@ -188,7 +167,7 @@ button {
     text-align: center;
     font-size: 1.4rem;
     font-weight: 300;
-    margin: auto;
+    margin: 0px auto;
     max-width: 900px;
     padding: 0px;
     width: 100%;
@@ -197,6 +176,7 @@ button {
     @media screen and (min-width: $query1) {
       font-size: 1.5rem;
       padding: 10px 0px 0px 0px;
+      margin: 0px auto 20px auto;
       line-height: 36px;
     }
     @media screen and (min-width: $query2) {
@@ -206,23 +186,19 @@ button {
 }
 #section1 .encabezado {
   padding: 10px 10px;
-  margin: 0px;
 
   @media screen and (min-width: $query1) {
     background-color: transparent;
     box-shadow: none;
     padding: 0px 20px;
-    margin: 0px 0px 20px 0px;
   }
 
   h2 {
     font-weight: 600;
-    margin-bottom: 10px;
 
     @media screen and (min-width: $query1) {
       color: #009DDB;
       font-size: 45px;
-      margin-bottom: 0px;
     }
   }
   p {
@@ -234,9 +210,13 @@ button {
 #section3 .encabezado {
   padding: 0px 20px;
 
-  @media screen and (min-width: $query1) {
-    margin: 0px 0px 80px 0px;
+  h2 {
+
+    @media screen and (min-width: $query1) {
+      margin-bottom: 40px;
+    }
   }
+
   & > p {
     padding: 30px 0px;
     text-align: left;
@@ -244,10 +224,11 @@ button {
     line-height: 2.6rem;
 
     @media screen and (min-width: $query1) {
-      padding: 30px 0px 0px 0px;
+      padding: 0px;
       text-align: center;
       line-height: 3.6rem;
       font-size: 1.5rem;
+      margin-bottom: 60px;
     }
     @media screen and (min-width: $query2) {
       font-size: 2rem;
@@ -258,6 +239,7 @@ button {
 
   h2 {
     width: 100vw;
+    margin-bottom: 40px;
   }
 }
 
@@ -268,12 +250,18 @@ button {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  padding: $navHeight 0px 0px 0px;
   max-height: 900px;
+  padding: $navHeight 0px 0px 0px;
+  margin: 0px;
 
   .sectionContent {
+    padding: 0px;
+
+    @media screen and (min-width: $query1) {
+      padding: 80px 0px;
+    }
 
     #radiationContent {
       display: flex;
@@ -285,7 +273,8 @@ button {
       z-index: 100;
 
       @media screen and (min-width: $query1) {
-        max-height: 500px;
+        min-height: 500px;
+        height: 500px;
       }
 
       #sectionIzq {
@@ -432,8 +421,6 @@ button {
     height: 600px;
     max-height: 800px;
   }
-
-
 }
 
 // Seccion 3
@@ -446,12 +433,11 @@ button {
   min-height: 100vh;
   height: 100%;
   width: 100vw;
-  padding-top: $navHeight;
   background-color: white;
 
   @media screen and (min-width: $query1) {
-    max-height: 900px;
-    padding-top: $navHeight * 3;
+    min-height: inherit;
+    height: inherit;
   }
 
   .sectionContent {
@@ -465,15 +451,19 @@ button {
       flex-direction: column;
       box-sizing: border-box;
       max-width: 900px;
-      margin: 40px 20px 0px 20px;
+      margin: 0px 20px 0px 20px;
       width: 100%;
       align-items: flex-start;
       padding: 0px 20px;
 
       @media screen and (min-width: $query1) {
         flex-direction: row;
-        padding: 0px;
+        padding: 0px 20px;
         align-items: flex-start;
+      }
+
+      @media screen and (min-width: 900px) {
+        padding: 0px;
       }
 
       & > div {
@@ -482,12 +472,27 @@ button {
         align-items: flex-start;
         flex-direction: column;
         width: 100%;
-        max-width: 250px;
+        text-align: center;
+
+        @media screen and (min-width: $query1) {
+          width: 30%;
+          max-width: 250px;
+          text-align: left;
+        }
 
         & > span {
           font-size: 16px;
           color: silver;
-          margin-bottom: 15px;
+          margin-bottom: 20px;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+
+          @media screen and (min-width: $query1) {
+            text-align: left;
+            margin-left: 0px;
+            margin-right: 0px;
+          }
         }
 
         & > cite {
@@ -495,17 +500,32 @@ button {
           font-size: 20px;
           font-weight: 300;
           font-style: italic;
+          margin-bottom: 20px;
           height: 24px * 3;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+
+          @media screen and (min-width: $query1) {
+            text-align: left;
+            margin-left: 0px;
+            margin-right: 0px;
+          }
         }
         & > p {
           color: #0094D4;
           font-size: 22px;
           line-height: 30px;
           font-weight: 300;
-          margin: 0px 0px 45px 0px;
+          margin: 0px;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
 
           @media screen and (min-width: $query1) {
-            margin: 0px 0px 15px 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            text-align: left;
           }
         }
       }
@@ -520,26 +540,19 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 40px 0px;
   position: relative;
   width: 100vw;
   overflow: hidden;
 
   @media screen and (min-width: $query1) {
-    height: 700px;
-    padding-top: $navHeight;
+    // height: 700px;
+    // padding-top: $navHeight;
+    padding-top: 0px;
   }
 
   .sectionContent {
     justify-content: center;
 
-    & > .encabezado {
-      margin: 20px 0px;
-
-      @media screen and (min-width: $query1) {
-        margin: 0px 0px 80px 0px;
-      }
-    }
 
     & > div {
       width: 500vw;
@@ -582,15 +595,16 @@ button {
 
           .categoria {
             width: 50%;
+            margin-bottom: 20px;
 
             @media screen and (min-width: $query1) {
               width: 85%;
-              margin-bottom: 20px;
             }
           }
           h3 {
             width: 85%;
-            margin-top: 1rem;
+            margin-top: 0px;
+            margin-bottom: 20px;
           }
           p {
             font-size: 1.5rem;
@@ -598,7 +612,12 @@ button {
             line-height: 20px;
             width: 85%;
             text-align: center;
-            margin: 1rem 0rem;
+            margin: 0px;
+            margin-bottom: 20px;
+
+            @media screen and (min-width: $query1) {
+              margin-bottom: 0px;
+            }
           }
         }
       }
@@ -628,17 +647,22 @@ button {
 
     & > .encabezado {
       margin: 0px;
+
       & > h2 {
         color: $white-font;
       }
       & > p {
         color: $white-font;
+        margin-bottom: 40px;
+        padding: 0px;
       }
     }
   }
 }
 
 #section6 {
+  padding: 80px 0px;
+
   a {
     text-decoration: none;
     color: $color-font;
@@ -916,7 +940,7 @@ h3 {
 
   .protection {
     width: 100%;
-    height: 100%;
+    // height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1043,11 +1067,6 @@ h3 {
 @media screen and (min-width: $query1) {
   .fondoDia {
     background-image: url('../../img/fondo_dia_1.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .footerDia {
-    background-image: url('../../img/fondo_dia_2.png');
     background-position: center;
     background-size: cover;
   }
