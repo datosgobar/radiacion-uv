@@ -106,15 +106,8 @@ $navHeight: 72px;
       justify-content: space-between;
     }
 
-    & > #gobAr {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      height: 40px;
-
-      & > img {
-        height: 100%;
-      }
+    & > img {
+      height: 52px;
     }
   }
 }

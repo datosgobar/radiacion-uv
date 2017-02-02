@@ -255,6 +255,7 @@ $(document).ready(function () {
       d3.select('#medidorPunto1').attr('d', medidorPunto()).style('fill', function () {
         return stateRadiation(radiation.now, 'color');
       }); // Medidor
+      d3.select('#medidorPunto2').attr('d', medidorPunto()); // Medidor
       d3.select('#lvlRadiation').text(radiation.now); // Valor
       d3.select('#state').text(stateRadiation(radiation.now, 'name')); // Estado
       d3.select('#recomendation').text(stateRadiation(radiation.now, 'recomendation')); // Recomendacion
@@ -532,7 +533,7 @@ $(document).ready(function () {
 
     setInterval(function () {
       getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory);
-    }, 1000 * 60 * 10);
+    }, 1000 * 60 * 1);
   };
   var adjustResponsive = function adjustResponsive() {
     var section1 = $('#sectionDer');

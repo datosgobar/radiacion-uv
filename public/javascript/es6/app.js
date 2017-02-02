@@ -280,6 +280,7 @@ $(document).ready(() => {
 
       d3.select('#dynamic').attr('d', medidorDinamico());                                         // Medidor
       d3.select('#medidorPunto1').attr('d', medidorPunto()).style('fill', () => stateRadiation(radiation.now, 'color'));                                         // Medidor
+      d3.select('#medidorPunto2').attr('d', medidorPunto());                                         // Medidor
       d3.select('#lvlRadiation').text(radiation.now);                                             // Valor
       d3.select('#state').text(stateRadiation(radiation.now, 'name'));                            // Estado
       d3.select('#recomendation').text(stateRadiation(radiation.now, 'recomendation'));           // Recomendacion
@@ -624,7 +625,7 @@ $(document).ready(() => {
         });
     });
 
-    setInterval(() => { getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory); }, (1000 * 60 * 10));
+    setInterval(() => { getRadiation(updateSeccionRadiacionUv, updateRecomendation, updateHistory); }, (1000 * 60 * 1));
   };
   const adjustResponsive = () => {
     let section1 = $('#sectionDer');
