@@ -591,10 +591,13 @@ $(document).ready(() => {
           position = position + 20;
 
           if (position === 40 ) {
+            d3.select('.buttonSlideSpace').attr('class', 'buttonSlideCenter');
             $('#flecha_izq').hide();
           } else if (position === (- 40)) {
+            d3.select('.buttonSlideSpace').attr('class', 'buttonSlideCenter');
             $('#flecha_der').hide();
           } else {
+            d3.select('.buttonSlideCenter').attr('class', 'buttonSlideSpace');
             $('#flecha_izq').show();
             $('#flecha_der').show();
           }
@@ -611,10 +614,13 @@ $(document).ready(() => {
           position = position - 20;
 
           if (position === 40 ) {
+            d3.select('.buttonSlideSpace').attr('class', 'buttonSlideCenter');
             $('#flecha_izq').hide();
           } else if (position === (- 40)) {
+            d3.select('.buttonSlideSpace').attr('class', 'buttonSlideCenter');
             $('#flecha_der').hide();
           } else {
+            d3.select('.buttonSlideCenter').attr('class', 'buttonSlideSpace');
             $('#flecha_izq').show();
             $('#flecha_der').show();
           }

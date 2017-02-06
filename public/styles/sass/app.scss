@@ -213,13 +213,11 @@ $navHeight: 72px;
 
   & > p {
     padding: 30px 0px;
-    text-align: left;
     font-size: 1.8rem;
     line-height: 2.6rem;
 
     @media screen and (min-width: $query1) {
       padding: 0px;
-      text-align: center;
       line-height: 3.6rem;
       font-size: 1.5rem;
       margin-bottom: 60px;
@@ -467,7 +465,6 @@ $navHeight: 72px;
         padding: 0px 20px;
         align-items: flex-start;
       }
-
       @media screen and (min-width: 900px) {
         padding: 0px;
       }
@@ -480,12 +477,19 @@ $navHeight: 72px;
         width: 100%;
         text-align: center;
 
+        &:nth-child(2),
+        &:nth-child(3) {
+          margin-top: 20px;
+          @media screen and (min-width: $query1) {
+            margin-top: 0px;
+          }
+        }
+
         @media screen and (min-width: $query1) {
           width: 30%;
           max-width: 250px;
           text-align: left;
         }
-
         & > span {
           font-size: 16px;
           color: silver;
@@ -500,7 +504,6 @@ $navHeight: 72px;
             margin-right: 0px;
           }
         }
-
         & > cite {
           color: $color-font;
           font-size: 20px;
@@ -1052,9 +1055,7 @@ h3 {
 .iconos-derecha,
 .iconos-izquierda {
   display: none;
-  min-width: 125px;
-  max-width: 200px;
-  width: 15%;
+  height: 50%;
 }
 
 @media screen and (min-width: $query1) {
@@ -1109,6 +1110,7 @@ h3 {
     }
     text {
       fill: rgba(255, 255, 255, 0.25);
+      font-size: 11px;
     }
   }
   #xAxisLine2 {
@@ -1118,6 +1120,7 @@ h3 {
     }
     text {
       fill: rgba(255, 255, 255, 0.75);
+      font-size: 11px;
     }
   }
   .yIndex {
@@ -1133,4 +1136,18 @@ h3 {
 #medidorCircle {
   text-anchor: middle;
   alignment-baseline: middle;
+}
+.buttonSlideCenter {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.buttonSlideSpace {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 }
