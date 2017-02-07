@@ -1,4 +1,94 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+// Import Roboto
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/2tsd397wLxj96qwHyNIkxHYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/oMMgfZMQthOryQo9n22dcuvvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/RxZJdnzeo3R5zSexge8UUZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOJBw1xU1rKptJj_0jans920.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/mnpfi9pxYH-Go5UiibESIpBw1xU1rKptJj_0jans920.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 100;
+    src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/12mE4jfMSBTmg-81EiS-YQzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at4gp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/vPcynSL0qHq_6dX7lKVByXYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 500;
+    src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Ygp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC4gp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 900;
+    src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpYgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+}
+
+// Core variables and mixins
+@import "variables";
+@import "bootstrap/mixins";
+
+// Reset and dependencies
+@import "normalize";
+@import "bootstrap/print";
+@import "bootstrap/glyphicons";
+
+// Import Bootstrap
+@import "bootstrap";
+
+// Responsive Rules
+$small: 768px;
+$medium: 992px;
+$large: 1200px;
+
 
 // Estate Colors
 $low: rgba(2, 213, 122, 1);
@@ -21,6 +111,7 @@ $query4: 1600px;
 $celeste: rgba(39, 180, 245, 1);
 $medida: 2rem;
 $coeficiente: 1.17241379;
+$color_light: rgba(242, 242, 242, 1);
 
 // General
 html, body {
@@ -73,44 +164,205 @@ button {
   height: 100%;
 }
 
-// Barra de Navegación
+// Header and Footer
 $navHeight: 72px;
+$footerHeight: 265px;
+$gobar_color: #0695d6;
 
-#navBar {
+a {
+  color: $gobar_color;
+  text-decoration: none;
+
+  &:hover {
+    color: #17b2f8;
+  }
+}
+
+body > header {
   background-color: white;
-  box-shadow: 0px 0px 5px silver;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  height: $navHeight;
   position: fixed;
-  left: 0px;
-  top: 0px;
-  margin: 0px;
-  padding: 0px 20px;
-  width: 100vw;
+  width: 100%;
   z-index: 1000;
 
-  & > div {
-    max-width: 900px;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 10px 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  #gobar {
+    height: $navHeight;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
 
-    @media screen and (min-width: $query1) {
+    & > div {
+      display: flex;
       justify-content: space-between;
-    }
+      align-items: center;
+      flex-direction: row;
 
-    & > img {
-      height: 52px;
+      .redes {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row;
+        margin-left: 20px;
+
+        & > span {
+          display: none;
+          color: $gobar_color;
+          font-size: 16px;
+          padding: 0 10px;
+          font-weight: 500;
+
+          @media (min-width: $small) {
+            display: inherit;
+          }
+        }
+        & > a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          text-decoration: none;
+          color: $gobar_color;
+          background-color: transparent;
+          padding: 0 10px;
+          font-size: responsive 12px 16px;
+          height: $navHeight;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $gobar_color;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  #productName {
+
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+
+      h2 {
+        font-size: responsive 20px 22px;
+        text-align: center;
+        width: 100%;
+        margin: 20px 0px;
+      }
     }
   }
 }
+body > footer {
+  box-sizing: border-box;
+  z-index: 900;
+  width: 100%;
+
+  & > div:nth-child(1) {
+    background-color: #F2F2F2;
+    padding: $navHeight 0px;
+
+    p {
+      font-size: responsive 12px 14px;
+      color: $color-font;
+      text-align: center;
+      line-height: 22px;
+    }
+  }
+  & > div:nth-child(2) {
+    height: $footerHeight;
+    background-color: white;
+    box-shadow: 0 -2px 4px 0 rgba(220, 220, 220, 0.5);
+
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      @media (min-width: $small) {
+        justify-content: space-between;
+      }
+    }
+
+    #institucional {
+
+      .social_icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+        @media (min-width: $small) {
+          justify-content: flex-start;
+        }
+
+        & > a {
+          color: $gobar_color;
+          background-color: transparent;
+          padding: 10px;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          border-radius: 3px;
+          text-decoration: none;
+
+          &:hover {
+            color: white;
+            background-color: $gobar_color;
+          }
+        }
+      }
+    }
+    #contacto {
+      display: none;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      @media (min-width: $small) {
+        display: flex;
+      }
+
+      & > a {
+        font-size: 16px;
+        font-weight: 500;
+        color: $gobar_color;
+        text-decoration: none;
+
+        &:hover {
+          color: #17b2f8;
+        }
+        &:nth-child(2) {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+// Logo
+.logo_gobar {
+  min-width: 150px;
+  width: 100%;
+  max-width: 300px;
+}
+
+// Contenedor con margenes ajustables
+.containerResponsive {
+  overflow: hidden;
+  margin: 0px auto;
+  padding: 0px 15px;
+  height: 100%;
+
+  @media screen and (min-width: 768px) { width: 750px }
+  @media screen and (min-width: 992px) { width: 970px }
+}
+
+
+
 
 // Contenedor de seccion
 .sectionContent {
@@ -544,6 +796,7 @@ $navHeight: 72px;
 
 // Seccion 4
 #section4 {
+  background-color: $color_light;
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -695,73 +948,6 @@ $navHeight: 72px;
 $color_light: rgba(242, 242, 242, 1);
 $color_dark: rgba(77, 77, 77, 1);
 
-footer {
-  padding: 60px 0px 40px 0px;
-  background-color: $color_light;
-
-  h2 {
-    font-size: 30px;
-    font-weight: 400;
-    width: 100%;
-    color: $color_dark;
-    text-align: center;
-  }
-  button {
-    margin: 15px 0px 60px 0px;
-    padding: 5px 30px;
-    border-radius: 30px;
-    border: 1px solid $color_dark;
-    background-color: transparent;
-    cursor: pointer;
-
-    &:hover {
-      background-color: $color_dark;
-      color: white;
-    }
-  }
-  p {
-    font-size: 1.4rem;
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-    box-sizing: border-box;
-    line-height: 20px;
-  }
-}
-#comunidad {
-  width: 100%;
-  max-width: 900px;
-  margin: 40px auto 0px auto;
-  padding: 0px 20px;
-  box-sizing: border-box;
-
-  & > h3 {
-    font-weight: 300;
-    font-size: 15px;
-    color: $color-font;
-
-    @media screen and (min-width: $query1) {
-      font-size: 20px;
-    }
-  }
-  #redes_sociales {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    padding: 15px 0px 0px 0px;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    box-sizing: border-box;
-
-    .social_icon {
-      font-size: 4rem;
-      color: $color-font;
-    }
-  }
-}
 
 // Encabezados
 h2 {
