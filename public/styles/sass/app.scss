@@ -300,14 +300,18 @@ body > footer {
           color: $gobar_color;
           background-color: transparent;
           padding: 10px;
-          width: 50px;
-          height: 50px;
+          width: 46px;
+          height: 46px;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: row;
           border-radius: 3px;
           text-decoration: none;
+
+          & > i {
+            font-size: 28px;
+          }
 
           &:hover {
             color: white;
