@@ -759,6 +759,7 @@ body > footer {
         & > cite {
           color: $color-font;
           font-size: 20px;
+          line-height: 25px;
           font-weight: 300;
           font-style: italic;
           margin-bottom: 10px;
@@ -775,8 +776,8 @@ body > footer {
         }
         & > p {
           color: #0094D4;
-          font-size: 22px;
-          line-height: 30px;
+          font-size: 20px;
+          line-height: 25px;
           font-weight: 300;
           margin: 0px;
           text-align: center;
@@ -1159,7 +1160,7 @@ h3 {
 
       @media screen and (min-width: $query1) {
         height: inherit;
-        font-size: 14px;
+        font-size: 13px;
         line-height: 20px;
       }
     }
