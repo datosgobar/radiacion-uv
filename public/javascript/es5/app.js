@@ -215,7 +215,7 @@ $(document).ready(function () {
       svg.append('svg:text') // Texto UV
       .attr('class', 'measureText').attr('style', function () {
 
-        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px);';
+        return 'transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px) translateY(3.5rem);\n                  -moz-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px) translateY(3.5rem);\n                  -webkit-transform: translate(' + radiation.diameter / 2 + 'px, ' + radiation.diameter / 8 * 3.5 + 'px) translateY(3.5rem);';
       }).text('UV');
       svg.append('svg:text') // vMin
       .attr('class', 'measureMinMax').attr('style', function () {

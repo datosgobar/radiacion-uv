@@ -223,9 +223,9 @@ $(document).ready(() => {
         .attr('class', 'measureText')
         .attr('style', () => {
 
-          return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
-                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);
-                  -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px);`;
+          return `transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px) translateY(3.5rem);
+                  -moz-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px) translateY(3.5rem);
+                  -webkit-transform: translate(${ (radiation.diameter / 2) }px, ${ (radiation.diameter / 8) * 3.5 }px) translateY(3.5rem);`;
         })
         .text('UV');
       svg.append('svg:text')    // vMin
