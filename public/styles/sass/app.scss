@@ -261,10 +261,10 @@ body > footer {
     padding: $navHeight 0px;
 
     p {
-      font-size: responsive 12px 14px;
       color: $color-font;
       text-align: center;
-      line-height: 22px;
+      font-size: responsive 16px 18px;
+      line-height: 25px;
     }
   }
   & > div:nth-child(2) {
@@ -758,7 +758,7 @@ body > footer {
         }
         & > cite {
           color: $color-font;
-          font-size: 20px;
+          font-size: 18px;
           line-height: 25px;
           font-weight: 300;
           font-style: italic;
@@ -776,7 +776,7 @@ body > footer {
         }
         & > p {
           color: #0094D4;
-          font-size: 20px;
+          font-size: 18px;
           line-height: 25px;
           font-weight: 300;
           margin: 0px;
