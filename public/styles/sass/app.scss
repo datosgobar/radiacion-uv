@@ -674,6 +674,7 @@ body > footer {
   padding: 0px;
   position: relative;
   width: 100vw;
+  background-color: $color_light;
 
   @media screen and (min-width: $query1) {
     display: none;
@@ -1087,12 +1088,12 @@ h3 {
 
 // Protecciones
 #contenedorProtecciones {
-  background-color: white;
   border-radius: 0px;
   margin: 0px;
   box-sizing: border-box;
 
   @media screen and (min-width: $query1) {
+    background-color: white;
     border-radius: 10px;
     padding: 0px 10px;
     height: 70%;
@@ -1156,7 +1157,8 @@ h3 {
       font-size: 18px;
       line-height: 24px;
       color: silver;
-      padding: 0px 5px;
+      padding: 0px 30px;
+
       text-align: center;
       height: 54px;
       font-weight: 300;
@@ -1164,6 +1166,7 @@ h3 {
       @media screen and (min-width: $query1) {
         height: inherit;
         font-size: 14px;
+        padding: 0px 5px;
         line-height: 20px;
       }
     }
