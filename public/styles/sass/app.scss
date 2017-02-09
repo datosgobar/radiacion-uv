@@ -205,7 +205,7 @@ body > header {
         & > span {
           display: none;
           color: $gobar_color;
-          font-size: 16px;
+          font-size: 17px;
           padding: 0 10px;
           font-weight: 500;
 
@@ -1103,7 +1103,7 @@ h3 {
     font-size: 28px;
     font-weight: 400;
     color: $color-font;
-    margin: 20px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
 
     @media screen and (min-width: $query1) {
       font-size: 15px;
