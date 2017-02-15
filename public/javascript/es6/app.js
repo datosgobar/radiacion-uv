@@ -476,7 +476,7 @@ $(document).ready(() => {
       }
 
       // Define the line
-      history.line = d3.line().curve(d3.curveBasis)
+      history.line = d3.line().curve(d3.curveMonotoneX)
         .x((d, i) => history.ranges.x(new Date(convertElement(d))))
         .y((d, i) => history.ranges.y(d.indiceUV));
   		history.svg = history.container.append('svg:svg')

@@ -419,7 +419,7 @@ $(document).ready(function () {
       }
 
       // Define the line
-      history.line = d3.line().curve(d3.curveBasis).x(function (d, i) {
+      history.line = d3.line().curve(d3.curveMonotoneX).x(function (d, i) {
         return history.ranges.x(new Date(convertElement(d)));
       }).y(function (d, i) {
         return history.ranges.y(d.indiceUV);
