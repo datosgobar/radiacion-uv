@@ -502,7 +502,7 @@ $(document).ready(() => {
           .attr('id', 'mascara')
           .attr('y', 0)
           .attr('x', 0)
-          .attr('xlink:href', 'public/img/gradient.svg')
+          .attr('xlink:href', 'public/image/gradient.svg')
           .attr('width', () => history.width)
           .attr('height', () => history.height);
       history.graph = history.svg.append('svg:g')
@@ -637,9 +637,13 @@ $(document).ready(() => {
     let section1 = $('#sectionDer');
     let section2 = $('#section2');
 
-    if (!getResponsive(600)) {
+    if (!getResponsive(725)) {
       section1.append(section2.children().children());
+    } else {
+      section2.children().append(section1.children());
+    }
 
+    if (!getResponsive(600)) {
       $('#flecha_izq').hide();
       $('#flecha_der').hide();
 
@@ -654,8 +658,6 @@ $(document).ready(() => {
                   -webkit-transform: translateX(0%);`;
         });
     } else {
-      section2.children().append(section1.children());
-
       $('#flecha_izq').show();
       $('#flecha_der').show();
 

@@ -11,7 +11,7 @@ gulp.task('es6', () => {
       .pipe(gulp.dest('./public/javascript/es5/'));
 });
 gulp.task('sass', () => {
-    gulp.src('./public/styles/sass/*.scss')
+    gulp.src('./public/style/sass/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(rucksack())
         .pipe(autoprefixer({
@@ -35,7 +35,7 @@ gulp.task('sass', () => {
           ]
         }))
         .pipe(cssnano())
-        .pipe(gulp.dest('./public/styles/css/'));
+        .pipe(gulp.dest('./public/style/css/'));
 });
 
 //Watch task

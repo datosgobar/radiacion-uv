@@ -432,7 +432,7 @@ $(document).ready(function () {
         return viewBox;
       });
       history.defs = history.svg.append('svg:defs');
-      history.defs.append('svg:pattern').attr('id', 'image').attr('x', 0).attr('y', 0).attr('patternUnits', 'userSpaceOnUse').attr('height', '100%').attr('width', '100%').append('svg:image').attr('id', 'mascara').attr('y', 0).attr('x', 0).attr('xlink:href', 'public/img/gradient.svg').attr('width', function () {
+      history.defs.append('svg:pattern').attr('id', 'image').attr('x', 0).attr('y', 0).attr('patternUnits', 'userSpaceOnUse').attr('height', '100%').attr('width', '100%').append('svg:image').attr('id', 'mascara').attr('y', 0).attr('x', 0).attr('xlink:href', 'public/image/gradient.svg').attr('width', function () {
         return history.width;
       }).attr('height', function () {
         return history.height;
@@ -545,9 +545,13 @@ $(document).ready(function () {
     var section1 = $('#sectionDer');
     var section2 = $('#section2');
 
-    if (!getResponsive(600)) {
+    if (!getResponsive(725)) {
       section1.append(section2.children().children());
+    } else {
+      section2.children().append(section1.children());
+    }
 
+    if (!getResponsive(600)) {
       $('#flecha_izq').hide();
       $('#flecha_der').hide();
 
@@ -559,8 +563,6 @@ $(document).ready(function () {
         return 'transform: translateX(0%);\n                  -moz-transform: translateX(0%);\n                  -webkit-transform: translateX(0%);';
       });
     } else {
-      section2.children().append(section1.children());
-
       $('#flecha_izq').show();
       $('#flecha_der').show();
 
