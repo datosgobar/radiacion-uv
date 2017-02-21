@@ -45,6 +45,7 @@ const sizeObject = (obj) => {
 const getResponsive = (max) => ($(window).outerWidth() < max) ? (true) : (false);
 
 $(document).ready(() => {
+
   const ejecutarReloj = () => {
     const updateClock = () => {
       let dateObj = createObjectDate(false, false);
@@ -78,7 +79,6 @@ $(document).ready(() => {
       max       : 11,
       min       : 0,
       now       : 0,
-      diameter  : $('#medidor').outerWidth(),
       anchor    : 15,
       states    : {
         extrem: {
@@ -153,7 +153,7 @@ $(document).ready(() => {
     };
     const crearSeccionRadiacionUv = () => {
       let contenedorMedidor = d3.select('#medidor');
-
+      radiation.diameter = $('#medidor').outerWidth();
       escala = d3.scaleLinear()
         .domain([radiation.min, radiation.max])
         .range([5, radiation.max]);
@@ -307,7 +307,6 @@ $(document).ready(() => {
       });
     };
     const standarDate = (dato) => {
-      // console.log(dato);
       let fecha = dato.fecha.split('-');
       let hora = dato.hora.split(':');
 
@@ -335,14 +334,12 @@ $(document).ready(() => {
 
           arrData.forEach((v, k) => { v = standarDate(v); });
 
-          console.log('Se hace pedido GET');
           radiacion();
           recomendation();
           history(arrData);
         });
     };
     const convertElement = (element) => {
-      // console.log(element);
       let fecha = element.fecha.split('-');
       let date = `${ formatDate(fecha[2]) }/${ formatDate(fecha[1]) }/${ formatDate(fecha[0]) } ${ element.hora }`;
 

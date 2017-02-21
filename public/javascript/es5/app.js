@@ -62,6 +62,7 @@ var getResponsive = function getResponsive(max) {
 };
 
 $(document).ready(function () {
+
   var ejecutarReloj = function ejecutarReloj() {
     var updateClock = function updateClock() {
       var dateObj = createObjectDate(false, false);
@@ -95,7 +96,6 @@ $(document).ready(function () {
       max: 11,
       min: 0,
       now: 0,
-      diameter: $('#medidor').outerWidth(),
       anchor: 15,
       states: {
         extrem: {
@@ -170,7 +170,7 @@ $(document).ready(function () {
     };
     var crearSeccionRadiacionUv = function crearSeccionRadiacionUv() {
       var contenedorMedidor = d3.select('#medidor');
-
+      radiation.diameter = $('#medidor').outerWidth();
       escala = d3.scaleLinear().domain([radiation.min, radiation.max]).range([5, radiation.max]);
       medidor = function medidor(final) {
         return d3.arc().outerRadius(radiation.diameter / 2).innerRadius(radiation.diameter / 2 - radiation.anchor).startAngle(Math.PI / 4 * 5).endAngle(Math.PI / 4 * final).cornerRadius(radiation.anchor);
@@ -282,7 +282,6 @@ $(document).ready(function () {
       });
     };
     var standarDate = function standarDate(dato) {
-      // console.log(dato);
       var fecha = dato.fecha.split('-');
       var hora = dato.hora.split(':');
 
@@ -314,14 +313,12 @@ $(document).ready(function () {
           v = standarDate(v);
         });
 
-        console.log('Se hace pedido GET');
         radiacion();
         recomendation();
         history(arrData);
       });
     };
     var convertElement = function convertElement(element) {
-      // console.log(element);
       var fecha = element.fecha.split('-');
       var date = formatDate(fecha[2]) + '/' + formatDate(fecha[1]) + '/' + formatDate(fecha[0]) + ' ' + element.hora;
 
